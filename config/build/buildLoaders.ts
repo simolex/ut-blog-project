@@ -2,15 +2,21 @@ import { RuleSetRule } from "webpack";
 import { BuildOptions } from "./types/config";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-export function buildLoaders(options: BuildOptions): RuleSetRule[] {
+export function buildLoaders({isDev}: BuildOptions): RuleSetRule[] {
   const scssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
-      options.isDev ? "style-loader" : MiniCssExtractPlugin.loader, // Creates `style` nodes from JS strings
+      isDev ? "style-loader" : MiniCssExtractPlugin.loader, // Creates `style` nodes from JS strings
       {
         loader: "css-loader", // Translates CSS into CommonJS
         options: {
-          modules: true,
+          modules: 
+            {
+              auto: (resPath: string )=>Boolean(resPath.includes('.module.')),
+              localIdentName: isDev
+              ? '[path][name]__[local]--[hash:base64:5]'
+              : '[hash:base64:8]',
+            }
         },
       },
       "sass-loader", // Compiles Sass to CSS
