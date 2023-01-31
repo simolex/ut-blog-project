@@ -1,0 +1,5 @@
+.app.dark {
+  --bg-color: #0e0e75;
+  --primary-color: lime;
+  --sec-color: darken(var(--primary-color), 50%);
+}

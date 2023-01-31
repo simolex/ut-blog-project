@@ -1,24 +1,27 @@
-import { Suspense } from "react";
+import { Suspense, useContext, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 
-import "./index.scss";
+import "./styles/index.scss";
 import { AboutPageLazy } from "./pages/AboutPage/AboutPage.lazy";
 import { MainPageLazy } from "./pages/MainPage/MainPage.lazy";
+import { useTheme } from "./theme/useTheme";
 
 const App = () => {
-    return (
-        <div className="app">
-            <Link to={"/"}>Главная</Link>
-            <Link to={"/about"}>О сайте</Link>
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <div className={`app ${theme}`}>
+      <button onClick={toggleTheme}>TOGGLE</button>
+      <Link to={"/"}>Главная</Link>
+      <Link to={"/about"}>О сайте</Link>
 
-            <Suspense fallback={<div>Загрузка...</div>}>
-                <Routes>
-                    <Route path={"/about"} element={<AboutPageLazy />} />
-                    <Route path={"/"} element={<MainPageLazy />} />
-                </Routes>
-            </Suspense>
-        </div>
-    );
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <Routes>
+          <Route path={"/about"} element={<AboutPageLazy />} />
+          <Route path={"/"} element={<MainPageLazy />} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
 };
 
 export default App;

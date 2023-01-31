@@ -1,0 +1,20 @@
+@import "normalize.css";
+@import "reset";
+
+@import "variables/global.scss";
+@import "themes/light.scss";
+@import "themes/dark.scss";
+
+html,
+body,
+#root {
+  // min-height: 100%;
+  height: 100%;
+}
+
+.app {
+  font: var(--font-m);
+  color: var(--primary-color);
+  background-color: var(--bg-color);
+  min-height: 100%;
+}
