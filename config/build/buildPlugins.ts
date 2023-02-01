@@ -1,7 +1,10 @@
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { BuildOptions } from "./types/config";
-import { WebpackPluginInstance, ProgressPlugin } from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { ProgressPlugin } from "webpack";
+
+//Где импортируешь типы, я бы советовал дописывать `type` . Ускоряет обработку файла и выпиливает ненужные импорты.
+import type { WebpackPluginInstance } from "webpack";
 
 export function buildPlugins({ paths }: BuildOptions): WebpackPluginInstance[] {
   return [
