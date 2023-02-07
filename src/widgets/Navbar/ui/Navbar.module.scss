@@ -1,15 +1,14 @@
-.navbar{
-   width: 100%;
-   height: var(--navebar-height);
-   background-color: var(--inverted-bg-color);
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   padding: 20px;
+.navbar {
+    width: 100%;
+    height: var(--navebar-height);
+    background-color: var(--inverted-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 20px;
 }
-.links{
-   
+.links {
 }
-.linkItem:not(:last-child){
-   margin-right: 15px;
+.linkItem:not(:last-child) {
+    margin-right: 15px;
 }

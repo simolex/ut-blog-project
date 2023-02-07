@@ -7,22 +7,21 @@ import { ThemeSwitcher } from "shared/ui/ThemeSwitcher/ThemeSwitcher";
 import styles from "./Navbar.module.scss";
 
 interface NavbarProps {
-  className?: string;
+    className?: string;
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
-  const { theme, toggleTheme } = useTheme();
-  return (
-    <div className={classNames(styles.navbar, {}, [className])}>
-      <ThemeSwitcher />
-      <div className={styles.links}>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={"/"} className={styles.linkItem}>
-          Главная
-        </AppLink>
-        <AppLink theme={AppLinkTheme.SECONDARY} to={"/about"} className={styles.linkItem}>
-          О сайте
-        </AppLink>
-      </div>
-    </div>
-  );
+    const { theme, toggleTheme } = useTheme();
+    return (
+        <div className={classNames(styles.navbar, {}, [className])}>
+            <div className={styles.links}>
+                <AppLink theme={AppLinkTheme.SECONDARY} to={"/"} className={styles.linkItem}>
+                    Главная
+                </AppLink>
+                <AppLink theme={AppLinkTheme.SECONDARY} to={"/about"} className={styles.linkItem}>
+                    О сайте
+                </AppLink>
+            </div>
+        </div>
+    );
 };
