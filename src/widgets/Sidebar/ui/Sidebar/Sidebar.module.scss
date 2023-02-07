@@ -16,6 +16,8 @@
     position: absolute;
     bottom: 20px;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: space-evenly;
     width: 100%;
 }
