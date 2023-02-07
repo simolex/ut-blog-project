@@ -1,26 +1,23 @@
 {
-	
 	"React UI Components": {
 		"scope": "javascript,typescript,typescriptreact",
 		"prefix": "rc",
 		"body": [
-			"import { useTheme } from 'app/providers/ThemeProvider';"
-			"import { classNames } from 'shared/lib/classNames';"
-			"import styles from './${1:$TM_FILENAME_BASE}.module.scss';"
-			""
-			"interface ${1}Props {"
-			"	className?: string;"
-			"}"
-			""
-			"export const ${1} = ({ className }: ${1}Props) => {"
-			""
-			"	return ("
-			"		<div className={classNames(styles.${1/(.*)/${0:/downcase}/}, {}, [className])}>"
-			"$2"	
-			"		</div>"
-			"	);"
+			"import { classNames } from 'shared/lib/classNames';",
+			"import styles from './${1:$TM_FILENAME_BASE}.module.scss';",
+			"",
+			"interface ${1}Props {",
+			"	className?: string;",
+			"}",
+			"",
+			"export const ${1} = ({ className }: ${1}Props) => {",
+			"",
+			"	return (",
+			"		<div className={classNames(styles.${1/(.*)/${0:/downcase}/}, {}, [className])}>",
+			"$2",
+			"		</div>",
+			"	);",
 			"};"
-
 		],
 		"description": "Log output to console"
 	}

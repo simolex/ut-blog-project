@@ -7,13 +7,13 @@ import { AppRouter } from "./providers/Router";
 import { Navbar } from "widgets/Navbar";
 
 const App = () => {
-    const { theme, toggleTheme } = useTheme();
-    return (
-        <div className={classNames("app", {}, [theme])}>
-            <Navbar />
-            <AppRouter />
-        </div>
-    );
+  const { theme } = useTheme();
+  return (
+    <div className={classNames("app", {}, [theme])}>
+      <Navbar />
+      <AppRouter />
+    </div>
+  );
 };
 
 export default App;
