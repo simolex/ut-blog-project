@@ -3,5 +3,20 @@
       "public/locales"
    ],
    "i18n-ally.sourceLanguage": "en",
-   "i18n-ally.keystyle": "flat"
+   "i18n-ally.keystyle": "flat",
+   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+   "editor.formatOnPaste": false,
+   "editor.formatOnType": false,
+   "editor.formatOnSave": true,
+   "editor.formatOnSaveMode": "file",
+   "files.autoSave": "onFocusChange",
+   "[javascript]": {
+      "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+   },
+   "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+   },
+   "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+   }
 }
