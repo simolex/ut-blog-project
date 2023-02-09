@@ -1,5 +1,6 @@
 {
-    "Тестовый перевод": "Testing translation",
-    "Перевод": "Translate",
-    "Язык": "English"
+  "Тестовый перевод": "Testing translation",
+  "Перевод": "Translate",
+  "Язык": "English",
+  "NotFound": "Page not found"
 }
