@@ -2,5 +2,8 @@
   "Тестовый перевод": "Testing translation",
   "Перевод": "Translate",
   "Язык": "English",
-  "NotFound": "Page not found"
+  "NotFound": "Page not found",
+  "undefined-error": "An unexpected error occurred",
+  "update-page": "Refresh page",
+  "throw-error": "Throw error"
 }
