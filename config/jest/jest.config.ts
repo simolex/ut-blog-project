@@ -3,6 +3,8 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path';
+
 export default {
     // All imported modules in your tests should be mocked automatically
     // automock: false,
@@ -25,6 +27,8 @@ export default {
     // An array of directory names to be searched recursively up from the requiring modules location
     moduleDirectories: ['node_modules'],
 
+    modulePaths: ['<rootDir>src'],
+
     // An array of file extensions your modules use
     moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
 
@@ -33,6 +37,14 @@ export default {
 
     // The glob patterns Jest uses to detect test files
     testMatch: ['<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)'],
+
+    setupFilesAfterEnv: ['<rootDir>config/jest/jsxTests.setup.ts'],
+
+    // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
+    moduleNameMapper: {
+        '\\.(s?[ac]ss)$': 'identity-obj-proxy',
+        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    },
 
     // A list of paths to directories that Jest should use to search for files in
     // roots: [
@@ -85,9 +97,6 @@ export default {
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
     // maxWorkers: "50%",
-
-    // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-    // moduleNameMapper: {},
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
     // modulePathIgnorePatterns: [],
