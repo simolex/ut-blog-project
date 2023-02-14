@@ -7,7 +7,9 @@ interface NotFoundProps {
     className?: string;
 }
 
-export const NotFound = ({ className }: NotFoundProps) => {
+const NotFound = ({ className }: NotFoundProps) => {
     const { t } = useTranslation();
     return <div className={classNames(styles.notFound, {}, [className])}>{t('NotFound')}</div>;
 };
+
+export default NotFound;

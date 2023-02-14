@@ -7,6 +7,7 @@ export type ThemeButton = ValueOf<typeof ThemeButton>;
 
 export const ThemeButton = {
     CLEAR: 'clear',
+    OUTLINE: 'outline',
 } as const;
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
