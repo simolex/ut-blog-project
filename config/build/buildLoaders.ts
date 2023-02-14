@@ -1,6 +1,7 @@
 import { type RuleSetRule } from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
 import { type BuildOptions } from './types/config';
+import { buildCssLoader } from './loaders/buildCssLoader';
 
 export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
     const svgLoader = {
@@ -13,31 +14,7 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
         use: 'file-loader',
     };
 
-    const scssLoader = {
-        test: /\.(s[ac]ss|css)$/i,
-        use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader, // Creates `style` nodes from JS strings
-            {
-                loader: 'css-loader', // Translates CSS into CommonJS
-                options: {
-                    modules: {
-                        auto: (resPath: string) => Boolean(resPath.includes('.module.')),
-                        localIdentName: isDev
-                            ? '[path][name]__[local]--[hash:base64:5]'
-                            : '[hash:base64:8]',
-                    },
-                },
-            },
-            {
-                loader: 'sass-loader', // Compiles Sass to CSS
-                options: {
-                    sassOptions: {
-                        includePaths: ['./node_modules/normalize.css'],
-                    },
-                },
-            },
-        ],
-    };
+    const scssLoader = buildCssLoader(isDev);
 
     // для js  нужен babel-loader
     const typescriptLoader = {
