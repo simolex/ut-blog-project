@@ -42,6 +42,8 @@ module.exports = {
             2,
             { markupOnly: true, ignoreAttribute: ['to', 'data-testid'] },
         ],
+        'implicit-arrow-linebreak': [1],
+        'no-redeclare': [1],
     },
     globals: {
         __IS_DEV__: true,

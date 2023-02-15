@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames';
@@ -7,7 +8,7 @@ interface NotFoundProps {
     className?: string;
 }
 
-const NotFound = ({ className }: NotFoundProps) => {
+const NotFound: FC<NotFoundProps> = ({ className }: NotFoundProps) => {
     const { t } = useTranslation();
     return <div className={classNames(styles.notFound, {}, [className])}>{t('NotFound')}</div>;
 };
