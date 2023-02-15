@@ -31,5 +31,5 @@ jobs:
         run: npm run test:unit
       - name: build storybook
         run: npm run storybook:build
-      - name: screenshot testing
+      - name: Screenshot testing
         run: npm run test:ui:ci
