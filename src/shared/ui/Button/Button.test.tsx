@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Button, ThemeButton } from './Button';
 
 describe('Button', () => {
-    test('simple test', () => {
+    test('simple test.', () => {
         render(<Button>TEST</Button>);
         expect(screen.getByText('TEST')).toBeInTheDocument();
     });
