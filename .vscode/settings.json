@@ -21,5 +21,7 @@
    },
    "[scss]": {
       "editor.defaultFormatter": "stylelint.vscode-stylelint"
-   }
+   },
+   "prettier.endOfLine": "lf",
+    "files.eol": "\n",
 }
