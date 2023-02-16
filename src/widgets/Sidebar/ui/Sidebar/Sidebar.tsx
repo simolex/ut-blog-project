@@ -3,8 +3,13 @@ import { useState } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher';
-import { Button } from 'shared/ui/Button/Button';
+import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routerConfig/routerConfig';
+
+import AboutIcon from 'shared/assets/icons/about-20x20.svg';
+import HomeIcon from 'shared/assets/icons/home-20x20.svg';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -24,12 +29,42 @@ export const Sidebar = ({ className }: SidebarProps) => {
             data-testid="sidebar"
             className={classNames(styles.sidebar, { [styles.collapsed]: collapsed }, [className])}
         >
-            <Button data-testid="sidebar-toggle" type="button" onClick={onToggle}>
-                {t('toggle')}
+            <Button
+                data-testid="sidebar-toggle"
+                type="button"
+                onClick={onToggle}
+                className={styles.collapseBtn}
+                theme={ButtonTheme.BACKGROUND_INVERTED}
+                size={ButtonSize.XL}
+                square
+            >
+                {collapsed ? '>' : '<'}
             </Button>
+            <ul className={styles.itemList}>
+                <li>
+                    <AppLink
+                        theme={AppLinkTheme.SECONDARY}
+                        to={RoutePath.main}
+                        className={styles.item}
+                    >
+                        <HomeIcon className={styles.iconItem} />
+                        <span className={styles.linkItem}>{t('main-link')}</span>
+                    </AppLink>
+                </li>
+                <li>
+                    <AppLink
+                        theme={AppLinkTheme.SECONDARY}
+                        to={RoutePath.about}
+                        className={styles.item}
+                    >
+                        <AboutIcon className={styles.iconItem} />
+                        <span className={styles.linkItem}>{t('about-link')}</span>
+                    </AppLink>
+                </li>
+            </ul>
             <div className={styles.switchers}>
                 <ThemeSwitcher />
-                <LangSwitcher />
+                <LangSwitcher short={collapsed} />
             </div>
         </div>
     );

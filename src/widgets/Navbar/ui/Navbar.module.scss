@@ -2,12 +2,5 @@
     width: 100%;
     height: var(--navebar-height);
     background-color: var(--inverted-bg-color);
-    display: flex;
-    align-items: center;
-    justify-content: end;
     padding: 20px;
-}
-
-.linkItem:not(:last-child) {
-    margin-right: 15px;
 }
