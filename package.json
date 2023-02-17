@@ -14,7 +14,7 @@
         "test:unit": "npx jest --config ./config/jest/jest.config.ts",
         "test:ui": "npx loki test",
         "test:ui:ok": "npx loki approve",
-        "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static --diffingEngine looks-same --headless --chromeRetries 3 --chromeTolerance 5",
+        "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static --diffingEngine looks-same --chromeRetries 3 --chromeTolerance 5",
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
         "test:ui:json": "node scripts/generate-visual-json-report.js",
         "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
@@ -107,16 +107,14 @@
         "configurations": {
             "chrome.laptop": {
                 "target": "chrome.app",
-                "width": 1200,
-                "height": 768,
+                "width": 1440,
+                "height": 1024,
                 "deviceScaleFactor": 1,
-                "disableAutomaticViewportHeight": true,
                 "mobile": false
             },
             "chrome.iphone7": {
                 "target": "chrome.app",
-                "preset": "iPhone 7",
-                "disableAutomaticViewportHeight": true
+                "preset": "iPhone 7"
             }
         }
     }
