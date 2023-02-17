@@ -118,7 +118,8 @@
             },
             "chrome.iphone7": {
                 "target": "chrome.app",
-                "preset": "iPhone 7"
+                "preset": "iPhone 7",
+                "deviceScaleFactor": 2
             }
         }
     }
