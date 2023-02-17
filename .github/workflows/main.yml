@@ -8,11 +8,11 @@ on:
             - dev
 jobs:
     pipeline:
-        runs-on: macos-latest
+        runs-on: windows-2019
         strategy:
             matrix:
                 node-version:
-                    - 17.x
+                    - 16.x
         steps:
             - uses: actions/checkout@v2
             - name: Starting Node.js ${{ matrix.node-version }}
