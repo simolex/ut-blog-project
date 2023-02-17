@@ -14,7 +14,8 @@
         "test:unit": "npx jest --config ./config/jest/jest.config.ts",
         "test:ui": "npx loki test",
         "test:ui:ok": "npx loki approve",
-        "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static --chromeRetries 3 --chromeTolerance 90",
+        "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static --chromeRetries 3 --diffingEngine looks-same",
+        "test:ui:update": "loki update --requireReference --reactUri file:./storybook-static --chromeRetries 3 --diffingEngine looks-same",
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
         "test:ui:json": "node scripts/generate-visual-json-report.js",
         "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
@@ -100,6 +101,13 @@
         "react-router-dom": "^6.2.1"
     },
     "loki": {
+        "looks-same": {
+            "strict": false,
+            "tolerance": 3.5,
+            "ignoreAntialiasing": true,
+            "antialiasingTolerance": 2,
+            "ignoreCaret": true
+        },
         "configurations": {
             "chrome.laptop": {
                 "target": "chrome.app",
