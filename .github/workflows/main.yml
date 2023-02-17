@@ -8,7 +8,7 @@ on:
       - dev
 jobs:
   pipeline:
-    runs-on: windows-2019
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version:
