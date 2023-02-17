@@ -1,5 +1,6 @@
 @import "normalize.css";
 @import "reset";
+@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono&display=swap");
 @import "variables/global";
 @import "themes/light";
 @import "themes/dark";
@@ -7,7 +8,7 @@
 html,
 body,
 #root {
-    // min-height: 100%;
+    font-family: var(--font-family-main);
     height: 100%;
 }
 
