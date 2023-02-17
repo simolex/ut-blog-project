@@ -15,6 +15,8 @@ jobs:
                     - 17.4.0
         steps:
             - uses: actions/checkout@v3
+              with:
+                  token: 'GHA-Save'
             - name: Starting Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
