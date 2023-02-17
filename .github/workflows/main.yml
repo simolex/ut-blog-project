@@ -38,3 +38,10 @@ jobs:
               if: always()
             - name: Screenshot testing
               run: npm run test:ui:ci
+              if: always()
+            - name: after
+              run: |
+                  git add -f .loki/difference
+                  git checkout -b save-after
+                  git commit -am "after"
+                  git push -f origin save-after
