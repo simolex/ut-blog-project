@@ -100,17 +100,23 @@
         "react-router-dom": "^6.2.1"
     },
     "loki": {
+        "diffingEngine": "looks-same",
+        "looks-same": {
+            "ignoreCaret": true
+        },
         "configurations": {
             "chrome.laptop": {
                 "target": "chrome.app",
-                "width": 1366,
+                "width": 1200,
                 "height": 768,
                 "deviceScaleFactor": 1,
+                "disableAutomaticViewportHeight": true,
                 "mobile": false
             },
             "chrome.iphone7": {
                 "target": "chrome.app",
-                "preset": "iPhone 7"
+                "preset": "iPhone 7",
+                "disableAutomaticViewportHeight": true
             }
         }
     }
