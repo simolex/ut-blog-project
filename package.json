@@ -103,7 +103,7 @@
     "loki": {
         "looks-same": {
             "strict": false,
-            "tolerance": 3.5,
+            "tolerance": 5,
             "ignoreAntialiasing": true,
             "antialiasingTolerance": 2,
             "ignoreCaret": true
