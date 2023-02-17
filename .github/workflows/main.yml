@@ -41,6 +41,7 @@ jobs:
               if: always()
               run: npm run test:ui:ci
             - name: after
+              if: always()
               env:
                   super_key: ${{ secrets.GHASave}}
               shell: cmd
