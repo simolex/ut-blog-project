@@ -15,8 +15,7 @@ jobs:
                     - 17.4.0
         steps:
             - uses: actions/checkout@v3
-              with:
-                  token: ${{ secrets.GHASave }}
+
             - name: Starting Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
@@ -24,27 +23,29 @@ jobs:
             - name: install modules
               run: npm install
             - name: build production project
+              if: always()
               run: npm run build:prod
-              if: always()
             - name: linting typescript
+              if: always()
               run: npm run lint:ts
-              if: always()
             - name: linting style
+              if: always()
               run: npm run lint:scss
-              if: always()
             - name: unit testing
+              if: always()
               run: npm run test:unit
-              if: always()
             - name: build storybook
+              if: always()
               run: npm run storybook:build
-              if: always()
             - name: Screenshot testing
-              continue-on-error: true
-              run: npm run test:ui:ci
               if: always()
+              run: npm run test:ui:ci
             - name: after
-              continue-on-error: true
+              env:
+                  super_key: ${{ secrets.GHASave}}
+              shell: cmd
               run: |
+                  echo "%SUPER_SECRET%"
                   date > generated.txt
                   git config user.name github-actions
                   git config user.email github-actions@github.com
