@@ -1,4 +1,4 @@
-name: linting, testing and building
+name: Linting, testing and building
 on:
   push:
     branches:
@@ -7,7 +7,8 @@ on:
     branches:
       - dev
 jobs:
-  pipeline:
+  init_host:
+    name: Init host for testing
     runs-on: windows-2019
     strategy:
       matrix:
@@ -18,22 +19,22 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
-
       - name: Starting Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install modules
-        run: npm install
-      - name: build production project
-        if: always()
-        run: npm run build:prod
-      - name: linting typescript
+      - name: Install modules
+        run: npm ci
+
+      - name: Linting typescript
         if: always()
         run: npm run lint:ts
       - name: linting style
         if: always()
         run: npm run lint:scss
+      - name: build production project
+        if: always()
+        run: npm run build:prod
       - name: unit testing
         if: always()
         run: npm run test:unit
