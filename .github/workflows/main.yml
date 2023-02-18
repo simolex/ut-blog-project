@@ -7,22 +7,19 @@ on:
     branches:
       - dev
 jobs:
-  init_host:
+  init-host:
     name: Init host for testing
     runs-on: windows-2019
-    strategy:
-      matrix:
-        node-version:
-          - 17.4.0
     permissions:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Get repository code
+        uses: actions/checkout@v3
       - name: Starting Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 17.4.0
       - name: Install modules
         run: npm ci
 
@@ -47,12 +44,16 @@ jobs:
         run: npm run test:ui:ci
       - name: after
         if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
-        run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add -f .loki/difference
-          git add .
-          git checkout -b save-screenshots
-          git commit -am "screenshots failure"
-          git push -f origin save-screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          path: ".loki/difference"
+          name: loki-fail-difference
+
+  screenshot-fail:
+    needs: init-host
+    runs-on: windows-2019
+    steps:
+      - name: Get fail screenshots
+        uses: actions/download-artifact@v3
+        with:
+          name: loki-fail-difference
