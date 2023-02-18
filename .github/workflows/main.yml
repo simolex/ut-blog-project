@@ -1,11 +1,12 @@
 name: Linting, testing and building
 on:
   push:
-    branches:
-      - dev
   pull_request:
     branches:
       - dev
+    paths-ignore:
+      - ".github"
+      - ".vscode"
 jobs:
   init-host:
     name: 1. Load project
