@@ -6,12 +6,10 @@ on:
   pull_request:
     branches:
       - dev
-env:
-  OS_VER: windows-2019
 jobs:
   init-host:
     name: Load project
-    runs-on: ${{ env.OS_VER }}
+    runs-on: windows-2019
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
@@ -37,7 +35,7 @@ jobs:
   linting:
     name: Linting project
     needs: init-host
-    runs-on: ${{ env.OS_VER }}
+    runs-on: windows-2019
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
