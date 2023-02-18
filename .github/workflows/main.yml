@@ -5,8 +5,8 @@ on:
     branches:
       - dev
     paths-ignore:
-      - ".github"
-      - ".vscode"
+      - ".github/**"
+      - ".vscode/**"
 jobs:
   init-host:
     name: 1. Load project
