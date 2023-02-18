@@ -6,32 +6,60 @@ on:
   pull_request:
     branches:
       - dev
+env:
+  OS_VER: windows-2019
 jobs:
   init-host:
-    name: Init host for testing
-    runs-on: windows-2019
-    permissions:
-      contents: write
-      pull-requests: write
+    name: Load project
+    runs-on: ${{ env.OS_VER }}
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
-      - name: Starting Node.js ${{ matrix.node-version }}
+      - name: Starting Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 17.4.0
-      - name: Install modules
+      - name: Install node modules
         run: npm ci
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: pwsh
+        run: echo "dir=$(npm config get cache)" >> ${env:GITHUB_OUTPUT}
+      - name: Cache Save
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
+  linting:
+    name: Linting project
+    needs: init-host
+    runs-on: ${{ env.OS_VER }}
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: pwsh
+        run: echo "dir=$(npm config get cache)" >> ${env:GITHUB_OUTPUT}
+      - name: Cache Save
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          fail-on-cache-miss: true
       - name: Linting typescript
         if: always()
         run: npm run lint:ts
       - name: linting style
         if: always()
         run: npm run lint:scss
-      - name: build production project
-        if: always()
-        run: npm run build:prod
       - name: unit testing
         if: always()
         run: npm run test:unit
