@@ -42,19 +42,14 @@ jobs:
         if: always()
         id: screenshots
         run: npm run test:ui:ci
-      - name: after
+      - name: Uploade fail screenshots
         if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
         uses: actions/upload-artifact@v3
         with:
           path: ".loki/difference"
           name: loki-fail-difference
-
-  screenshot-fail:
-    if: ${{ failure() && init-host.steps.screenshots.conclusion == 'failure'}}
-    needs: init-host
-    runs-on: windows-2019
-    steps:
       - name: Get fail screenshots
+        if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
         uses: actions/download-artifact@v3
         with:
           name: loki-fail-difference
