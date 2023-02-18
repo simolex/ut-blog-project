@@ -17,20 +17,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 17.4.0
-      - name: Install node modules
-        run: npm ci
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        shell: pwsh
-        run: echo "dir=$(npm config get cache)" >> ${env:GITHUB_OUTPUT}
-      - name: Cache Save
+      - name: Cache Start
         id: cache-npm
         uses: actions/cache@v3
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Install node modules
+        run: npm ci
+      - name: Save node cache
+        id: cache-primes-save
+        uses: actions/cache/save@v3
+        with:
+          path: node_modules
+          key: ${{ steps.cache-npm.outputs.cache-primary-key }}
 
   linting:
     name: Linting project
@@ -39,15 +41,12 @@ jobs:
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        shell: pwsh
-        run: echo "dir=$(npm config get cache)" >> ${env:GITHUB_OUTPUT}
+
       - name: Cache Save
         id: cache-npm
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
