@@ -50,6 +50,7 @@ jobs:
           name: loki-fail-difference
 
   screenshot-fail:
+    if: ${{ failure() && jobs.init-host.steps.screenshots.conclusion == 'failure'}}
     needs: init-host
     runs-on: windows-2019
     steps:
