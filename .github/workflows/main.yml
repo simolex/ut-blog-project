@@ -25,6 +25,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Install node modules
         run: npm ci
       - name: Save node cache
@@ -34,15 +35,18 @@ jobs:
           path: node_modules
           key: ${{ steps.cache-npm.outputs.cache-primary-key }}
 
-  linting:
+  lints:
     name: Linting project
     needs: init-host
     runs-on: windows-2019
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
-
-      - name: Cache Save
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.4.0
+      - name: Cache Restore
         id: cache-npm
         uses: actions/cache/restore@v3
         with:
@@ -57,9 +61,50 @@ jobs:
       - name: linting style
         if: always()
         run: npm run lint:scss
+
+  unit-test:
+    name: Unit testing
+    needs: init-host
+    runs-on: windows-2019
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.4.0
+      - name: Cache Restore
+        id: cache-npm
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          fail-on-cache-miss: true
       - name: unit testing
         if: always()
         run: npm run test:unit
+  screens:
+    name: Linting project
+    needs: init-host
+    runs-on: windows-2019
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.4.0
+      - name: Cache Restore
+        id: cache-npm
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          fail-on-cache-miss: true
       - name: build storybook
         if: always()
         run: npm run storybook:build
@@ -73,8 +118,29 @@ jobs:
         with:
           path: ".loki/difference"
           name: loki-fail-difference
-      - name: Get fail screenshots
-        if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
-        uses: actions/download-artifact@v3
+  build:
+    name: Linting project
+    needs:
+      - lints
+      - unit-test
+      - screens
+    runs-on: windows-2019
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
         with:
-          name: loki-fail-difference
+          node-version: 17.4.0
+      - name: Cache Restore
+        id: cache-npm
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          fail-on-cache-miss: true
+      - name: build production project
+        if: always()
+        run: npm run build:prod
