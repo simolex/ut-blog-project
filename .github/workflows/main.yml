@@ -8,7 +8,7 @@ on:
       - dev
 jobs:
   init-host:
-    name: Load project
+    name: 1. Load project
     runs-on: windows-2019
     steps:
       - name: Get repository code
@@ -28,15 +28,9 @@ jobs:
 
       - name: Install node modules
         run: npm ci
-      - name: Save node cache
-        id: cache-primes-save
-        uses: actions/cache/save@v3
-        with:
-          path: node_modules
-          key: ${{ steps.cache-npm.outputs.cache-primary-key }}
 
   lints:
-    name: Linting project
+    name: 2.1 Linting project code
     needs: init-host
     runs-on: windows-2019
     steps:
@@ -63,7 +57,7 @@ jobs:
         run: npm run lint:scss
 
   unit-test:
-    name: Unit testing
+    name: 2.2 Unit testing
     needs: init-host
     runs-on: windows-2019
     steps:
@@ -83,10 +77,9 @@ jobs:
             ${{ runner.os }}-node-
           fail-on-cache-miss: true
       - name: unit testing
-        if: always()
         run: npm run test:unit
   screens:
-    name: Linting project
+    name: 2.3 Screenshots testing project
     needs: init-host
     runs-on: windows-2019
     steps:
@@ -119,7 +112,7 @@ jobs:
           path: ".loki/difference"
           name: loki-fail-difference
   build:
-    name: Linting project
+    name: 3. Build production bundle
     needs:
       - lints
       - unit-test
@@ -142,5 +135,4 @@ jobs:
             ${{ runner.os }}-node-
           fail-on-cache-miss: true
       - name: build production project
-        if: always()
         run: npm run build:prod
