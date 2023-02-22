@@ -35,30 +35,10 @@ jobs:
       - name: Install node modules
         run: npm ci
 
-  lints:
-    name: 2.1 Linting project code
-    needs: init-host
-    runs-on: windows-2019
-    steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
-      - name: Starting Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 17.4.0
-      - name: Cache Restore
-        id: cache-npm
-        uses: actions/cache/restore@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-          fail-on-cache-miss: true
       - name: Linting typescript
         if: always()
         run: npm run lint:ts
-      - name: linting style
+      - name: Styling lint
         if: always()
         run: npm run lint:scss
 
@@ -118,9 +98,8 @@ jobs:
           path: ".loki/difference"
           name: loki-fail-difference
   build:
-    name: 3. Build production bundle
+    name: 3. Build production
     needs:
-      - lints
       - unit-test
       - screens
     runs-on: windows-2019
