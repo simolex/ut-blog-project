@@ -14,7 +14,7 @@ on:
       - ".vscode/**"
 jobs:
   init-host:
-    name: 1. Load project
+    name: 1. Load project & Linting
     runs-on: windows-2019
     steps:
       - name: Get repository code
@@ -38,7 +38,7 @@ jobs:
       - name: Linting typescript
         if: always()
         run: npm run lint:ts
-      - name: Styling lint
+      - name: CSS linter
         if: always()
         run: npm run lint:scss
 

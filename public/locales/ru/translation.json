@@ -8,5 +8,6 @@
   "update-page": "Обновить страницу",
   "throw-error": "Выбросить ошибку",
   "main-link": "Главная",
-  "about-link": "О сайте"
+  "about-link": "О сайте",
+  "signin": "Войти"
 }

@@ -1,10 +1,11 @@
 {
-    "Тестовый перевод": "Testing translation",
-    "Перевод": "Translate",
-    "full-language": "English",
-    "short-language": "EN",
-    "NotFound": "Page not found",
-    "undefined-error": "An unexpected error occurred",
-    "update-page": "Refresh page",
-    "throw-error": "Throw error"
+  "Тестовый перевод": "Testing translation",
+  "Перевод": "Translate",
+  "full-language": "English",
+  "short-language": "EN",
+  "NotFound": "Page not found",
+  "undefined-error": "An unexpected error occurred",
+  "update-page": "Refresh page",
+  "throw-error": "Throw error",
+  "signin": "Login"
 }

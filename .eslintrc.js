@@ -18,7 +18,7 @@ module.exports = {
         },
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'i18next'],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
     rules: {
         indent: [2, 4],
         'react/jsx-indent': [2, 4],
@@ -44,15 +44,20 @@ module.exports = {
         ],
         'implicit-arrow-linebreak': [1],
         'no-redeclare': [1],
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'react-hooks/rules-of-hooks': 'error', // Проверяем правила хуков
+        'react-hooks/exhaustive-deps': 'error', // Проверяем зависимости эффекта
     },
     globals: {
         __IS_DEV__: true,
     },
     overrides: [
         {
-            files: ['./src/**/*.test.{ts,tsx}'],
+            files: ['./src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
                 'i18next/no-literal-string': 'off',
+                'max-len': 'off',
             },
         },
     ],
