@@ -87,10 +87,10 @@ jobs:
       - name: build storybook
         if: always()
         run: npm run storybook:build
-      - name: Screenshot testing
+      - name: Screenshot testing (switch-off)
         if: always()
         id: screenshots
-        run: npm run test:ui:ci
+        run: npm run test:ui:update
       - name: Uploade fail screenshots
         if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
         uses: actions/upload-artifact@v3

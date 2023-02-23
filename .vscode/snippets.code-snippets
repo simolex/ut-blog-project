@@ -10,8 +10,8 @@
 			"	className?: string;",
 			"}",
 			"",
-			"export const ${1} = ({ className }: ${1}Props) => {",
-			"",
+			"export const ${1} = (props: ${1}Props) => {",
+			"	const { className } = props;",
 			"	return (",
 			"		<div className={classNames(styles.${1/(.*)/${0:/downcase}/}, {}, [className])}>",
 			"$2",
@@ -20,5 +20,17 @@
 			"};"
 		],
 		"description": "Log output to console"
+	},
+	"Test Slice entries":{
+		"scope": "javascript,typescript,typescriptreact",
+		"prefix": "ts",
+		"body": [
+			"describe('${1:$TM_FILENAME_BASE}', () => {",
+			"    test('$2', () => {",
+			"        $3",
+			"        expect().toEqual();",
+			"    });",
+			"});",
+		]
 	}
 }
