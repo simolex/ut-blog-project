@@ -63,6 +63,7 @@ export const Input = memo((props: InputProps) => {
             {placeholder && <div className={styles.placeholder}>{`${placeholder}> `}</div>}
             <div className={styles.caretWrapper}>
                 <input
+                    data-testid="input"
                     ref={ref}
                     className={styles.input}
                     type={type}
