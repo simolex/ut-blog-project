@@ -4,6 +4,10 @@
     color: var(--inverted-primary-color);
 }
 
+.disabled {
+    opacity: 0.5;
+}
+
 .clear {
     padding: 0;
     background-color: transparent;

@@ -1,13 +1,14 @@
 {
-    "Тестовый перевод": "Testing translation",
-    "Перевод": "Translate",
-    "full-language": "English",
-    "short-language": "EN",
-    "NotFound": "Page not found",
-    "undefined-error": "An unexpected error occurred",
-    "update-page": "Refresh page",
-    "throw-error": "Throw error",
-    "signin": "Login",
-    "username": "Username",
-    "password": "Password"
+  "Тестовый перевод": "Testing translation",
+  "Перевод": "Translate",
+  "full-language": "English",
+  "short-language": "EN",
+  "NotFound": "Page not found",
+  "undefined-error": "An unexpected error occurred",
+  "update-page": "Refresh page",
+  "throw-error": "Throw error",
+  "signin": "Login",
+  "username": "Username",
+  "password": "Password",
+  "error": "Error"
 }
