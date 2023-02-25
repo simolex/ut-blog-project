@@ -36,6 +36,7 @@
 		],
 		"i18n-ally.localesPaths": [
 			"${workspaceFolder}/public/locales"
-		]
+		],
+		"liveServer.settings.multiRootWorkspaceName": "All project"
 	}
 }

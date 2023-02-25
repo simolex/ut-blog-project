@@ -2,27 +2,21 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 
-import { Input } from './Input';
+import { LoginForm } from './LoginForm';
 
 export default {
-    title: 'shared/Input',
-    component: Input,
+    title: 'features/LoginForm',
+    component: LoginForm,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof Input>;
+} as ComponentMeta<typeof LoginForm>;
 
-const Template: ComponentStory<typeof Input> = (props) => <Input {...props} />;
+const Template: ComponentStory<typeof LoginForm> = (props) => <LoginForm {...props} />;
 
 export const Light = Template.bind({});
-Light.args = {
-    value: 'Data',
-    placeholder: 'Input',
-};
+Light.args = {};
 
 export const Dark = Template.bind({});
-Dark.args = {
-    value: 'Data',
-    placeholder: 'Input',
-};
+Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK)];

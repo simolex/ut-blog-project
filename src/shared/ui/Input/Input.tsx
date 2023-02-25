@@ -1,4 +1,12 @@
-import { ChangeEvent, InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react';
+import {
+    ChangeEvent,
+    InputHTMLAttributes,
+    memo,
+    SyntheticEvent,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { classNames } from 'shared/lib/classNames';
 import styles from './Input.module.scss';
 
@@ -23,7 +31,7 @@ export const Input = memo((props: InputProps) => {
     } = props;
     const ref = useRef<HTMLInputElement>();
     const [isFocused, setIsFocused] = useState(false);
-    const [caretPosiotion, setCaretPosiotion] = useState(0);
+    const [caretPosition, setCaretPosition] = useState(0);
 
     useEffect(() => {
         if (autoFocus) {
@@ -34,7 +42,7 @@ export const Input = memo((props: InputProps) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
-        setCaretPosiotion(e.target.value.length);
+        setCaretPosition(e.target.value.length);
     };
 
     const onBlur = () => {
@@ -44,8 +52,10 @@ export const Input = memo((props: InputProps) => {
     const onFocus = () => {
         setIsFocused(true);
     };
-    const onSelect = (e: any) => {
-        setCaretPosiotion(e?.target?.selectionStart);
+    const onSelect = (e: SyntheticEvent<HTMLInputElement, Event>) => {
+        if (e.target instanceof HTMLInputElement) {
+            setCaretPosition(e?.target?.selectionStart || 0);
+        }
     };
 
     return (
@@ -64,10 +74,7 @@ export const Input = memo((props: InputProps) => {
                     {...otherProps}
                 />
                 {isFocused && (
-                    <span
-                        className={styles.caret}
-                        style={{ left: `${caretPosiotion * 0.598}em` }}
-                    />
+                    <span className={styles.caret} style={{ left: `${caretPosition}ch` }} />
                 )}
             </div>
         </div>
