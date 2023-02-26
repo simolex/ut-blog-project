@@ -38,10 +38,6 @@ export const Modal = (props: ModalProps) => {
         }
     }, [onClose]);
 
-    const onContentClick = (e: MouseEvent) => {
-        e.stopPropagation();
-    };
-
     const onKeyDown = useCallback(
         (e: KeyboardEvent) => {
             if (e.key === 'Escape') {
@@ -50,6 +46,10 @@ export const Modal = (props: ModalProps) => {
         },
         [closeHandler],
     );
+
+    const onContentClick = (e: MouseEvent) => {
+        e.stopPropagation();
+    };
 
     useEffect(() => {
         if (isOpen) {
