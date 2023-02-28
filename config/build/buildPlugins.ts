@@ -10,7 +10,7 @@ import { DefinePlugin, HotModuleReplacementPlugin, ProgressPlugin } from 'webpac
 import type { WebpackPluginInstance } from 'webpack';
 import { type BuildOptions } from './types/config';
 
-export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInstance[] {
+export function buildPlugins({ paths, isDev, needAnalize }: BuildOptions): WebpackPluginInstance[] {
     const plugins = [
         new ProgressPlugin(),
 
@@ -27,11 +27,13 @@ export function buildPlugins({ paths, isDev }: BuildOptions): WebpackPluginInsta
             __IS_DEV__: JSON.stringify(isDev),
         }),
     ];
+    if (needAnalize) {
+        plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }));
+    }
 
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin({ overlay: false }));
         plugins.push(new HotModuleReplacementPlugin());
-        plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }));
     }
 
     return plugins;

@@ -6,7 +6,9 @@
     "scripts": {
         "start": "npx webpack serve --env port=3000",
         "build:prod": "npx webpack --env mode=production",
+        "build:prod:analize": "npm run build:prod analize",
         "build:dev": "npx webpack --env mode=development",
+        "build:dev:analize": "npx webpack --env mode=development analize",
         "dev:server": "node ./json-server/index.js",
         "lint:ts": "npx eslint \"**/*.{ts,tsx}\"",
         "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
