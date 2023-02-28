@@ -7,6 +7,10 @@ import { Input } from 'shared/ui/Input/Input';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { ReduxStoreWithManager } from 'app/providers/StoreProvider';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
@@ -21,25 +25,19 @@ export interface LoginFormProps {
     className?: string;
 }
 
+const initialReducers: ReducersList = {
+    loginForm: loginReducer,
+};
+
 const LoginForm = memo((props: LoginFormProps) => {
     const { className } = props;
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const store = useStore() as ReduxStoreWithManager;
+
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
-    useEffect(() => {
-        dispatch({ type: '@INIT loginForm reducer' });
-        store.reducerManager.add('loginForm', loginReducer);
-
-        return () => {
-            store.reducerManager.remove('loginForm');
-            dispatch({ type: '@DESTROY loginForm reducer' });
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const onChangeUsername = useCallback(
         (username: string) => {
@@ -60,33 +58,36 @@ const LoginForm = memo((props: LoginFormProps) => {
     }, [dispatch, username, password]);
 
     return (
-        <div className={classNames(styles.loginForm, {}, [className])}>
-            <Text title={t('auth-form')} />
-            {error && <Text title={t('error')} text={error} variant={TextVariant.ERROR} />}
-            <Input
-                placeholder={t('username')}
-                className={classNames(styles.input)}
-                type="text"
-                onChange={onChangeUsername}
-                value={username}
-                autoFocus
-            />
-            <Input
-                placeholder={t('password')}
-                className={classNames(styles.input)}
-                type="text"
-                onChange={onChangePassword}
-                value={password}
-            />
-            <Button
-                className={classNames(styles.loginBtn)}
-                theme={ButtonTheme.OUTLINE}
-                onClick={onLoginClick}
-                disabled={isLoading}
-            >
-                {t('signin')}
-            </Button>
-        </div>
+        // eslint-disable-next-line i18next/no-literal-string
+        <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
+            <div className={classNames(styles.loginForm, {}, [className])}>
+                <Text title={t('auth-form')} />
+                {error && <Text title={t('error')} text={error} variant={TextVariant.ERROR} />}
+                <Input
+                    placeholder={t('username')}
+                    className={classNames(styles.input)}
+                    type="text"
+                    onChange={onChangeUsername}
+                    value={username}
+                    autoFocus
+                />
+                <Input
+                    placeholder={t('password')}
+                    className={classNames(styles.input)}
+                    type="text"
+                    onChange={onChangePassword}
+                    value={password}
+                />
+                <Button
+                    className={classNames(styles.loginBtn)}
+                    theme={ButtonTheme.OUTLINE}
+                    onClick={onLoginClick}
+                    disabled={isLoading}
+                >
+                    {t('signin')}
+                </Button>
+            </div>
+        </DynamicModuleLoader>
     );
 });
 
