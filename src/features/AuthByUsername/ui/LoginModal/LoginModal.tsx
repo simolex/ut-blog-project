@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { classNames } from 'shared/lib/classNames';
+import { LoaderGrid } from 'shared/ui/LoaderGrid/LoaderGrid';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { LoginForm } from '../LoginForm/LoginForm';
+import { LoginFormLazy } from '../LoginForm/LoginForm.lazy';
 
 interface LoginModalProps {
     isOpen: boolean;
@@ -11,7 +13,9 @@ export const LoginModal = (props: LoginModalProps) => {
     const { isOpen, onClose } = props;
     return (
         <Modal className={classNames('', {}, [])} isOpen={isOpen} onClose={onClose} lazy>
-            <LoginForm />
+            <Suspense fallback={<LoaderGrid />}>
+                <LoginFormLazy />
+            </Suspense>
         </Modal>
     );
 };

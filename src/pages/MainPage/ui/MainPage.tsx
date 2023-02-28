@@ -1,5 +1,5 @@
 /* eslint-disable i18next/no-literal-string */
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const MainPage: FC = () => {
