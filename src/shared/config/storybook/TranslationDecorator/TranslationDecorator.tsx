@@ -4,9 +4,9 @@ import { Suspense } from 'react';
 import i18nForTests from 'shared/config/i18n/i18nForTests';
 
 export const TranslationDecorator = (StoryComponent: Story) => (
-    <I18nextProvider i18n={i18nForTests}>
-        <Suspense fallback="">
+    <Suspense fallback="">
+        <I18nextProvider i18n={i18nForTests}>
             <StoryComponent />
-        </Suspense>
-    </I18nextProvider>
+        </I18nextProvider>
+    </Suspense>
 );

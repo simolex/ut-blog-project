@@ -1,25 +1,24 @@
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { classNames } from 'shared/lib/classNames';
 import { Input } from 'shared/ui/Input/Input';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { ReduxStoreWithManager } from 'app/providers/StoreProvider';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import { getLoginState } from '../../model/selectors/getLoginState/getLoginState';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
 
-import styles from './LoginForm.module.scss';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
+
+import styles from './LoginForm.module.scss';
 
 export interface LoginFormProps {
     className?: string;
@@ -58,7 +57,6 @@ const LoginForm = memo((props: LoginFormProps) => {
     }, [dispatch, username, password]);
 
     return (
-        // eslint-disable-next-line i18next/no-literal-string
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
             <div className={classNames(styles.loginForm, {}, [className])}>
                 <Text title={t('auth-form')} />
