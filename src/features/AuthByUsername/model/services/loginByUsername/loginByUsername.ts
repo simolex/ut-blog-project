@@ -29,6 +29,6 @@ export const loginByUsername = createAsyncThunk<
 
         return response.data;
     } catch (err) {
-        return thunkAPI.rejectWithValue('username-or-password-failed');
+        return thunkAPI.rejectWithValue('error');
     }
 });
