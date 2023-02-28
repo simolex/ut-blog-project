@@ -26,7 +26,6 @@ export default {
 
     // An array of directory names to be searched recursively up from the requiring modules location
     moduleDirectories: ['node_modules'],
-
     modulePaths: ['<rootDir>src'],
 
     // An array of file extensions your modules use
@@ -44,12 +43,19 @@ export default {
     moduleNameMapper: {
         '\\.(s?[ac]ss)$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        '^axios$': require.resolve('axios'),
     },
 
     // A set of global variables that need to be available in all test environments
     globals: {
         __IS_DEV__: true,
     },
+
+    // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
+    // transformIgnorePatterns: [
+    //     '\\\\node_modules\\\\',
+    //     //   "\\.pnp\\.[^\\\\]+$"
+    // ],
 
     // A list of paths to directories that Jest should use to search for files in
     // roots: [
@@ -170,12 +176,6 @@ export default {
 
     // A map from regular expressions to paths to transformers
     // transform: undefined,
-
-    // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-    // transformIgnorePatterns: [
-    //   "\\\\node_modules\\\\",
-    //   "\\.pnp\\.[^\\\\]+$"
-    // ],
 
     // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
     // unmockedModulePathPatterns: undefined,
