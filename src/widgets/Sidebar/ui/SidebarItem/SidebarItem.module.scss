@@ -1,0 +1,33 @@
+.item {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.iconItem {
+    fill: var(--inverted-primary-color);
+    margin-right: 15px;
+}
+
+.linkItem {
+    opacity: 1;
+    overflow: hidden;
+    transition: opacity 0.8s, height 0.9s 1s width 0.9s 2s;
+}
+
+.collapsed {
+    .itemList {
+        align-items: center;
+    }
+
+    .linkItem {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        transition: opacity 0.8s, height 0.9s 1s width 0.9s 2s;
+    }
+
+    .iconItem {
+        margin-right: 0;
+    }
+}

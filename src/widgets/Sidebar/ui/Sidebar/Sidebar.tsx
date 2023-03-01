@@ -8,9 +8,9 @@ import { useTranslation } from 'react-i18next';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 
-import AboutIcon from 'shared/assets/icons/about-20x20.svg';
-import HomeIcon from 'shared/assets/icons/home-20x20.svg';
 import styles from './Sidebar.module.scss';
+import { SidebarItemsList } from '../../model/item';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 interface SidebarProps {
     className?: string;
@@ -40,27 +40,13 @@ export const Sidebar = ({ className }: SidebarProps) => {
             >
                 {collapsed ? '>' : '<'}
             </Button>
+
             <ul className={styles.itemList}>
-                <li>
-                    <AppLink
-                        theme={AppLinkTheme.SECONDARY}
-                        to={RoutePath.main}
-                        className={styles.item}
-                    >
-                        <HomeIcon className={styles.iconItem} />
-                        <span className={styles.linkItem}>{t('main-link')}</span>
-                    </AppLink>
-                </li>
-                <li>
-                    <AppLink
-                        theme={AppLinkTheme.SECONDARY}
-                        to={RoutePath.about}
-                        className={styles.item}
-                    >
-                        <AboutIcon className={styles.iconItem} />
-                        <span className={styles.linkItem}>{t('about-link')}</span>
-                    </AppLink>
-                </li>
+                {SidebarItemsList.map((item) => (
+                    <li key={item.path}>
+                        <SidebarItem item={item} collapsed={collapsed} />
+                    </li>
+                ))}
             </ul>
             <div className={styles.switchers}>
                 <ThemeSwitcher />

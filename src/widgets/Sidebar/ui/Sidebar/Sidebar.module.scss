@@ -27,17 +27,6 @@
     list-style: none;
 }
 
-.item {
-    display: inline-flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.iconItem {
-    fill: var(--inverted-primary-color);
-    margin-right: 15px;
-}
-
 .linkItem {
     opacity: 1;
     overflow: hidden;
