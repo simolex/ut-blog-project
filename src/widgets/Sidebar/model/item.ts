@@ -26,5 +26,5 @@ export const SidebarItemsList: SidebarItemType[] = [
         path: RoutePath.about,
         textSlug: 'about-link',
         Icon: AboutIcon,
-    }
-]
+    },
+];
