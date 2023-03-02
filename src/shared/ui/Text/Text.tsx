@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import styles from './Text.module.scss';
 
@@ -13,7 +14,7 @@ interface TextProps {
     variant?: TextVariant;
 }
 
-export const Text = (props: TextProps) => {
+export const Text = memo((props: TextProps) => {
     const { className, title, text, variant = TextVariant.NORMAL } = props;
 
     return (
@@ -22,4 +23,4 @@ export const Text = (props: TextProps) => {
             {text && <p className={styles.textContent}>{text}</p>}
         </div>
     );
-};
+});
