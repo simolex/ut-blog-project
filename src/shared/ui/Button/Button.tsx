@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC, memo, ReactNode } from 'react';
+import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
 import { ValueOf } from 'shared/config/typeEnum/typeEnum';
 import { classNames } from 'shared/lib/classNames';
 import styles from './Button.module.scss';
