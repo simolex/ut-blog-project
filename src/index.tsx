@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
-import { StoreProvider } from 'app/providers/StoreProvider';
 import { BrowserRouter } from 'react-router-dom';
+import { StoreProvider } from 'app/providers/StoreProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { ThemeProvider } from './app/providers/ThemeProvider';
 import App from './app/App';
@@ -17,6 +17,5 @@ render(
             </ErrorBoundary>
         </BrowserRouter>
     </StoreProvider>,
-
     document.getElementById('root'),
 );

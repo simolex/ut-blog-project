@@ -39,6 +39,13 @@
         }
     ],
     "profile": {
-        "name": "typicode"
+        "username": "admin",
+        "first": "Alex",
+        "lastname": "Sim",
+        "age": "42",
+        "currency": "RUB",
+        "country": "Russia",
+        "city": "NN",
+        "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
     }
 }
