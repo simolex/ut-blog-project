@@ -37,7 +37,7 @@ module.exports = {
         'import/extensions': 'off',
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
-        'max-len': [2, { code: 100, ignoreComments: true }],
+        'max-len': [2, { code: 120, ignoreComments: true }],
         'i18next/no-literal-string': [
             2,
             { markupOnly: true, ignoreAttribute: ['to', 'data-testid'] },
@@ -52,6 +52,7 @@ module.exports = {
     },
     globals: {
         __IS_DEV__: true,
+        __API__: true,
     },
     overrides: [
         {

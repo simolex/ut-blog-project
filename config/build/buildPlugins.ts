@@ -10,7 +10,12 @@ import { DefinePlugin, HotModuleReplacementPlugin, ProgressPlugin } from 'webpac
 import type { WebpackPluginInstance } from 'webpack';
 import { type BuildOptions } from './types/config';
 
-export function buildPlugins({ paths, isDev, needAnalize }: BuildOptions): WebpackPluginInstance[] {
+export function buildPlugins({
+    paths,
+    isDev,
+    needAnalize,
+    apiUrl,
+}: BuildOptions): WebpackPluginInstance[] {
     const plugins = [
         new ProgressPlugin(),
 
@@ -25,6 +30,7 @@ export function buildPlugins({ paths, isDev, needAnalize }: BuildOptions): Webpa
 
         new DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
+            __API__: JSON.stringify(apiUrl),
         }),
     ];
     if (needAnalize) {

@@ -12,14 +12,15 @@ import { AppRouter } from './providers/Router';
 
 const App = () => {
     const { theme } = useTheme();
-
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(userActions.initAuthData());
     }, [dispatch]);
 
     return (
         <div className={classNames('app', {}, [])}>
+            {/* classNames('app', {}, [theme]) */}
             <Suspense fallback="">
                 <Navbar />
 
