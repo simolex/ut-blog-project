@@ -111,6 +111,7 @@
         "react-router-dom": "^6.2.1"
     },
     "loki": {
+        "fetchFailIgnore": ".*",
         "looks-same": {
             "ignoreAntialiasing": true,
             "antialiasingTolerance": 2,
