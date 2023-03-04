@@ -18,7 +18,7 @@ export const Light = Template.bind({});
 Light.args = {};
 Light.decorators = [
     StoreDecorator({
-        profile: {},
+        profile: { isLoading: false, readonly: true },
     }),
 ];
 
@@ -27,6 +27,6 @@ Dark.args = {};
 Dark.decorators = [
     ThemeDecorator(Theme.DARK),
     StoreDecorator({
-        profile: {},
+        profile: { isLoading: false, readonly: true },
     }),
 ];

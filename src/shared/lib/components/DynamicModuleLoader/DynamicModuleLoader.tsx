@@ -8,7 +8,7 @@ export type ReducersList = {
     [name in StateSchemaKey]?: Reducer;
 };
 
-type ReducerListEntry = [StateSchemaKey, Reducer];
+// type ReducerListEntry = [StateSchemaKey, Reducer];
 
 interface DynamicModuleLoaderProps {
     reducers: ReducersList;
@@ -22,15 +22,15 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const store = useStore() as ReduxStoreWithManager;
 
     useEffect(() => {
-        Object.entries(reducers).forEach(([nameKey, reducer]: ReducerListEntry) => {
+        Object.entries(reducers).forEach(([nameKey, reducer]) => {
             dispatch({ type: `@INIT ${nameKey} reducer` });
-            store.reducerManager.add(nameKey, reducer);
+            store.reducerManager.add(nameKey as StateSchemaKey, reducer);
         });
 
         return () => {
             if (removeAfterUnmount) {
-                Object.entries(reducers).forEach(([nameKey]: ReducerListEntry) => {
-                    store.reducerManager.remove(nameKey);
+                Object.entries(reducers).forEach(([nameKey]) => {
+                    store.reducerManager.remove(nameKey as StateSchemaKey);
                     dispatch({ type: `@DESTROY ${nameKey} reducer` });
                 });
             }

@@ -1,29 +1,6 @@
 {
 	"folders": [
-		{ 
-			"name": "App",
-			"path": "./src/app",
-		},
-		{ 
-			"name": "Pages",
-			"path": "./src/pages",
-		},
-		{ 
-			"name": "Widgets",
-			"path": "./src/widgets",
-		},
-		{ 
-			"name": "Features",
-			"path": "./src/features",
-		},
-		{ 
-			"name": "Entities",
-			"path": "./src/entities",
-		},
-		{
-			"name": "Shared",
-			"path": "./src/shared",
-		},
+
 		{
 			"name": "FullProject",
 			"path": ".",
@@ -31,16 +8,15 @@
 		}	
 	],
 	"settings": {
-		"i18n-ally.enabledFrameworks": [
-			"react",
-			"i18next"
-		],
-		"i18n-ally.localesPaths": [
-			"../../../../../work/ulbi-wpack-module-1/public/locales"
-		],
+
 		"i18n-ally.sourceLanguage": "ru",
    		"i18n-ally.keystyle": "flat",
 		"liveServer.settings.multiRootWorkspaceName": "FullProject",
+		"i18n-ally.localesPaths": [
+			"public/locales",
+			"storybook-static/locales",
+			"src/shared/config/i18n"
+		],
 		
 	}
 	

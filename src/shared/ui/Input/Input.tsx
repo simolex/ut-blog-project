@@ -1,7 +1,9 @@
 import {
     ChangeEvent,
     InputHTMLAttributes,
+    LegacyRef,
     memo,
+    MutableRefObject,
     SyntheticEvent,
     useEffect,
     useRef,
@@ -29,14 +31,14 @@ export const Input = memo((props: InputProps) => {
         autoFocus,
         ...otherProps
     } = props;
-    const ref = useRef<HTMLInputElement>();
+    const ref = useRef() as MutableRefObject<HTMLInputElement>;
     const [isFocused, setIsFocused] = useState(false);
     const [caretPosition, setCaretPosition] = useState(0);
 
     useEffect(() => {
         if (autoFocus) {
             setIsFocused(true);
-            ref.current?.focus();
+            ref?.current?.focus?.();
         }
     }, [autoFocus]);
 
