@@ -18,7 +18,7 @@ export const Light = Template.bind({});
 Light.args = {};
 Light.decorators = [
     StoreDecorator({
-        profile: { isLoading: false, readonly: true },
+        profile: { isLoading: false, readonly: true, data: { username: 'user', first: 123 } },
     }),
 ];
 

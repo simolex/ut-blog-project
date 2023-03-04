@@ -16,14 +16,25 @@ const Template: ComponentStory<typeof LoginForm> = (props) => <LoginForm {...pro
 export const Light = Template.bind({});
 Light.args = {};
 Light.decorators = [
-    StoreDecorator({ loginForm: { username: 'user', password: '111', isLoading: false } }),
+    StoreDecorator({
+        loginForm: {
+            username: 'user',
+            password: '111',
+            isLoading: false,
+        },
+    }),
 ];
 
 export const LightWithError = Template.bind({});
 LightWithError.args = {};
 LightWithError.decorators = [
     StoreDecorator({
-        loginForm: { username: 'user', password: '111', error: 'Error', isLoading: false },
+        loginForm: {
+            username: 'user',
+            password: '111',
+            error: 'Error',
+            isLoading: false,
+        },
     }),
 ];
 
