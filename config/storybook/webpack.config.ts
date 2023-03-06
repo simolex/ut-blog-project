@@ -12,6 +12,7 @@ export default ({ config }: { config: Configuration }) => {
         src: path.resolve(__dirname, '..', '..', 'src'),
     };
     config!.resolve!.modules!.unshift(paths.src);
+    config!.resolve!.modules!.push('node_modules');
     config!.resolve!.extensions!.push('.js', '.ts', '.tsx');
 
     const rules = config?.module?.rules;
@@ -29,7 +30,7 @@ export default ({ config }: { config: Configuration }) => {
     config!.plugins!.push(
         new DefinePlugin({
             __IS_DEV__: JSON.stringify(true),
-            __API__: JSON.stringify(''),
+            __API__: JSON.stringify('""'),
         }),
     );
     return config;

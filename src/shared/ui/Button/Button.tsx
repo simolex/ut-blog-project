@@ -9,6 +9,7 @@ export type ButtonTheme = ValueOf<typeof ButtonTheme>;
 export const ButtonTheme = {
     CLEAR: 'clear',
     OUTLINE: 'outline',
+    OUTLINE_STRONG: 'outlineStrong',
     BACKGROUND: 'background',
     BACKGROUND_INVERTED: 'backgroundInverted',
 } as const;

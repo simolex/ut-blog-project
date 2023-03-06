@@ -15,10 +15,16 @@
     outline: none;
 }
 
-.outline {
+.outline,
+.outlineStrong {
     background-color: transparent;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
+}
+
+.outlineStrong {
+    border: 1px solid var(--error-title);
+    color: var(--error-title);
 }
 
 .background {

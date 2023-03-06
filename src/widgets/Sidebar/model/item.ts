@@ -9,6 +9,7 @@ export interface SidebarItemType {
     path: string;
     textSlug: string; // TFunction<string, undefined>;
     Icon: VFC<SVGProps<SVGSVGElement>>;
+    authOnly?: boolean;
 }
 
 export const SidebarItemsList: SidebarItemType[] = [
@@ -21,6 +22,7 @@ export const SidebarItemsList: SidebarItemType[] = [
         path: RoutePath.profile,
         textSlug: 'profile-link',
         Icon: ProfileIcon,
+        authOnly: true,
     },
     {
         path: RoutePath.about,

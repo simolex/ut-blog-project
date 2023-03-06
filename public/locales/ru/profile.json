@@ -1,5 +1,16 @@
 {
-    "profile": "Профиль",
-    "profile-edit": "Редактировать",
-    "profile-page": "Страница профиля"
+  "profile": "Профиль",
+  "profile-edit": "Редактировать",
+  "profile-page": "Страница профиля",
+  "error-loading-profile": "Произошла ошибка при загрузке профиля",
+  "error-loading-profile-action-1": "Попробуйте обновить страницу",
+  "profile-lastname": "Фамилия",
+  "profile-firstname": "Имя",
+  "profile-cancel": "Отмена",
+  "profile-save": "Сохранить",
+  "profile-age": "Возраст",
+  "profile-currency": "Моя валюта",
+  "profile-country": "Страна",
+  "profile-city": "Город",
+  "profile-username": "Никнейм"
 }
