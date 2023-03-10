@@ -26,6 +26,7 @@ module.exports = {
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
         'object-curly-newline': [2, { consistent: true }],
         'linebreak-style': [0],
+        'operator-linebreak': [0],
         'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
         'no-unused-vars': [1, { argsIgnorePattern: '^_' }],
@@ -54,6 +55,7 @@ module.exports = {
     globals: {
         __IS_DEV__: true,
         __API__: true,
+        __PROJECT__: true,
     },
     overrides: [
         {

@@ -1,7 +1,6 @@
 import {
     ChangeEvent,
     InputHTMLAttributes,
-    LegacyRef,
     memo,
     MutableRefObject,
     SyntheticEvent,

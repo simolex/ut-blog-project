@@ -1,5 +1,5 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CurrencySelect } from './CurrencySelect';
 
 export default {
@@ -10,7 +10,7 @@ export default {
     },
 } as ComponentMeta<typeof CurrencySelect>;
 
-const Template: ComponentStory<typeof CurrencySelect> = (props) => <CurrencySelect {...props} />;
+const Template: ComponentStory<typeof CurrencySelect> = (args) => <CurrencySelect {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {};
+export const Primary = Template.bind({});
+Primary.args = {};

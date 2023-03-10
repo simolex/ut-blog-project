@@ -1,9 +1,8 @@
-import { useCallback } from '@storybook/addons';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { Select } from 'shared/ui/Select/Select';
-import { Country } from '../../model/types/Country';
+import { Select, SelectOption } from 'shared/ui/Select/Select';
+import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {
     className?: string;
@@ -12,17 +11,14 @@ interface CountrySelectProps {
     readonly?: boolean;
 }
 
-const options = [
-    { value: Country.Russia, content: Country.Russia },
-    { value: Country.Belarus, content: Country.Belarus },
-    { value: Country.Ukraine, content: Country.Ukraine },
-    { value: Country.Kazakhstan, content: Country.Kazakhstan },
-    { value: Country.Armenia, content: Country.Armenia },
-];
+const options: SelectOption[] = [];
+Object.entries(Country).forEach(([key, enumValue]) => {
+    options.push({ value: key, content: enumValue });
+});
 
-export const CountrySelect = (props: CountrySelectProps) => {
+export const CountrySelect = memo((props: CountrySelectProps) => {
     const { className, value, onChange, readonly } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     const onChangeHandler = useCallback(
         (value: string) => {
@@ -41,4 +37,4 @@ export const CountrySelect = (props: CountrySelectProps) => {
             readonly={readonly}
         />
     );
-};
+});

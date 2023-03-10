@@ -1,6 +1,5 @@
 import { ChangeEvent, memo, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames';
-import { Mods } from 'shared/lib/classNames/classNames';
 import styles from './Select.module.scss';
 
 export interface SelectOption {
@@ -17,9 +16,8 @@ interface SelectProps {
     readonly?: boolean;
 }
 
-export const Select = memo((props: SelectProps) => {
+export const Select = (props: SelectProps) => {
     const { className, label, options, valueSelected, onChange, readonly } = props;
-    const mods: Mods = {};
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         if (onChange) {
@@ -50,4 +48,4 @@ export const Select = memo((props: SelectProps) => {
             </select>
         </div>
     );
-});
+};

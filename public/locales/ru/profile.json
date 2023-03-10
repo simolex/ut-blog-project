@@ -12,5 +12,10 @@
   "profile-currency": "Моя валюта",
   "profile-country": "Страна",
   "profile-city": "Город",
-  "profile-username": "Никнейм"
+  "profile-username": "Никнейм",
+  "profile-incorect-age": "Некорректный возраст",
+  "profile-incorect-city": "Город не существует",
+  "profile-incorect-user-data": "Неверные пользовательские данные",
+  "profile-error-no-data": "Нет данных",
+  "profile-server-error": "Ошибка при загрузке данных"
 }

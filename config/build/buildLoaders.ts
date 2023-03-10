@@ -18,7 +18,8 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
     const typescriptLoader = {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: [/\.stories\.tsx?$/, /node_modules/],
+        // exclude: /node_modules/,
     };
 
     return [typescriptLoader, scssLoader, svgLoader, fileLoader];

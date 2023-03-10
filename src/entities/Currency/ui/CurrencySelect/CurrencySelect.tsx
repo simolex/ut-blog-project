@@ -1,8 +1,7 @@
-import { useCallback } from '@storybook/addons';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { Select } from 'shared/ui/Select/Select';
+import { Select, SelectOption } from 'shared/ui/Select/Select';
 import { Currency } from '../../model/types/currency';
 
 interface CurrencySelectProps {
@@ -12,15 +11,20 @@ interface CurrencySelectProps {
     readonly?: boolean;
 }
 
-const options = [
-    { value: Currency.RUB, content: Currency.RUB },
-    { value: Currency.EUR, content: Currency.EUR },
-    { value: Currency.USD, content: Currency.USD },
-];
+const options: SelectOption[] = [];
+Object.entries(Currency).forEach(([key, enumValue]) => {
+    options.push({ value: key, content: enumValue });
+});
 
-export const CurrencySelect = (props: CurrencySelectProps) => {
+// const options = [
+//     { value: Currency.RUB, content: Currency.RUB },
+//     { value: Currency.EUR, content: Currency.EUR },
+//     { value: Currency.USD, content: Currency.USD },
+// ];
+
+export const CurrencySelect = memo((props: CurrencySelectProps) => {
     const { className, value, onChange, readonly } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     const onChangeHandler = useCallback(
         (value: string) => {
@@ -39,4 +43,4 @@ export const CurrencySelect = (props: CurrencySelectProps) => {
             readonly={readonly}
         />
     );
-};
+});

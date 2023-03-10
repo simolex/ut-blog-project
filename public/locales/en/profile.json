@@ -1,3 +1,15 @@
 {
-    "profile-page": "Profile page"
+    "profile-edit": "Edit",
+    "profile-page": "Страница профиля",
+    "error-loading-profile": "An error occurred while loading the profile",
+    "error-loading-profile-action-1": "Try refreshing the page",
+    "profile-lastname": "Lastname",
+    "profile-firstname": "Firstname",
+    "profile-cancel": "Cancel",
+    "profile-save": "Save",
+    "profile-age": "Age",
+    "profile-currency": "Currency",
+    "profile-country": "Country",
+    "profile-city": "City",
+    "profile-username": "Username"
 }

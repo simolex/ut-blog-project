@@ -2,6 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import avatar from 'shared/assets/tests/avatar.jpg';
 import ProfilePage from './ProfilePage';
 
 export default {
@@ -18,7 +19,11 @@ export const Light = Template.bind({});
 Light.args = {};
 Light.decorators = [
     StoreDecorator({
-        profile: { isLoading: false, readonly: true, data: { lastname: 'Sim', first: 'Alex' } },
+        profile: {
+            isLoading: false,
+            readonly: true,
+            form: { username: 'admin', age: 21, lastname: 'Buggi', first: 'Wuggi', avatar },
+        },
     }),
 ];
 
@@ -27,6 +32,10 @@ Dark.args = {};
 Dark.decorators = [
     ThemeDecorator(Theme.DARK),
     StoreDecorator({
-        profile: { isLoading: false, readonly: true },
+        profile: {
+            isLoading: false,
+            readonly: true,
+            form: { username: 'admin', age: 21, lastname: 'Buggi', first: 'Wuggi', avatar },
+        },
     }),
 ];

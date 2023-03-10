@@ -27,7 +27,7 @@ interface ProfileCardProps {
     onChangeAvatar?: (value?: string) => void;
 }
 
-export const ProfileCard = memo((props: ProfileCardProps) => {
+export const ProfileCard = (props: ProfileCardProps) => {
     // eslint-disable-next-line operator-linebreak
     const {
         className,
@@ -100,7 +100,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                     readonly={readonly}
                 />
 
-                {/* <CountrySelect
+                <CountrySelect
                     className={styles.input}
                     value={data?.country}
                     onChange={onChangeCountry}
@@ -111,7 +111,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                     value={data?.currency}
                     onChange={onChangeCurrency}
                     readonly={readonly}
-                /> */}
+                />
                 <Input
                     value={data?.city}
                     placeholder={t('profile-city')}
@@ -136,4 +136,4 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
             </div>
         </div>
     );
-});
+};
