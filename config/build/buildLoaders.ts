@@ -12,6 +12,17 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
         use: 'file-loader',
     };
 
+    const babelLoader = {
+        test: /\.(js|jsx|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                plugins: [isDev && require.resolve('react-refresh/babel')].filter(Boolean),
+            },
+        },
+    };
+
     const scssLoader = buildCssLoader(isDev);
 
     // для js  нужен babel-loader
@@ -22,5 +33,5 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
         // exclude: /node_modules/,
     };
 
-    return [typescriptLoader, scssLoader, svgLoader, fileLoader];
+    return [fileLoader, svgLoader, babelLoader, typescriptLoader, scssLoader];
 }
