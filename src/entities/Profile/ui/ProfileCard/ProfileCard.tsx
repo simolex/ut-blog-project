@@ -2,8 +2,7 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Currency, CurrencySelect } from 'entities/Currency';
 import { Country, CountrySelect } from 'entities/Country';
-import { classNames } from 'shared/lib/classNames';
-import { Mods } from 'shared/lib/classNames/classNames';
+import { classNames, Mods } from 'shared/lib/classNames';
 import { Input } from 'shared/ui/Input/Input';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { LoaderGrid } from 'shared/ui/LoaderGrid/LoaderGrid';
@@ -27,8 +26,7 @@ interface ProfileCardProps {
     onChangeAvatar?: (value?: string) => void;
 }
 
-export const ProfileCard = (props: ProfileCardProps) => {
-    // eslint-disable-next-line operator-linebreak
+export const ProfileCard = memo((props: ProfileCardProps) => {
     const {
         className,
         data,
@@ -136,4 +134,4 @@ export const ProfileCard = (props: ProfileCardProps) => {
             </div>
         </div>
     );
-};
+});

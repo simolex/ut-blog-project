@@ -16,7 +16,7 @@ interface SelectProps {
     readonly?: boolean;
 }
 
-export const Select = (props: SelectProps) => {
+export const Select = memo((props: SelectProps) => {
     const { className, label, options, valueSelected, onChange, readonly } = props;
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -48,4 +48,4 @@ export const Select = (props: SelectProps) => {
             </select>
         </div>
     );
-};
+});

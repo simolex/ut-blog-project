@@ -19,4 +19,10 @@
    },
    "prettier.endOfLine": "lf",
    "files.eol": "\n",
+   "i18n-ally.localesPaths": [
+      "public/locales",
+      "storybook-static/locales",
+      "src/shared/config/i18n"
+   ],
+   
 }

@@ -2,8 +2,11 @@
 @import "reset";
 @import url("https://fonts.googleapis.com/css2?family=Chivo+Mono&display=swap");
 @import "variables/global";
+
+// https://mobilepalette.colorion.co/ - подбор контрастных цветов
 @import "themes/light";
 @import "themes/dark";
+@import "themes/green";
 
 html,
 body,
