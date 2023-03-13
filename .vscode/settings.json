@@ -18,6 +18,7 @@
       "editor.defaultFormatter": "stylelint.vscode-stylelint"
    },
    "prettier.endOfLine": "lf",
+   "prettier.printWidth": 119,
    "files.eol": "\n",
    "i18n-ally.localesPaths": [
       "public/locales",

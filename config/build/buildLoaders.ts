@@ -14,7 +14,8 @@ export function buildLoaders({ isDev }: BuildOptions): RuleSetRule[] {
 
     const babelLoader = {
         test: /\.(js|jsx|tsx)$/,
-        exclude: /node_modules/,
+        exclude: [/\.stories\.tsx?$/, /node_modules/],
+
         use: {
             loader: 'babel-loader',
             options: {
