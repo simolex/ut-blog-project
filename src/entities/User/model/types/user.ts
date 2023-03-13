@@ -1,8 +1,9 @@
 export interface User {
-    id: string
+    id: string;
     username: string;
 }
 
 export interface UserSchema {
-    authDate?: User
+    authDate?: User;
+    _mounted: boolean;
 }

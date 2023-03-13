@@ -3,6 +3,7 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
+    _mounted: false,
 };
 
 export const userSlice = createSlice({
@@ -16,6 +17,7 @@ export const userSlice = createSlice({
             const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
             if (user) {
                 state.authDate = JSON.parse(user);
+                state._mounted = true;
             }
         },
         logout: (state) => {
