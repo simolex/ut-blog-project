@@ -12,7 +12,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const { t } = useTranslation('article');
     const mods: Mods = {};
 
-    return <div className={classNames(styles.articlesPage, {}, [className])}>ArticlesPage</div>;
+    return <div className={classNames(styles.articlesPage, {}, [className])} />;
 };
 
 export default memo(ArticlesPage);

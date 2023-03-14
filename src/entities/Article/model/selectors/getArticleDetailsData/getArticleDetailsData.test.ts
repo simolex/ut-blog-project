@@ -8,8 +8,6 @@ const data = {
     img: 'https://teknotower.com/wp-content/uploads/2020/11/js.png',
     views: 1022,
     createdAt: '26.02.2022',
-    type: ['IT'],
-    blocks: [],
 };
 
 describe('getArticleDetailsData.test', () => {

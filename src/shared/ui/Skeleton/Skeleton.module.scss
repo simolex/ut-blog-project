@@ -18,16 +18,15 @@
         /* stylelint-disable-next-line declaration-colon-newline-after */
         background: linear-gradient(
             120deg,
-            rgba(#cccccc, 30%) 30%,
+            rgba(#ccc, 30%) 30%,
             rgba(#f2f2f2, 30%) 38%,
             rgba(#f2f2f2, 30%) 40%,
-            rgba(#cccccc, 30%) 48%
+            rgba(#ccc, 30%) 48%
         );
         background-size: 300%;
         background-position: 100% 0;
         animation: anim 1.5s infinite;
     }
-
 }
 
 @keyframes anim {
