@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames, Mods } from 'shared/lib/classNames';
@@ -7,14 +7,27 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import { Icon } from 'shared/ui/Icon/Icon';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
+
+import EyeIcon from 'shared/assets/icons/eye-20x20.svg';
+import DateLine from 'shared/assets/icons/date-line-20x20.svg';
+
+import {
+    getArticleDetailsData,
+    getArticleDetailsError,
+    getArticleDetailsIsLoading,
+} from '../../model/selectors';
+import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
-import { getArticleDetailsData } from '../../model/selectors/getArticleDetailsData/getArticleDetailsData';
-import { getArticleDetailsError } from '../../model/selectors/getArticleDetailsError/getArticleDetailsError';
-import { getArticleDetailsIsLoading } from '../../model/selectors/getArticleDetailsIsLoading/getArticleDetailsIsLoading';
 import styles from './ArticleDetails.module.scss';
-import { Text, TextAlign } from 'shared/ui/Text/Text';
-import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -29,32 +42,85 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     const { className, id } = props;
     const { t } = useTranslation('article');
     const dispatch = useAppDispatch();
-    // const isLoading = useSelector(getArticleDetailsIsLoading);
-    const isLoading = true;
+    const isLoading = useSelector(getArticleDetailsIsLoading);
     const error = useSelector(getArticleDetailsError);
     const data = useSelector(getArticleDetailsData);
 
+    const renderBlock = useCallback((block: ArticleBlock) => {
+        switch (block.type) {
+            case ArticleBlockType.CODE:
+                return (
+                    <ArticleCodeBlockComponent
+                        key={block.id}
+                        block={block}
+                        className={styles.block}
+                    />
+                );
+            case ArticleBlockType.IMAGE:
+                return (
+                    <ArticleImageBlockComponent
+                        key={block.id}
+                        block={block}
+                        className={styles.block}
+                    />
+                );
+            case ArticleBlockType.TEXT:
+                return (
+                    <ArticleTextBlockComponent
+                        key={block.id}
+                        block={block}
+                        className={styles.block}
+                    />
+                );
+            default:
+                return null;
+        }
+    }, []);
+
     useEffect(() => {
-        dispatch(fetchArticleById(id));
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticleById(id));
+        }
     }, [dispatch, id]);
 
     let content;
 
     if (isLoading) {
         content = (
-            <div>
+            <>
                 <Skeleton className={styles.avatar} width={150} height={150} border="50%" />
                 <Skeleton className={styles.title} width="50%" height={32} />
                 <Skeleton className={styles.subtitle} width="80%" height={24} />
                 <Skeleton className={styles.paragraph} width="100%" height={130} />
                 <Skeleton className={styles.paragraph} width="100%" height={180} />
                 <Skeleton className={styles.paragraph} width="100%" height={150} />
-            </div>
+            </>
         );
     } else if (error) {
         content = <Text align={TextAlign.CENTER} title={t('article-loading-error')} />;
     } else {
-        content = <div>ArticleDetails</div>;
+        content = (
+            <>
+                <div className={styles.avatarWrapper}>
+                    <Avatar size={150} src={data?.img} className={styles.avatar} />
+                </div>
+                <Text
+                    className={styles.title}
+                    title={data?.title}
+                    text={data?.subtitle}
+                    size={TextSize.L}
+                />
+                <div className={styles.articleInfo}>
+                    <Icon className={styles.icon} Svg={EyeIcon} />
+                    <Text text={String(data?.views)} />
+                </div>
+                <div className={styles.articleInfo}>
+                    <Icon className={styles.icon} Svg={DateLine} />
+                    <Text text={data?.createdAt} />
+                </div>
+                {data?.blocks?.map(renderBlock)}
+            </>
+        );
     }
 
     const mods: Mods = {};

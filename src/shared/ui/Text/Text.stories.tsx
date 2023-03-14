@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 
-import { Text, TextVariant } from './Text';
+import { Text, TextSize, TextVariant } from './Text';
 
 export default {
     title: 'shared/Text',
@@ -18,6 +18,13 @@ export const Normal = Template.bind({});
 Normal.args = {
     title: 'Далеко-далеко',
     text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
+};
+
+export const SizeL = Template.bind({});
+SizeL.args = {
+    title: 'Далеко-далеко',
+    text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
+    size: TextSize.L,
 };
 
 export const OnlyTitle = Template.bind({});

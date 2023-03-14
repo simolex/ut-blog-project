@@ -1,6 +1,6 @@
 export function buildSVGLoader() {
     return {
         test: /\.svg$/i,
-        use: ['@svgr/webpack'],
+        use: [{ loader: '@svgr/webpack', options: { titleProp: true } }],
     };
 }
