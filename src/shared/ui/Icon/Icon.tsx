@@ -1,4 +1,4 @@
-import { memo, SVGProps, VFC } from 'react';
+import { memo, VFC } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import styles from './Icon.module.scss';
 

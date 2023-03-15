@@ -1,5 +1,7 @@
 {
   "article-not-found": "Статья не найдена",
   "article-loading-error": "Произошла ошибка при загрузке  статьи",
-  "article-code-copy-title": "Копировать"
+  "article-code-copy-title": "Копировать",
+  "comment-title": "Комментарии",
+  "comment-not-found": "Комментарии отсутстуют"
 }

@@ -11,11 +11,19 @@ declare module '*.jpeg';
 interface ExtendSVGProps<T> extends React.SVGProps<T> {
     title?: string | undefined;
 }
+// declare global {
+//     namespace React {
+//         interface SVGProps<T> {
+//             title?: string;
+//         }
+//     }
+// }
 
 declare module '*.svg' {
     import type React from 'react';
 
     const SVG: React.VFC<ExtendSVGProps<SVGSVGElement>>;
+    // const SVG: React.VFC<SVGProps<SVGSVGElement>>;
     export default SVG;
 }
 
