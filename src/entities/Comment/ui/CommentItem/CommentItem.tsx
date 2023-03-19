@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 import { classNames } from 'shared/lib/classNames';
+import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Text } from 'shared/ui/Text/Text';
@@ -31,12 +33,12 @@ export const CommentItem = memo((props: CommentItemProps) => {
 
     return (
         <div className={classNames(styles.commentItem, {}, [className])}>
-            <div className={styles.header}>
+            <AppLink to={`${RoutePath.profile}${comment?.user?.id}`} className={styles.header}>
                 {/* Закон Деметры? [Вопрос] */}
                 {comment?.user.avatar ? <Avatar size={30} src={comment?.user.avatar} /> : null}
                 {/* Закон Деметры? [Вопрос] */}
                 <Text className={styles.username} title={comment?.user.username} />
-            </div>
+            </AppLink>
             <Text className={styles.content} text={comment?.text} />
         </div>
     );

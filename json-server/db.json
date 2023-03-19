@@ -47,16 +47,30 @@
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
         }
     ],
-    "profile": {
-        "username": "admin",
-        "first": "Alex",
-        "lastname": "Simon",
-        "age": 42,
-        "currency": "RUB",
-        "country": "Belarus",
-        "city": "NiNo",
-        "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
-    },
+    "profile": [
+        {
+            "id": "1",
+            "username": "admin",
+            "first": "Alex",
+            "lastname": "Simon",
+            "age": 42,
+            "currency": "RUB",
+            "country": "Belarus",
+            "city": "NiNo",
+            "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
+        },
+        {
+            "id": "2",
+            "username": "admin-2",
+            "first": "Alex A",
+            "lastname": "Simon",
+            "age": 43,
+            "currency": "RUB",
+            "country": "Belarus",
+            "city": "NiNo",
+            "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
+        }
+    ],
     "articles": [
         {
             "id": "1",
