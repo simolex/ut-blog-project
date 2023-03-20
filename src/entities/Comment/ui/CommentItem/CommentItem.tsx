@@ -11,7 +11,7 @@ import styles from './CommentItem.module.scss';
 
 interface CommentItemProps {
     className?: string;
-    comment?: Comment;
+    comment: Comment;
     isLoading?: boolean;
 }
 
@@ -33,7 +33,7 @@ export const CommentItem = memo((props: CommentItemProps) => {
 
     return (
         <div className={classNames(styles.commentItem, {}, [className])}>
-            <AppLink to={`${RoutePath.profile}${comment?.user?.id}`} className={styles.header}>
+            <AppLink to={`${RoutePath.profile}${comment.user?.id}`} className={styles.header}>
                 {/* Закон Деметры? [Вопрос] */}
                 {comment?.user.avatar ? <Avatar size={30} src={comment?.user.avatar} /> : null}
                 {/* Закон Деметры? [Вопрос] */}

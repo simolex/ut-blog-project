@@ -24,6 +24,7 @@ import {
     getArticleCommentsError,
     getArticleCommentsIsLoading,
 } from '../../model/selectors/comments';
+import { AddCommentForm } from 'features/addCommentForm';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -39,7 +40,6 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const { id: articleId } = useParams<{ id: string }>();
     const dispatch = useAppDispatch();
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
-    const commentsError = useSelector(getArticleCommentsError);
     const comments = useSelector(getArticleComments.selectAll);
 
     useInitialEffect(() => {
@@ -59,6 +59,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
             <div className={classNames(styles.articleDetailsPage, {}, [className])}>
                 <ArticleDetails id={articleId} />
                 <Text title={t('comment-title')} className={styles.commentTitle} />
+                <AddCommentForm />
                 <CommentList isLoading={commentsIsLoading} comments={comments} />
             </div>
         </DynamicModuleLoader>

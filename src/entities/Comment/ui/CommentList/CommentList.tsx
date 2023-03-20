@@ -22,6 +22,7 @@ export const CommentList = memo((props: CommentListProps) => {
             {comments?.length ? (
                 comments?.map((comment) => (
                     <CommentItem
+                        key={comment.id}
                         className={styles.comment}
                         comment={comment}
                         isLoading={isLoading}

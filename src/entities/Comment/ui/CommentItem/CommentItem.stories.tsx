@@ -4,8 +4,14 @@ import { Theme } from 'app/providers/ThemeProvider';
 
 import { CommentItem } from './CommentItem';
 
+const commentOne = {
+    id: '3',
+    text: 'Оставте свой комментарий-3',
+    user: { id: '3', username: 'Блогер-3' },
+};
+
 export default {
-    title: 'shared/CommentItem',
+    title: 'entities/CommentItem',
     component: CommentItem,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -15,8 +21,12 @@ export default {
 const Template: ComponentStory<typeof CommentItem> = (props) => <CommentItem {...props} />;
 
 export const Normal = Template.bind({});
-Normal.args = {};
+Normal.args = {
+    comment: commentOne,
+};
 
 export const NormalDark = Template.bind({});
-NormalDark.args = {};
+NormalDark.args = {
+    comment: commentOne,
+};
 NormalDark.decorators = [ThemeDecorator(Theme.DARK)];

@@ -5,7 +5,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { CommentList } from './CommentList';
 
 export default {
-    title: 'shared/CommentList',
+    title: 'entities/CommentList',
     component: CommentList,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -14,9 +14,30 @@ export default {
 
 const Template: ComponentStory<typeof CommentList> = (props) => <CommentList {...props} />;
 
+const commentPull = [
+    {
+        id: '1',
+        text: 'Оставте свой комментарий-1',
+        user: { id: '1', username: 'Блогер-1' },
+    },
+    {
+        id: '2',
+        text: 'Оставте свой комментарий-2',
+        user: { id: '2', username: 'Блогер-2' },
+    },
+    {
+        id: '3',
+        text: 'Оставте свой комментарий-3',
+        user: { id: '3', username: 'Блогер-3' },
+    },
+];
 export const Normal = Template.bind({});
-Normal.args = {};
+Normal.args = {
+    comments: commentPull,
+};
 
 export const NormalDark = Template.bind({});
-NormalDark.args = {};
+NormalDark.args = {
+    comments: commentPull,
+};
 NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
