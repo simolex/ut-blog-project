@@ -1,8 +1,12 @@
 .profilePageHeader {
     display: flex;
     margin-bottom: 20px;
+
+    .editBtn {
+        margin-left: auto;
+    }
 }
 
-.editBtn {
+.btnsWrapper {
     margin-left: auto;
 }

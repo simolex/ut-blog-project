@@ -1,9 +1,9 @@
-import { memo, ReactNode, useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
+import CopyIcon from 'shared/assets/icons/clipboard-20x20.svg';
 import { classNames } from 'shared/lib/classNames';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
-import CopyIcon from 'shared/assets/icons/clipboard-20x20.svg';
 import styles from './Code.module.scss';
 
 interface CodeProps {

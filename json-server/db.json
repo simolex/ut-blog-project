@@ -53,7 +53,7 @@
       "username": "admin",
       "first": "Alex",
       "lastname": "Simon",
-      "age": 42,
+      "age": 43,
       "currency": "RUB",
       "country": "Belarus",
       "city": "NiNo",
@@ -168,6 +168,12 @@
       "articleId": "1",
       "userId": "1",
       "id": "95wYl1w"
+    },
+    {
+      "text": "Yeeeeewww",
+      "articleId": "1",
+      "userId": "1",
+      "id": "JqwgGt6"
     }
   ]
 }

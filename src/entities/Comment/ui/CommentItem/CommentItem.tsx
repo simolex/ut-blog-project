@@ -11,17 +11,16 @@ import styles from './CommentItem.module.scss';
 
 interface CommentItemProps {
     className?: string;
-    comment: Comment;
+    comment?: Comment;
     isLoading?: boolean;
 }
 
 export const CommentItem = memo((props: CommentItemProps) => {
     const { className, comment, isLoading } = props;
-    const { t } = useTranslation();
 
     if (isLoading) {
         return (
-            <div className={classNames(styles.commentItem, {}, [className])}>
+            <div className={classNames(styles.commentItem, {}, [className, styles.loading])}>
                 <div className={styles.header}>
                     <Skeleton height={30} width={30} border="50%" />
                     <Skeleton height={24} width="45%" className={styles.username} />
@@ -29,6 +28,10 @@ export const CommentItem = memo((props: CommentItemProps) => {
                 <Skeleton height={48} width="100%" className={styles.content} />
             </div>
         );
+    }
+
+    if (!comment) {
+        return null;
     }
 
     return (

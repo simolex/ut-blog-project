@@ -10,7 +10,6 @@ interface ArticlesPageProps {
 const ArticlesPage = (props: ArticlesPageProps) => {
     const { className } = props;
     const { t } = useTranslation('article');
-    const mods: Mods = {};
 
     return <div className={classNames(styles.articlesPage, {}, [className])} />;
 };

@@ -17,18 +17,18 @@ import {
     addCommentFormActions,
     addCommentFormReducer,
 } from '../../model/slices/addCommentFormSlice';
-import { sendComment } from '../../model/services/sendComment/sendComment';
 import styles from './AddCommentForm.module.scss';
 
-interface AddCommentFormProps {
+export interface AddCommentFormProps {
     className?: string;
+    onSendComment: (_text: string) => void;
 }
 
 const reducers: ReducersList = {
     addCommentForm: addCommentFormReducer,
 };
 const AddCommentForm = memo((props: AddCommentFormProps) => {
-    const { className } = props;
+    const { className, onSendComment } = props;
     const { t } = useTranslation('comment');
     const text = useSelector(getAddCommentFormText);
     const error = useSelector(getAddCommentFormError);
@@ -41,9 +41,10 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
         [dispatch],
     );
 
-    const onSendComment = useCallback(() => {
-        dispatch(sendComment());
-    }, [dispatch]);
+    const onSendHandler = useCallback(() => {
+        onSendComment(text || '');
+        onCommentTextChange('');
+    }, [onCommentTextChange, onSendComment, text]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
@@ -54,7 +55,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
                     value={text}
                     onChange={onCommentTextChange}
                 />
-                <Button theme={ButtonTheme.OUTLINE} onClick={onSendComment}>
+                <Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
                     {t('send-comment')}
                 </Button>
             </div>

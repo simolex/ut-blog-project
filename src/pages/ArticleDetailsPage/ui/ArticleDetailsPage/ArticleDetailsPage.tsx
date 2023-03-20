@@ -1,30 +1,28 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
 
-import { Text } from 'shared/ui/Text/Text';
 import { classNames } from 'shared/lib/classNames';
+import { Text } from 'shared/ui/Text/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { AddCommentForm } from 'features/addCommentForm';
+import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
+import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
+import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import {
     articleDetailsCommentsReducer,
     getArticleComments,
 } from '../../model/slice/articleDetailsCommentsSlice';
-import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import styles from './ArticleDetailsPage.module.scss';
-import {
-    getArticleCommentsError,
-    getArticleCommentsIsLoading,
-} from '../../model/selectors/comments';
-import { AddCommentForm } from 'features/addCommentForm';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -41,6 +39,13 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const dispatch = useAppDispatch();
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
     const comments = useSelector(getArticleComments.selectAll);
+
+    const onSendComment = useCallback(
+        (text: string) => {
+            dispatch(addCommentForArticle(text));
+        },
+        [dispatch],
+    );
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(articleId));
@@ -59,7 +64,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
             <div className={classNames(styles.articleDetailsPage, {}, [className])}>
                 <ArticleDetails id={articleId} />
                 <Text title={t('comment-title')} className={styles.commentTitle} />
-                <AddCommentForm />
+                <AddCommentForm onSendComment={onSendComment} />
                 <CommentList isLoading={commentsIsLoading} comments={comments} />
             </div>
         </DynamicModuleLoader>

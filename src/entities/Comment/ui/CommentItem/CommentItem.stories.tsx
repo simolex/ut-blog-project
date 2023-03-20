@@ -11,7 +11,7 @@ const commentOne = {
 };
 
 export default {
-    title: 'entities/CommentItem',
+    title: 'entities/Comment/CommentItem',
     component: CommentItem,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -30,3 +30,9 @@ NormalDark.args = {
     comment: commentOne,
 };
 NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Loading = Template.bind({});
+Loading.args = {
+    comment: commentOne,
+    isLoading: true,
+};

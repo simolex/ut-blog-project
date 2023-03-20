@@ -5,7 +5,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { CommentList } from './CommentList';
 
 export default {
-    title: 'entities/CommentList',
+    title: 'entities/Comment/CommentList',
     component: CommentList,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -41,3 +41,9 @@ NormalDark.args = {
     comments: commentPull,
 };
 NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
+
+export const Loading = Template.bind({});
+Loading.args = {
+    comments: commentPull,
+    isLoading: true,
+};

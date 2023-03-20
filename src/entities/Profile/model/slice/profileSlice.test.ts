@@ -3,6 +3,7 @@ import { ProfileSchema, ValidateProfileError } from '../types/profile';
 import { profileActions, profileReducer } from './profileSlice';
 
 const data = {
+    id: '1',
     username: 'admin',
     age: 21,
     lastname: 'Buggi',
