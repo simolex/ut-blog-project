@@ -1,3 +1,5 @@
+import { User } from 'entities/User';
+
 // import { ValueOf } from 'shared/config/typeEnum/typeEnum';
 export enum ArticleBlockType {
     TEXT = 'TEXT',
@@ -36,12 +38,18 @@ export type ArticleBlock = ArticleCodeBlock | ArticleTextBlock | ArticleImageBlo
 
 export type ArticleType = 'IT' | 'SCIENCE' | 'ECONOMICS';
 
+export enum ArticleView {
+    LIST = 'LIST',
+    GRID = 'GRID',
+}
+
 export interface Article {
     id: string;
     title: string;
     subtitle: string;
     img: string;
     views: number;
+    author: User; // bad FSD?
     createdAt: string;
     type: ArticleType[];
     blocks?: ArticleBlock[];

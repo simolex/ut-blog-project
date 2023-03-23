@@ -3,5 +3,7 @@
   "article-loading-error": "Произошла ошибка при загрузке  статьи",
   "article-code-copy-title": "Копировать",
   "comment-title": "Комментарии",
-  "comment-not-found": "Комментарии отсутстуют"
+  "comment-not-found": "Комментарии отсутстуют",
+  "article-read-more": "Читать далее...",
+  "article-go-back": "Назад  к списку"
 }
