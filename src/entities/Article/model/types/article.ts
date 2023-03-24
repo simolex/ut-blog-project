@@ -49,7 +49,7 @@ export interface Article {
     subtitle: string;
     img: string;
     views: number;
-    author: User; // bad FSD?
+    user: User; // bad FSD?
     createdAt: string;
     type: ArticleType[];
     blocks?: ArticleBlock[];

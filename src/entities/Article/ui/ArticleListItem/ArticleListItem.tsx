@@ -53,8 +53,8 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             <div className={classNames(styles.articleListItem, {}, [className, styles[view]])}>
                 <Card className={styles.card}>
                     <div className={styles.header}>
-                        <Avatar size={30} src={article.author.avatar} />
-                        <Text text={article.author.username} className={styles.username} />
+                        <Avatar size={30} src={article.user.avatar} />
+                        <Text text={article.user.username} className={styles.username} />
                         {createdAt}
                     </div>
                     {title}
