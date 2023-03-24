@@ -14,6 +14,7 @@ import {
     ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { Button } from 'shared/ui/Button/Button';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -60,21 +61,21 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     if (!articleId) {
         return (
-            <div className={classNames(styles.articleDetailsPage, {}, [className])}>
+            <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
                 {t('article-not-found')}
-            </div>
+            </PageWrapper>
         );
     }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(styles.articleDetailsPage, {}, [className])}>
+            <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
                 <Button onClick={onBackToList}>{t('article-go-back')}</Button>
                 <ArticleDetails id={articleId} />
                 <Text title={t('comment-title')} className={styles.commentTitle} />
                 <AddCommentForm onSendComment={onSendComment} />
                 <CommentList isLoading={commentsIsLoading} comments={comments} />
-            </div>
+            </PageWrapper>
         </DynamicModuleLoader>
     );
 };

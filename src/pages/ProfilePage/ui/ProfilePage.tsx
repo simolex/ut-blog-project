@@ -23,6 +23,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 // import styles from './ProfilePage.module.scss';
@@ -114,7 +115,7 @@ const ProfilePage = (props: ProfilePageProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div
+            <PageWrapper
                 className={classNames(
                     // styles.profilePage
                     '',
@@ -145,7 +146,7 @@ const ProfilePage = (props: ProfilePageProps) => {
                     onChangeAvatar={onChangeAvatar}
                     readonly={readonly}
                 />
-            </div>
+            </PageWrapper>
         </DynamicModuleLoader>
     );
 };

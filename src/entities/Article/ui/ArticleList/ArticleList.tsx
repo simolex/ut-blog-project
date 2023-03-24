@@ -22,14 +22,6 @@ export const ArticleList = memo((props: ArticleListProps) => {
     const { className, articles, isLoading, view = ArticleView.GRID } = props;
     const { t } = useTranslation();
 
-    if (isLoading) {
-        return (
-            <div className={classNames(styles.articleList, {}, [className])}>
-                {getSkeleton(view)}
-            </div>
-        );
-    }
-
     const renderArticles = (article: Article) => (
         <ArticleListItem article={article} view={view} key={article.id} />
     );
@@ -37,6 +29,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
     return (
         <div className={classNames(styles.articleList, {}, [className])}>
             {articles && articles?.length > 0 ? articles?.map(renderArticles) : null}
+            {isLoading && getSkeleton(view)}
         </div>
     );
 });

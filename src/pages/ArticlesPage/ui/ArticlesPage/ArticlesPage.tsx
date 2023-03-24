@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
-import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList';
+import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import { ArticleList, ArticleView, ArticleViewSelector } from 'entities/Article';
 import {
     DynamicModuleLoader,
@@ -13,7 +14,9 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
     getArticlesPageError,
+    getArticlesPageHasMore,
     getArticlesPageIsLoading,
+    getArticlesPageNum,
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 import {
@@ -22,6 +25,7 @@ import {
     getArticles,
 } from '../../model/slices/articlePageSlice';
 import styles from './ArticlesPage.module.scss';
+import { fetchNextArticlePage } from '../../model/services/fetchNextArticlePage/fetchNextArticlePage';
 
 interface ArticlesPageProps {
     className?: string;
@@ -120,6 +124,8 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
     const view = useSelector(getArticlesPageView);
+    const page = useSelector(getArticlesPageNum);
+    const hasMore = useSelector(getArticlesPageHasMore);
 
     const onChangeView = useCallback(
         (view: ArticleView) => {
@@ -128,17 +134,37 @@ const ArticlesPage = (props: ArticlesPageProps) => {
         [dispatch],
     );
 
+    const onLoadNextPage = useCallback(() => {
+        dispatch(fetchNextArticlePage());
+    }, [dispatch]);
+
     useInitialEffect(() => {
-        dispatch(fetchArticlesList());
         dispatch(articlePageActions.initState());
+
+        dispatch(
+            fetchArticlesList({
+                page: 1,
+            }),
+        );
     });
+
+    if (error) {
+        return (
+            <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
+                {t('article-not-found')}
+            </PageWrapper>
+        );
+    }
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(styles.articlesPage, {}, [className])}>
+            <PageWrapper
+                onScrollEnd={onLoadNextPage}
+                className={classNames(styles.articlesPage, {}, [className])}
+            >
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
                 <ArticleList isLoading={isLoading} view={view} articles={articles} />
-            </div>
+            </PageWrapper>
         </DynamicModuleLoader>
     );
 };

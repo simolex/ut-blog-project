@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { classNames } from 'shared/lib/classNames';
+import { PageWrapper } from 'shared/ui/PageWrapper/PageWrapper';
 import styles from './NotFound.module.scss';
 
 interface NotFoundProps {
@@ -10,7 +11,11 @@ interface NotFoundProps {
 
 const NotFound: FC<NotFoundProps> = ({ className }: NotFoundProps) => {
     const { t } = useTranslation();
-    return <div className={classNames(styles.notFound, {}, [className])}>{t('NotFound')}</div>;
+    return (
+        <PageWrapper className={classNames(styles.notFound, {}, [className])}>
+            {t('NotFound')}
+        </PageWrapper>
+    );
 };
 
 export default NotFound;
