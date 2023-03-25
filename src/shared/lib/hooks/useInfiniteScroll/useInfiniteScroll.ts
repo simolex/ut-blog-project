@@ -26,10 +26,11 @@ export function useInfiniteScroll(options: UseInfiniteScrollOptions) {
             }, params);
             observer.observe(triggerRef.current);
         }
+
+        const currentTriggerRef = triggerRef.current;
         return () => {
-            const cloneTriggerRef = triggerRef;
             if (observer) {
-                observer.unobserve(cloneTriggerRef.current);
+                observer.unobserve(currentTriggerRef);
             }
         };
     }, [callback, triggerRef, wrapperRef]);
