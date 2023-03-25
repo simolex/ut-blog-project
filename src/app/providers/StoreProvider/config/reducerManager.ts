@@ -16,6 +16,7 @@ export function createReducerManager(
             if (state && keysToRemove.length > 0) {
                 state = { ...state };
                 keysToRemove.forEach((key) => delete state?.[key]);
+
                 keysToRemove = [];
             }
 
@@ -28,7 +29,6 @@ export function createReducerManager(
             }
 
             reducers[key] = reducer;
-
             combinedReducer = combineReducers(reducers);
         },
 
@@ -39,7 +39,6 @@ export function createReducerManager(
 
             delete reducers[key];
             keysToRemove.push(key);
-
             combinedReducer = combineReducers(reducers);
         },
     };
