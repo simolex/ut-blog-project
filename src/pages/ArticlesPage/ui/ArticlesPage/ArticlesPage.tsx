@@ -23,6 +23,7 @@ import {
     articlePageReducer,
     getArticles,
 } from '../../model/slices/articlePageSlice';
+import { ArticlePageFilters } from '../ArticlePageFilters/ArticlePageFilters';
 import styles from './ArticlesPage.module.scss';
 
 interface ArticlesPageProps {
@@ -123,13 +124,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const error = useSelector(getArticlesPageError);
     const view = useSelector(getArticlesPageView);
 
-    const onChangeView = useCallback(
-        (view: ArticleView) => {
-            dispatch(articlePageActions.setView(view));
-        },
-        [dispatch],
-    );
-
     const onLoadNextPage = useCallback(() => {
         dispatch(fetchNextArticlePage());
     }, [dispatch]);
@@ -152,8 +146,13 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                 onScrollEnd={onLoadNextPage}
                 className={classNames(styles.articlesPage, {}, [className])}
             >
-                <ArticleViewSelector view={view} onViewClick={onChangeView} />
-                <ArticleList isLoading={isLoading} view={view} articles={articles} />
+                <ArticlePageFilters />
+                <ArticleList
+                    isLoading={isLoading}
+                    view={view}
+                    articles={articles}
+                    className={styles.list}
+                />
             </PageWrapper>
         </DynamicModuleLoader>
     );

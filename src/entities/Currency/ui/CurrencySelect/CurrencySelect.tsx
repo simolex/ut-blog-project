@@ -11,9 +11,9 @@ interface CurrencySelectProps {
     readonly?: boolean;
 }
 
-const options: SelectOption[] = [];
+const options: SelectOption<Currency>[] = [];
 Object.entries(Currency).forEach(([key, enumValue]) => {
-    options.push({ value: key, content: enumValue });
+    options.push({ value: enumValue, content: enumValue });
 });
 
 // const options = [

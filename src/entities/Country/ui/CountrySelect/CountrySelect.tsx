@@ -11,9 +11,9 @@ interface CountrySelectProps {
     readonly?: boolean;
 }
 
-const options: SelectOption[] = [];
+const options: SelectOption<Country>[] = [];
 Object.entries(Country).forEach(([key, enumValue]) => {
-    options.push({ value: key, content: enumValue });
+    options.push({ value: enumValue, content: enumValue });
 });
 
 export const CountrySelect = memo((props: CountrySelectProps) => {

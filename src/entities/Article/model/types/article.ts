@@ -1,19 +1,17 @@
 import { User } from 'entities/User';
 
+export enum ArticleSortField {
+    VIEWS = 'views',
+    TITLE = 'title',
+    CREATED = 'createdAt',
+}
+
 // import { ValueOf } from 'shared/config/typeEnum/typeEnum';
 export enum ArticleBlockType {
     TEXT = 'TEXT',
     CODE = 'CODE',
     IMAGE = 'IMAGE',
 }
-
-// export const ArticleBlockType = {
-//     TEXT: 'TEXT',
-//     CODE: 'CODE',
-//     IMAGE: 'IMAGE',
-// } as const;
-
-// export type ArticleBlockType = ValueOf<typeof ArticleBlockType>;
 
 export interface ArticleBlockBase {
     id: string;
