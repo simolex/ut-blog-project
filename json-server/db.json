@@ -1340,7 +1340,7 @@
             "views": 1022,
             "createdAt": "26.02.2022",
             "userId": "1",
-            "type": ["IT"],
+            "type": ["IT", "SCIENCE"],
             "blocks": [
                 {
                     "id": "1",
@@ -1410,7 +1410,7 @@
             "views": 1022,
             "createdAt": "26.02.2022",
             "userId": "1",
-            "type": ["IT"],
+            "type": ["IT", "ECONOMICS"],
             "blocks": [
                 {
                     "id": "1",

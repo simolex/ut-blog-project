@@ -6,6 +6,11 @@ const server = jsonServer.create();
 
 const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 
+router.param('type', function (req, res, next) {
+    console.log('CALLED ONLY ONCE');
+    next();
+  });
+
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
 
@@ -23,8 +28,6 @@ server.post('/login', (req, res) => {
         const { username, password } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         const { users = [] } = db;
-
-        console.log(username, password);
 
         const userFromBd = users.find(
             (user) => user.username === username && user.password === password,
@@ -50,6 +53,8 @@ server.use((req, res, next) => {
 
     next();
 });
+
+
 
 server.use(router);
 

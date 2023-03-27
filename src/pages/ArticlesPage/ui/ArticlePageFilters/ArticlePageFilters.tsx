@@ -7,6 +7,7 @@ import {
     ArticleView,
     ArticleViewSelector,
     ArticleType,
+    ArticleTypesTabs,
 } from 'entities/Article';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
@@ -20,6 +21,7 @@ import {
     getArticlesPageOrder,
     getArticlesPageSearch,
     getArticlesPageSort,
+    getArticlesPageType,
     getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 import styles from './ArticlePageFilters.module.scss';
@@ -39,6 +41,7 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
     const order = useSelector(getArticlesPageOrder);
     const search = useSelector(getArticlesPageSearch);
     const view = useSelector(getArticlesPageView);
+    const type = useSelector(getArticlesPageType);
 
     const fetchData = useCallback(() => {
         dispatch(fetchArticlesList({ replace: true }));
@@ -56,6 +59,15 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
     const onChangeSort = useCallback(
         (newSort: ArticleSortField) => {
             dispatch(articlePageActions.setSort(newSort));
+            dispatch(articlePageActions.setPage(1));
+            fetchData();
+        },
+        [dispatch, fetchData],
+    );
+
+    const onChangeType = useCallback(
+        (value: ArticleType) => {
+            dispatch(articlePageActions.setType(value));
             dispatch(articlePageActions.setPage(1));
             fetchData();
         },
@@ -80,28 +92,6 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
         [dispatch],
     );
 
-    const typeTabs = useMemo<TabItem<ArticleType>[]>(
-        () => [
-            {
-                value: 'ALL',
-                content: t('article-type-all'),
-            },
-            {
-                value: 'IT',
-                content: t('article-type-it'),
-            },
-            {
-                value: 'ECONOMICS',
-                content: t('article-type-economics'),
-            },
-            {
-                value: 'SCIENCE',
-                content: t('article-type-science'),
-            },
-        ],
-        [t],
-    );
-
     return (
         <div className={classNames(styles.articlePageFilters, {}, [className])}>
             <div className={styles.sortWrapper}>
@@ -116,7 +106,7 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
             <Card className={styles.search}>
                 <Input placeholder={t('article-search')} onChange={onChangeSearch} value={search} />
             </Card>
-            <Tabs tabs={typeTabs} value="ALL" onTabClick={() => null} />
+            <ArticleTypesTabs value={type} onChangeType={onChangeType} className={styles.types} />
         </div>
     );
 });
