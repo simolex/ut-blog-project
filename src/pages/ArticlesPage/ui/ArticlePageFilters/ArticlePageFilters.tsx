@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
@@ -6,11 +6,13 @@ import {
     ArticleSortSelector,
     ArticleView,
     ArticleViewSelector,
+    ArticleType,
 } from 'entities/Article';
 import { Card } from 'shared/ui/Card/Card';
 import { Input } from 'shared/ui/Input/Input';
 import { classNames, Mods } from 'shared/lib/classNames';
 import { SortOrder } from 'shared/types';
+import { TabItem, Tabs } from 'shared/ui/Tabs/Tabs';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { articlePageActions } from '../../model/slices/articlePageSlice';
@@ -78,6 +80,28 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
         [dispatch],
     );
 
+    const typeTabs = useMemo<TabItem<ArticleType>[]>(
+        () => [
+            {
+                value: 'ALL',
+                content: t('article-type-all'),
+            },
+            {
+                value: 'IT',
+                content: t('article-type-it'),
+            },
+            {
+                value: 'ECONOMICS',
+                content: t('article-type-economics'),
+            },
+            {
+                value: 'SCIENCE',
+                content: t('article-type-science'),
+            },
+        ],
+        [t],
+    );
+
     return (
         <div className={classNames(styles.articlePageFilters, {}, [className])}>
             <div className={styles.sortWrapper}>
@@ -92,6 +116,7 @@ export const ArticlePageFilters = memo((props: ArticlePageFiltersProps) => {
             <Card className={styles.search}>
                 <Input placeholder={t('article-search')} onChange={onChangeSearch} value={search} />
             </Card>
+            <Tabs tabs={typeTabs} value="ALL" onTabClick={() => null} />
         </div>
     );
 });

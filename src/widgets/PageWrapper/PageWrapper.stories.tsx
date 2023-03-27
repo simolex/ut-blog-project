@@ -5,7 +5,7 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { PageWrapper } from './PageWrapper';
 
 export default {
-    title: 'shared/PageWrapper',
+    title: 'widgets/PageWrapper',
     component: PageWrapper,
     argTypes: {
         backgroundColor: { control: 'color' },

@@ -1,5 +1,13 @@
 .card {
-    padding: 15px;
-    border-radius: 12px;
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: 2px solid var(--card-bg);
+}
+
+.normal {
     background-color: var(--card-bg);
+}
+
+.outlined {
+    background-color: transparent;
 }

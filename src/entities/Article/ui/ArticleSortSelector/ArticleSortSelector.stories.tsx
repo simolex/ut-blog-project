@@ -5,14 +5,16 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { ArticleSortSelector } from './ArticleSortSelector';
 
 export default {
-    title: 'shared/ArticleSortSelector',
+    title: 'entities/Article/ArticleSortSelector',
     component: ArticleSortSelector,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof ArticleSortSelector>;
 
-const Template: ComponentStory<typeof ArticleSortSelector> = (props) => <ArticleSortSelector {...props} />;
+const Template: ComponentStory<typeof ArticleSortSelector> = (props) => (
+    <ArticleSortSelector {...props} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};
