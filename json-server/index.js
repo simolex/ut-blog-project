@@ -6,10 +6,10 @@ const server = jsonServer.create();
 
 const router = jsonServer.router(path.resolve(__dirname, 'db.json'));
 
-router.param('type', function (req, res, next) {
+router.param('type', (req, res, next) => {
     console.log('CALLED ONLY ONCE');
     next();
-  });
+});
 
 server.use(jsonServer.defaults({}));
 server.use(jsonServer.bodyParser);
