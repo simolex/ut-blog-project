@@ -41,7 +41,7 @@ module.exports = {
         'max-len': [2, { code: 120, ignoreComments: true }],
         'i18next/no-literal-string': [
             2,
-            { markupOnly: true, ignoreAttribute: ['to', 'data-testid', 'Svg'] },
+            { markupOnly: true, ignoreAttribute: ['to', 'data-testid', 'Svg', 'target'] },
         ],
         'implicit-arrow-linebreak': [1],
         'no-redeclare': [1],

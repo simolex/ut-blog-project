@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { AddCommentForm } from 'features/addCommentForm';
-import { ArticleDetails } from 'entities/Article';
+import { ArticleDetails, ArticleList } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
 
 import { classNames } from 'shared/lib/classNames';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -19,20 +19,27 @@ import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
+import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle';
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { fetchArticleRecommendation } from '../../model/services/fetchArticleRecommendation/fetchArticleRecommendation';
 import {
     articleDetailsCommentsReducer,
     getArticleComments,
 } from '../../model/slice/articleDetailsCommentsSlice';
+import {
+    articleDetailsRecommendationReducer,
+    getArticleRecommendations,
+} from '../../model/slice/articleDetailsRecommendationSlice';
 import styles from './ArticleDetailsPage.module.scss';
+import { articleDetailsPageReducer } from '../../model/slice';
 
 interface ArticleDetailsPageProps {
     className?: string;
 }
 
 const reducers: ReducersList = {
-    articleDetailsComments: articleDetailsCommentsReducer,
+    articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
@@ -40,8 +47,10 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const { t } = useTranslation('article');
     const { id: articleId } = useParams<{ id: string }>();
     const dispatch = useAppDispatch();
-    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
     const comments = useSelector(getArticleComments.selectAll);
+    const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+    const recommendations = useSelector(getArticleRecommendations.selectAll);
+    const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
 
     const navigate = useNavigate();
     const onBackToList = useCallback(() => {
@@ -57,6 +66,7 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
 
     useInitialEffect(() => {
         dispatch(fetchCommentsByArticleId(articleId));
+        dispatch(fetchArticleRecommendation());
     });
 
     if (!articleId) {
@@ -72,7 +82,23 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
             <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
                 <Button onClick={onBackToList}>{t('article-go-back')}</Button>
                 <ArticleDetails id={articleId} />
-                <Text title={t('comment-title')} className={styles.commentTitle} />
+
+                <Text
+                    size={TextSize.L}
+                    title={t('recommedation-title')}
+                    className={styles.recommendationTitle}
+                />
+                <ArticleList
+                    articles={recommendations}
+                    isLoading={recommendationsIsLoading}
+                    className={styles.recommendations}
+                    target="_blank"
+                />
+                <Text
+                    size={TextSize.L}
+                    title={t('comment-title')}
+                    className={styles.commentTitle}
+                />
                 <AddCommentForm onSendComment={onSendComment} />
                 <CommentList isLoading={commentsIsLoading} comments={comments} />
             </PageWrapper>
