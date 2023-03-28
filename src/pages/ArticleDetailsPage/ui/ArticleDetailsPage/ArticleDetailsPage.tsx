@@ -33,6 +33,7 @@ import {
 } from '../../model/slice/articleDetailsRecommendationSlice';
 import styles from './ArticleDetailsPage.module.scss';
 import { articleDetailsPageReducer } from '../../model/slice';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader';
 
 interface ArticleDetailsPageProps {
     className?: string;
@@ -51,11 +52,6 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
     const recommendations = useSelector(getArticleRecommendations.selectAll);
     const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
-
-    const navigate = useNavigate();
-    const onBackToList = useCallback(() => {
-        navigate(RoutePath.articles);
-    }, [navigate]);
 
     const onSendComment = useCallback(
         (text: string) => {
@@ -80,9 +76,8 @@ const ArticleDetailsPage = (props: ArticleDetailsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
-                <Button onClick={onBackToList}>{t('article-go-back')}</Button>
+                <ArticleDetailsPageHeader />
                 <ArticleDetails id={articleId} />
-
                 <Text
                     size={TextSize.L}
                     title={t('recommedation-title')}

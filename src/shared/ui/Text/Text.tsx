@@ -4,6 +4,7 @@ import styles from './Text.module.scss';
 
 export enum TextVariant {
     NORMAL = 'normal',
+    INVERTED = 'inverted',
     ERROR = 'error',
 }
 

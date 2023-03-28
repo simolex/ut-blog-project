@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/AuthByUsername';
 import { classNames } from 'shared/lib/classNames';
+import { Text, TextVariant } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 import styles from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -33,19 +36,32 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     if (authDate) {
         return (
-            <div className={classNames(styles.navbar, {}, [className])}>
+            <header className={classNames(styles.navbar, {}, [className])}>
+                <Text
+                    variant={TextVariant.INVERTED}
+                    className={styles.appName}
+                    title={t('app-name')}
+                />
+
+                <AppLink
+                    theme={AppLinkTheme.SECONDARY}
+                    to={RoutePath.article_create}
+                    className={styles.newArticle}
+                >
+                    {t('create-new-article-nb')}
+                </AppLink>
                 <Button theme={ButtonTheme.CLEAR} className={styles.links} onClick={onLogout}>
                     {t('logout')}
                 </Button>
-            </div>
+            </header>
         );
     }
     return (
-        <div className={classNames(styles.navbar, {}, [className])}>
+        <header className={classNames(styles.navbar, {}, [className])}>
             <Button theme={ButtonTheme.CLEAR} className={styles.links} onClick={onShowModal}>
                 {t('signin')}
             </Button>
             {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
-        </div>
+        </header>
     );
 });
