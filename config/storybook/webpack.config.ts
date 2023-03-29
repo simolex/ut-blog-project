@@ -10,6 +10,8 @@ export default ({ config }: { config: Configuration }) => {
         entry: '',
         html: '',
         src: path.resolve(__dirname, '..', '..', 'src'),
+        locales: path.resolve(__dirname, '..', '..', 'public', 'locales'),
+        buildLocales: path.resolve(__dirname, '..', '..', 'storybook-static', 'locales'),
     };
     config!.resolve!.modules!.unshift(paths.src);
     config!.resolve!.modules!.push('node_modules');
