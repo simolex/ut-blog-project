@@ -4,6 +4,7 @@
    "editor.formatOnType": false,
    "editor.formatOnSave": true,
    "editor.formatOnSaveMode": "file",
+   "files.eol": "\n",
    "files.autoSave": "onFocusChange",
    "[javascript]": {
       "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
@@ -17,13 +18,14 @@
    "[scss]": {
       "editor.defaultFormatter": "stylelint.vscode-stylelint"
    },
-   "prettier.endOfLine": "lf",
-   "prettier.printWidth": 119,
-   "files.eol": "\n",
+   "i18n-ally.keystyle": "flat",
+   "i18n-ally.sourceLanguage": "ru",
+	"i18n-ally.extract.autoDetect": true,
    "i18n-ally.localesPaths": [
       "public/locales",
       "storybook-static/locales",
       "src/shared/config/i18n"
    ],
-   "i18n-ally.keystyle": "flat",
+   "prettier.endOfLine": "lf",
+   "prettier.printWidth": 119,
 }
