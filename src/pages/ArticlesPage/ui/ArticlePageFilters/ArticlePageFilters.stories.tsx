@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import { ArticlePageFilters } from './ArticlePageFilters';
 
@@ -18,7 +19,21 @@ const Template: ComponentStory<typeof ArticlePageFilters> = (props) => (
 
 export const Normal = Template.bind({});
 Normal.args = {};
+Normal.decorators = [
+    StoreDecorator({
+        articlesPage: {
+            _mounted: true,
+        },
+    }),
+];
 
 export const NormalDark = Template.bind({});
 NormalDark.args = {};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
+NormalDark.decorators = [
+    StoreDecorator({
+        articlesPage: {
+            _mounted: true,
+        },
+    }),
+    ThemeDecorator(Theme.DARK),
+];

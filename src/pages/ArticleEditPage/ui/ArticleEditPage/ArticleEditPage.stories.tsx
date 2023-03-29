@@ -1,11 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import ArticleEditPage from './ArticleEditPage';
 
 export default {
-    title: 'shared/ArticleEditPage',
+    title: 'pages/Article/ArticleEditPage',
     component: ArticleEditPage,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -16,7 +17,21 @@ const Template: ComponentStory<typeof ArticleEditPage> = (props) => <ArticleEdit
 
 export const Normal = Template.bind({});
 Normal.args = {};
+Normal.decorators = [
+    StoreDecorator({
+        scrollFixer: {
+            scroll: {},
+        },
+    }),
+];
 
 export const NormalDark = Template.bind({});
 NormalDark.args = {};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
+NormalDark.decorators = [
+    StoreDecorator({
+        scrollFixer: {
+            scroll: {},
+        },
+    }),
+    ThemeDecorator(Theme.DARK),
+];
