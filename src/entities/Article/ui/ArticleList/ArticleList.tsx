@@ -25,16 +25,32 @@ export const ArticleList = memo((props: ArticleListProps) => {
     const { className, articles, isLoading, view = ArticleView.GRID, target } = props;
     const { t } = useTranslation('article');
 
-    const rowRenderer = ({ index, isScrolling, isVisible, key, style }: ListRowProps) => (
-        <div key={key} className={className} style={style}>
-            <ArticleListItem
-                article={articles[index]}
-                view={view}
-                className={className}
-                target={target}
-            />
-        </div>
-    );
+    const isList = view === ArticleView.LIST;
+    const itemsPerRow = isList ? 1 : 3;
+    const rowCount = isList ? articles.length : Math.ceil(articles.length / itemsPerRow);
+
+    const rowRenderer = ({ index, isScrolling, isVisible, key, style }: ListRowProps) => {
+        const items = [];
+        const fromIndex = index * itemsPerRow;
+        const toIndex = Math.min(fromIndex + itemsPerRow, articles.length);
+
+        for (let i = fromIndex; i < toIndex; i += 1) {
+            items.push(
+                <ArticleListItem
+                    article={articles[i]}
+                    view={view}
+                    target={target}
+                    key={articles[i].id}
+                />,
+            );
+        }
+
+        return (
+            <div key={key} className={styles.rowList} style={style}>
+                {items}
+            </div>
+        );
+    };
 
     // const renderArticles = (article: Article) => (
     //     <ArticleListItem article={article} view={view} key={article.id} target={target} />
@@ -57,8 +73,8 @@ export const ArticleList = memo((props: ArticleListProps) => {
                 >
                     <List
                         height={height ?? 700}
-                        rowCount={articles.length}
-                        rowHeight={700}
+                        rowCount={rowCount}
+                        rowHeight={isList ? 700 : 330}
                         rowRenderer={rowRenderer}
                         width={width ? width - 60 : 700}
                         autoHeight
