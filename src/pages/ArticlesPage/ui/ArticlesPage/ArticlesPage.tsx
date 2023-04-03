@@ -148,6 +148,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
             <PageWrapper
                 onScrollEnd={onLoadNextPage}
                 className={classNames(styles.articlesPage, {}, [className])}
+                isLoading={isLoading}
             >
                 <ArticlePageFilters />
                 <ArticleList

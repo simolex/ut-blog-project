@@ -14,10 +14,11 @@ interface PageWrapperProps {
     className?: string;
     children: ReactNode;
     onScrollEnd?: () => void;
+    isLoading?: boolean;
 }
 
 export const PageWrapper = (props: PageWrapperProps) => {
-    const { className, children, onScrollEnd } = props;
+    const { className, children, onScrollEnd, isLoading = false } = props;
     const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const dispatch = useAppDispatch();
@@ -53,7 +54,7 @@ export const PageWrapper = (props: PageWrapperProps) => {
             onScroll={onScroll}
         >
             {children}
-            {onScrollEnd ? <div ref={triggerRef} className={styles.trigger} /> : null}
+            {onScrollEnd || !isLoading ? <div ref={triggerRef} className={styles.trigger} /> : null}
         </section>
     );
 };
