@@ -16,6 +16,8 @@ interface PageWrapperProps {
     onScrollEnd?: () => void;
 }
 
+export const PAGE_ID = 'PAGE_ID';
+
 export const PageWrapper = (props: PageWrapperProps) => {
     const { className, children, onScrollEnd } = props;
     const wrapperRef = useRef() as MutableRefObject<HTMLElement>;
@@ -51,6 +53,7 @@ export const PageWrapper = (props: PageWrapperProps) => {
             ref={wrapperRef}
             className={classNames(styles.pageWrapper, {}, [className])}
             onScroll={onScroll}
+            id={PAGE_ID}
         >
             {children}
             {onScrollEnd ? <div ref={triggerRef} className={styles.trigger} /> : null}
