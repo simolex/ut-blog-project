@@ -18,7 +18,7 @@ module.exports = {
         },
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks','simolex-plugin-lint'],
     rules: {
         indent: [2, 4, { SwitchCase: 1 }],
         'react/jsx-indent': [2, 4],
@@ -52,6 +52,7 @@ module.exports = {
         'no-param-reassign': 'off', // for Redux
         'no-undef': 'off',
         'react/no-array-index-key': 'off',
+        'simolex-plugin-lint/path-checker': 'off',
     },
     globals: {
         __IS_DEV__: true,
