@@ -1,6 +1,7 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from 'shared/lib/classNames';
+import { List, ListRowProps, WindowScroller } from 'react-virtualized';
+import { classNames } from 'shared/lib/classNames';
 import { Text } from 'shared/ui/Text/Text';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
@@ -9,7 +10,7 @@ import styles from './ArticleList.module.scss';
 
 interface ArticleListProps {
     className?: string;
-    articles?: Article[];
+    articles: Article[];
     isLoading?: boolean;
     view?: ArticleView;
     target?: HTMLAttributeAnchorTarget;
@@ -24,9 +25,36 @@ export const ArticleList = memo((props: ArticleListProps) => {
     const { className, articles, isLoading, view = ArticleView.GRID, target } = props;
     const { t } = useTranslation('article');
 
-    const renderArticles = (article: Article) => (
-        <ArticleListItem article={article} view={view} key={article.id} target={target} />
-    );
+    const isList = view === ArticleView.LIST;
+    const itemsPerRow = isList ? 1 : 3;
+    const rowCount = isList ? articles.length : Math.ceil(articles.length / itemsPerRow);
+
+    const rowRenderer = ({ index, isScrolling, isVisible, key, style }: ListRowProps) => {
+        const items = [];
+        const fromIndex = index * itemsPerRow;
+        const toIndex = Math.min(fromIndex + itemsPerRow, articles.length);
+
+        for (let i = fromIndex; i < toIndex; i += 1) {
+            items.push(
+                <ArticleListItem
+                    article={articles[i]}
+                    view={view}
+                    target={target}
+                    key={articles[i].id}
+                />,
+            );
+        }
+
+        return (
+            <div key={key} className={styles.rowList} style={style}>
+                {items}
+            </div>
+        );
+    };
+
+    // const renderArticles = (article: Article) => (
+    //     <ArticleListItem article={article} view={view} key={article.id} target={target} />
+    // );
 
     if (!isLoading && !articles?.length) {
         return (
@@ -37,9 +65,26 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        <div className={classNames(styles.articleList, {}, [className])}>
-            {articles && articles?.length > 0 ? articles?.map(renderArticles) : null}
-            {isLoading && getSkeleton(view)}
-        </div>
+        <WindowScroller scrollElement={document.getElementById('PAGE_ID') as Element}>
+            {({ width, height, registerChild, onChildScroll, isScrolling, scrollTop }) => (
+                <div
+                    className={classNames(styles.articleList, {}, [className])}
+                    ref={registerChild}
+                >
+                    <List
+                        height={height ?? 700}
+                        rowCount={rowCount}
+                        rowHeight={isList ? 700 : 330}
+                        rowRenderer={rowRenderer}
+                        width={width ? width - 60 : 700}
+                        autoHeight
+                        isScrolling
+                        onScroll={onChildScroll}
+                        scrollTop={scrollTop}
+                    />
+                    {isLoading && getSkeleton(view)}
+                </div>
+            )}
+        </WindowScroller>
     );
 });
