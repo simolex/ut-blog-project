@@ -10,6 +10,7 @@ import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 
 import styles from './Sidebar.module.scss';
+import { VStack } from 'shared/ui/Stack/VStack/VStack';
 
 interface SidebarProps {
     className?: string;
@@ -48,7 +49,9 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
             >
                 {collapsed ? '>' : '<'}
             </Button>
-            <ul className={styles.itemList}>{itemList}</ul>
+            <VStack as="ul" className={styles.itemList} gap="8">
+                {itemList}
+            </VStack>
             <div className={styles.switchers}>
                 <ThemeSwitcher />
                 <LangSwitcher short={collapsed} />

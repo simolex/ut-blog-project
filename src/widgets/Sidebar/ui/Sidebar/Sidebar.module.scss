@@ -19,19 +19,18 @@
 }
 
 .itemList {
-    // margin: 0;
     padding: 20px 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: start;
+    // justify-content: start;
     list-style: none;
 }
 
 .linkItem {
     opacity: 1;
     overflow: hidden;
-    transition: opacity 0.8s, height 0.9s 1s width 0.9s 2s;
+    transition: opacity 0.8s, height 0.9s 1s, width 0.9s 2s;
 }
 
 .collapsed {
@@ -49,7 +48,7 @@
         opacity: 0;
         height: 0;
         width: 0;
-        transition: opacity 0.8s, height 0.9s 1s width 0.9s 2s;
+        transition: opacity 0.8s, height 0.9s 1s, width 0.9s 2s;
     }
 
     .iconItem {
