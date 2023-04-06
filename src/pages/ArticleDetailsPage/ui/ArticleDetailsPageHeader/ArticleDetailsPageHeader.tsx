@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 import { classNames, Mods } from 'shared/lib/classNames';
 import { Button } from 'shared/ui/Button/Button';
+import { HStack } from 'shared/ui/Stack';
 import { getCanEditArticle } from '../../model/selectors/article';
-import styles from './ArticleDetailsPageHeader.module.scss';
 
 interface ArticleDetailsPageHeaderProps {
     className?: string;
@@ -16,7 +16,6 @@ interface ArticleDetailsPageHeaderProps {
 export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderProps) => {
     const { className } = props;
     const { t } = useTranslation('article');
-    const mods: Mods = {};
     const navigate = useNavigate();
     const article = useSelector(getArticleDetailsData);
     const canEditArticle = useSelector(getCanEditArticle);
@@ -30,13 +29,9 @@ export const ArticleDetailsPageHeader = memo((props: ArticleDetailsPageHeaderPro
     }, [navigate, article?.id]);
 
     return (
-        <div className={classNames(styles.articleDetailsPageHeader, {}, [className])}>
+        <HStack justify="between" max className={classNames('', {}, [className])}>
             <Button onClick={onBackToList}>{t('article-go-back')}</Button>
-            {canEditArticle && (
-                <Button className={styles.editBtn} onClick={onEditArticle}>
-                    {t('article-edit')}
-                </Button>
-            )}
-        </div>
+            {canEditArticle && <Button onClick={onEditArticle}>{t('article-edit')}</Button>}
+        </HStack>
     );
 });

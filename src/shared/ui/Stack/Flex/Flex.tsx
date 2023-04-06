@@ -1,5 +1,5 @@
 import { ComponentType, ElementType, HTMLAttributes, ReactNode } from 'react';
-import { classNames } from 'shared/lib/classNames';
+import { classNames, Mods } from 'shared/lib/classNames';
 import styles from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'end' | 'center' | 'between';
@@ -41,7 +41,8 @@ export interface FlexProps extends HTMLAttributes<HTMLOrSVGElement> {
     align?: FlexAlign;
     direction: FlexDirection;
     gap?: FlexGap;
-    as: ElementType;
+    max?: boolean;
+    as?: ElementType;
 }
 
 export const Flex = (props: FlexProps) => {
@@ -52,6 +53,7 @@ export const Flex = (props: FlexProps) => {
         align = 'center',
         direction = 'row',
         gap,
+        max,
         as: Tag = 'div',
     } = props;
 
@@ -62,5 +64,10 @@ export const Flex = (props: FlexProps) => {
         directionClasses[direction],
         gap && gapClasses[gap],
     ];
-    return <Tag className={classNames(styles.flex, {}, classes)}>{children}</Tag>;
+
+    const mods: Mods = {
+        [styles.max]: max,
+    };
+
+    return <Tag className={classNames(styles.flex, mods, classes)}>{children}</Tag>;
 };

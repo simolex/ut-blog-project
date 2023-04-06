@@ -5,6 +5,7 @@ import { classNames } from 'shared/lib/classNames';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { VStack } from 'shared/ui/Stack';
 import { Text } from 'shared/ui/Text/Text';
 import { Comment } from '../../model/types/comment';
 import styles from './CommentItem.module.scss';
@@ -35,14 +36,12 @@ export const CommentItem = memo((props: CommentItemProps) => {
     }
 
     return (
-        <div className={classNames(styles.commentItem, {}, [className])}>
+        <VStack gap="8" max className={classNames(styles.commentItem, {}, [className])}>
             <AppLink to={`${RoutePath.profile}${comment.user?.id}`} className={styles.header}>
-                {/* Закон Деметры? [Вопрос] */}
                 {comment?.user.avatar ? <Avatar size={30} src={comment?.user.avatar} /> : null}
-                {/* Закон Деметры? [Вопрос] */}
                 <Text className={styles.username} title={comment?.user.username} />
             </AppLink>
             <Text className={styles.content} text={comment?.text} />
-        </div>
+        </VStack>
     );
 });

@@ -10,6 +10,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { HStack, VStack } from 'shared/ui/Stack';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
 
@@ -89,11 +90,11 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         content = (
             <>
                 <Skeleton className={styles.avatar} width={150} height={150} border="50%" />
-                <Skeleton className={styles.title} width="50%" height={32} />
-                <Skeleton className={styles.subtitle} width="80%" height={24} />
-                <Skeleton className={styles.paragraph} width="100%" height={130} />
-                <Skeleton className={styles.paragraph} width="100%" height={180} />
-                <Skeleton className={styles.paragraph} width="100%" height={150} />
+                <Skeleton width="50%" height={32} />
+                <Skeleton width="80%" height={24} />
+                <Skeleton width="100%" height={130} />
+                <Skeleton width="100%" height={180} />
+                <Skeleton width="100%" height={150} />
             </>
         );
     } else if (error) {
@@ -101,23 +102,20 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
     } else {
         content = (
             <>
-                <div className={styles.avatarWrapper}>
+                <HStack justify="center" max>
                     <Avatar size={150} src={data?.img} className={styles.avatar} />
-                </div>
-                <Text
-                    className={styles.title}
-                    title={data?.title}
-                    text={data?.subtitle}
-                    size={TextSize.L}
-                />
-                <div className={styles.articleInfo}>
-                    <Icon className={styles.icon} Svg={EyeIcon} />
-                    <Text text={String(data?.views)} />
-                </div>
-                <div className={styles.articleInfo}>
-                    <Icon className={styles.icon} Svg={DateLine} />
-                    <Text text={data?.createdAt} />
-                </div>
+                </HStack>
+                <VStack gap="4">
+                    <Text title={data?.title} text={data?.subtitle} size={TextSize.L} />
+                    <HStack gap="8">
+                        <Icon Svg={EyeIcon} />
+                        <Text text={String(data?.views)} />
+                    </HStack>
+                    <HStack gap="8">
+                        <Icon Svg={DateLine} />
+                        <Text text={data?.createdAt} />
+                    </HStack>
+                </VStack>
                 {data?.blocks?.map(renderBlock)}
             </>
         );
@@ -127,7 +125,9 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <div className={classNames(styles.articleDetails, {}, [className])}>{content}</div>
+            <VStack gap="16" className={classNames(styles.articleDetails, {}, [className])}>
+                {content}
+            </VStack>
         </DynamicModuleLoader>
     );
 });

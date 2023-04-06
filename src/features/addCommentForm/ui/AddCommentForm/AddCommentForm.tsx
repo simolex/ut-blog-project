@@ -9,6 +9,7 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
+import { HStack } from 'shared/ui/Stack';
 import {
     getAddCommentFormError,
     getAddCommentFormText,
@@ -48,7 +49,11 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
-            <div className={classNames(styles.addCommentForm, {}, [className])}>
+            <HStack
+                justify="between"
+                max
+                className={classNames(styles.addCommentForm, {}, [className])}
+            >
                 <Input
                     className={styles.input}
                     placeholder={t('add-comment')}
@@ -58,7 +63,7 @@ const AddCommentForm = memo((props: AddCommentFormProps) => {
                 <Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
                     {t('send-comment')}
                 </Button>
-            </div>
+            </HStack>
         </DynamicModuleLoader>
     );
 });
