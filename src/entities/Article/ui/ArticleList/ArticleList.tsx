@@ -78,7 +78,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
                         rowRenderer={rowRenderer}
                         width={width ? width - 60 : 700}
                         autoHeight
-                        isScrolling
+                        isScrolling={isScrolling}
                         onScroll={onChildScroll}
                         scrollTop={scrollTop}
                     />

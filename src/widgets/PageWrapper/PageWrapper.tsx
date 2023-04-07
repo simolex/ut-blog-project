@@ -50,7 +50,7 @@ export const PageWrapper = (props: PageWrapperProps) => {
     }, 420);
 
     return (
-        <section
+        <main
             ref={wrapperRef}
             className={classNames(styles.pageWrapper, {}, [className])}
             onScroll={onScroll}
@@ -58,6 +58,6 @@ export const PageWrapper = (props: PageWrapperProps) => {
         >
             {children}
             {onScrollEnd || !isLoading ? <div ref={triggerRef} className={styles.trigger} /> : null}
-        </section>
+        </main>
     );
 };

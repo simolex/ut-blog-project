@@ -48,11 +48,7 @@ export const ProfilePageHeader = memo((props: ProfilePageHeaderProps) => {
             {canEdit && (
                 <div>
                     {readonly ? (
-                        <Button
-                            theme={ButtonTheme.OUTLINE}
-                            // className={styles.editBtn}
-                            onClick={onEdit}
-                        >
+                        <Button theme={ButtonTheme.OUTLINE} onClick={onEdit}>
                             {t('profile-edit')}
                         </Button>
                     ) : (

@@ -1,4 +1,4 @@
-import { ComponentType, ElementType, HTMLAttributes, ReactNode } from 'react';
+import { ElementType, HTMLAttributes, ReactHTML, ReactHTMLElement, ReactNode } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames';
 import styles from './Flex.module.scss';
 
@@ -34,7 +34,7 @@ const gapClasses: Record<FlexGap, string> = {
 
 // const asTagType:
 
-export interface FlexProps extends HTMLAttributes<HTMLOrSVGElement> {
+export interface FlexProps extends HTMLAttributes<ElementType> {
     className?: string;
     children: ReactNode;
     justify?: FlexJustify;

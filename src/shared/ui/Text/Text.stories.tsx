@@ -27,6 +27,20 @@ SizeL.args = {
     size: TextSize.L,
 };
 
+export const SizeM = Template.bind({});
+SizeM.args = {
+    title: 'Далеко-далеко',
+    text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
+    size: TextSize.M,
+};
+
+export const SizeS = Template.bind({});
+SizeS.args = {
+    title: 'Далеко-далеко',
+    text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
+    size: TextSize.S,
+};
+
 export const OnlyTitle = Template.bind({});
 OnlyTitle.args = {
     text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
