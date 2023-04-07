@@ -1,0 +1,35 @@
+.list {
+    &Box {
+        position: relative;
+    }
+
+    &Button {
+        background-color: none;
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &Options {
+        position: absolute;
+        list-style-type: none;
+        background-color: var(--list-bg);
+        border-radius: 4px;
+        z-index: 100;
+        box-shadow: 4px 4px 8px var(--list-bg);
+        border: 1px solid var(--primary-color);
+    }
+
+    &Item {
+        padding: 8px 16px;
+    }
+}
+
+.active {
+    background-color: var(--list-active);
+}
+
+.disabled {
+    opacity: 0.65;
+}
