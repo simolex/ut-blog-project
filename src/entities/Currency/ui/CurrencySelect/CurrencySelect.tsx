@@ -1,6 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
+import { ListBox } from 'shared/ui/ListBox/ListBox';
 import { Select, SelectOption } from 'shared/ui/Select/Select';
 import { Currency } from '../../model/types/currency';
 
@@ -34,13 +35,26 @@ export const CurrencySelect = memo((props: CurrencySelectProps) => {
     );
 
     return (
-        <Select
+        <ListBox
             className={classNames('', {}, [className])}
-            label={t('profile-currency')}
-            options={options}
-            valueSelected={value}
             onChange={onChangeHandler}
+            defaultValue={t('profile-currency')}
+            label={t('profile-currency')}
+            items={options}
+            value={value}
             readonly={readonly}
+            direction="top"
         />
     );
+
+    // return (
+    //     <Select
+    //         className={classNames('', {}, [className])}
+    //         label={t('profile-currency')}
+    //         options={options}
+    //         valueSelected={value}
+    //         onChange={onChangeHandler}
+    //         readonly={readonly}
+    //     />
+    // );
 });
