@@ -66,7 +66,9 @@ module.exports = {
         'no-param-reassign': 'off', // for Redux
         'no-undef': 'off',
         'react/no-array-index-key': 'off',
+        'no-confusing-arrow': 'warn',
         'simolex-plugin-lint/path-checker': 'error',
+
     },
     globals: {
         __IS_DEV__: true,

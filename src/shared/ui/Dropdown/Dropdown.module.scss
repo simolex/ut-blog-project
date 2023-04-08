@@ -1,0 +1,63 @@
+.dropdown {
+    position: relative;
+
+    &Options {
+        &Bottom {
+            &Left {
+                top: 100%;
+                right: 0;
+            }
+
+            &Right {
+                top: 100%;
+                left: 0;
+            }
+        }
+
+        &Top {
+            &Left {
+                bottom: 100%;
+                right: 0;
+            }
+
+            &Right {
+                bottom: 100%;
+                left: 0;
+            }
+        }
+    }
+}
+
+.btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list {
+    list-style-type: none;
+    background-color: var(--card-bg);
+    position: absolute;
+    z-index: 100;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+}
+
+.item {
+    padding: 8px 16px;
+    width: 100%;
+    border: 1px solid transparent;
+    background: none;
+    outline: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.active {
+    background-color: var(--list-active);
+}

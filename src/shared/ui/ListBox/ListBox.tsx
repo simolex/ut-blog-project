@@ -1,19 +1,17 @@
-import { Fragment, memo, ReactNode, useState } from 'react';
 import { Listbox as HListbox } from '@headlessui/react';
+import { Fragment, memo, ReactNode } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/classNames';
+import { DropdownDirection } from 'shared/types/ui';
 import { Button } from 'shared/ui/Button/Button';
-import { classNames, Mods } from 'shared/lib/classNames';
-import styles from './ListBox.module.scss';
 import { HStack } from '../Stack';
+import styles from './ListBox.module.scss';
 
 export interface ListBoxItem {
     value: string;
     content: ReactNode;
     disabled?: boolean;
 }
-
-type DropdownDirection = 'top' | 'bottom';
 
 interface ListBoxProps {
     className?: string;
@@ -27,8 +25,10 @@ interface ListBoxProps {
 }
 
 const mapDirectionClass: Record<DropdownDirection, string> = {
-    bottom: styles.listOptionsBottom,
-    top: styles.listOptionsTop,
+    'bottom left': styles.listOptionsBottomLeft,
+    'bottom right': styles.listOptionsBottomRight,
+    'top left': styles.listOptionsTopLeft,
+    'top right': styles.listOptionsTopRight,
 };
 
 export const ListBox = memo((props: ListBoxProps) => {
@@ -40,7 +40,7 @@ export const ListBox = memo((props: ListBoxProps) => {
         defaultValue,
         readonly,
         label,
-        direction = 'bottom',
+        direction = 'bottom right',
     } = props;
 
     return (

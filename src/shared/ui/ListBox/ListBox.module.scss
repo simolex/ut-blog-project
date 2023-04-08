@@ -24,11 +24,27 @@
         min-width: 100%;
 
         &Bottom {
-            top: 100%;
+            &Left {
+                top: 100%;
+                right: 0;
+            }
+
+            &Right {
+                top: 100%;
+                left: 0;
+            }
         }
 
         &Top {
-            bottom: 100%;
+            &Left {
+                bottom: 100%;
+                right: 0;
+            }
+
+            &Right {
+                bottom: 100%;
+                left: 0;
+            }
         }
     }
 
