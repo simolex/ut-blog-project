@@ -1,13 +1,4 @@
-import {
-    ComponentPropsWithoutRef,
-    ComponentPropsWithRef,
-    ElementType,
-    HTMLAttributes,
-    PropsWithChildren,
-    ReactHTML,
-    ReactHTMLElement,
-    ReactNode,
-} from 'react';
+import { ElementType } from 'react';
 import { classNames, Mods } from 'shared/lib/classNames';
 import { PolymorphicComponentProp } from 'shared/types';
 import styles from './Flex.module.scss';
@@ -42,17 +33,13 @@ const gapClasses: Record<FlexGap, string> = {
     32: styles['gap-32'],
 };
 
-// const asTagType:
-
 export interface FlexProps {
     className?: string;
-    // children: ReactNode;
     justify?: FlexJustify;
     align?: FlexAlign;
     direction: FlexDirection;
     gap?: FlexGap;
     max?: boolean;
-    // as?: ElementType;
 }
 
 export const defaultFlexTag = 'div';
