@@ -1,5 +1,15 @@
-import { ElementType, HTMLAttributes, ReactHTML, ReactHTMLElement, ReactNode } from 'react';
+import {
+    ComponentPropsWithoutRef,
+    ComponentPropsWithRef,
+    ElementType,
+    HTMLAttributes,
+    PropsWithChildren,
+    ReactHTML,
+    ReactHTMLElement,
+    ReactNode,
+} from 'react';
 import { classNames, Mods } from 'shared/lib/classNames';
+import { PolymorphicComponentProp } from 'shared/types';
 import styles from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'end' | 'center' | 'between';
@@ -34,27 +44,31 @@ const gapClasses: Record<FlexGap, string> = {
 
 // const asTagType:
 
-export interface FlexProps extends HTMLAttributes<ElementType> {
+export interface FlexProps {
     className?: string;
-    children: ReactNode;
+    // children: ReactNode;
     justify?: FlexJustify;
     align?: FlexAlign;
     direction: FlexDirection;
     gap?: FlexGap;
     max?: boolean;
-    as?: ElementType;
+    // as?: ElementType;
 }
 
-export const Flex = (props: FlexProps) => {
+export const defaultFlexTag = 'div';
+
+export const Flex = <E extends ElementType = typeof defaultFlexTag>(
+    props: PolymorphicComponentProp<E, FlexProps>,
+) => {
     const {
         className,
-        children,
         justify = 'start',
         align = 'center',
         direction = 'row',
         gap,
         max,
-        as: Tag = 'div',
+        children,
+        as,
     } = props;
 
     const classes = [
@@ -68,6 +82,8 @@ export const Flex = (props: FlexProps) => {
     const mods: Mods = {
         [styles.max]: max,
     };
+
+    const Tag = as ?? defaultFlexTag;
 
     return <Tag className={classNames(styles.flex, mods, classes)}>{children}</Tag>;
 };
