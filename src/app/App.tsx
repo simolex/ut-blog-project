@@ -6,9 +6,9 @@ import { getUserMounted, userActions } from 'entities/User';
 
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { useTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib/classNames';
 import { AppRouter } from './providers/Router';
+import { useTheme } from './providers/ThemeProvider';
 
 const App = () => {
     const { theme } = useTheme();
