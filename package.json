@@ -26,7 +26,8 @@
         "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
         "storybook": "start-storybook -p 6006 -c ./config/storybook/",
         "storybook:build": "build-storybook -c ./config/storybook/",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "generate:slice": "node ./scripts/createSlice/index.js"
     },
     "repository": {
         "type": "git",
@@ -40,6 +41,7 @@
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.16.7",
         "@babel/preset-typescript": "^7.16.7",
+        "@neumatter/to-camel-case": "^1.0.1",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
         "@storybook/addon-actions": "^6.5.16",
         "@storybook/addon-essentials": "^6.5.16",
