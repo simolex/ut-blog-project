@@ -14,7 +14,6 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import { getArticles } from '../../model/slices/articlePageSlice';
-import styles from './ArticleInfiniteList.module.scss';
 
 interface ArticleInfiniteListProps {
     className?: string;
@@ -40,13 +39,8 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
     }
 
     return (
-        <div className={classNames(styles.articleInfiniteList, {}, [className])}>
-            <ArticleList
-                isLoading={isLoading}
-                view={view}
-                articles={articles}
-                className={styles.list}
-            />
+        <div className={classNames('', {}, [className])}>
+            <ArticleList isLoading={isLoading} view={view} articles={articles} />
         </div>
     );
 });

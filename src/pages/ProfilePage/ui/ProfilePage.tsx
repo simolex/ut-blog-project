@@ -1,18 +1,11 @@
 import { EditableProfileCard } from 'features/editableProfileCard';
-import { profileReducer } from 'features/editableProfileCard/model/slice/profileSlice';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
-import {
-    DynamicModuleLoader,
-    ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { VStack } from 'shared/ui/Stack';
+import { Text } from 'shared/ui/Text/Text';
 import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
-import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
-
-const reducers: ReducersList = {
-    profile: profileReducer,
-};
 
 interface ProfilePageProps {
     className?: string;
@@ -20,17 +13,19 @@ interface ProfilePageProps {
 
 const ProfilePage = (props: ProfilePageProps) => {
     const { className } = props;
-    // const { t } = useTranslation('profile');
+    const { t } = useTranslation('profile');
+    const { id: profileId } = useParams<{ id: string }>();
+
+    if (!profileId) {
+        return <Text text={t('error-loading-profile')} />;
+    }
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <PageWrapper className={classNames('', {}, [className])}>
-                <VStack gap="16" max>
-                    <ProfilePageHeader />
-                    <EditableProfileCard />
-                </VStack>
-            </PageWrapper>
-        </DynamicModuleLoader>
+        <PageWrapper className={classNames('', {}, [className])}>
+            <VStack gap="16" max>
+                <EditableProfileCard id={profileId} />
+            </VStack>
+        </PageWrapper>
     );
 };
 

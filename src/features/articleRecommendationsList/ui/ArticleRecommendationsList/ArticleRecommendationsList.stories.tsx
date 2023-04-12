@@ -1,4 +1,3 @@
-
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { ArticleRecommendationsList } from './ArticleRecommendationsList';
@@ -15,5 +14,4 @@ const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => <A
 
 export const Normal = Template.bind({});
 Normal.args = {
-   
 };

@@ -5,14 +5,16 @@ import { Theme } from 'app/providers/ThemeProvider';
 import { ArticleDetailsComments } from './ArticleDetailsComments';
 
 export default {
-    title: 'shared/ArticleDetailsComments',
+    title: 'pages/ArticleDetails/ArticleDetailsComments',
     component: ArticleDetailsComments,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof ArticleDetailsComments>;
 
-const Template: ComponentStory<typeof ArticleDetailsComments> = (props) => <ArticleDetailsComments {...props} />;
+const Template: ComponentStory<typeof ArticleDetailsComments> = (props) => (
+    <ArticleDetailsComments {...props} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};

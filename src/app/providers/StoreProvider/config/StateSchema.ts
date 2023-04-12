@@ -4,7 +4,7 @@ import { ArticleDetailsSchema } from 'entities/Article';
 import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { AddCommentFormSchema } from 'features/addCommentForm';
-import { LoginSchema } from 'features/AuthByUsername';
+import { LoginSchema } from 'features/authByUsername';
 import { ProfileSchema } from 'features/editableProfileCard';
 import { ScrollFixerSchema } from 'features/scrollFixer';
 import { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';

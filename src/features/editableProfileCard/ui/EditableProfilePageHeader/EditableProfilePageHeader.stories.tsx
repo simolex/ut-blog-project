@@ -2,18 +2,18 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 
-import { ArticleInfiniteList } from './ArticleInfiniteList';
+import { EditableProfilePageHeader } from './EditableProfilePageHeader';
 
 export default {
-    title: 'pages/Articles/ArticleInfiniteList',
-    component: ArticleInfiniteList,
+    title: 'features/editableProfileCard/EditableProfilePageHeader',
+    component: EditableProfilePageHeader,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof ArticleInfiniteList>;
+} as ComponentMeta<typeof EditableProfilePageHeader>;
 
-const Template: ComponentStory<typeof ArticleInfiniteList> = (props) => (
-    <ArticleInfiniteList {...props} />
+const Template: ComponentStory<typeof EditableProfilePageHeader> = (props) => (
+    <EditableProfilePageHeader {...props} />
 );
 
 export const Normal = Template.bind({});
