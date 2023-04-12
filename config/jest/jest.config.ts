@@ -60,7 +60,7 @@ export default {
             {
                 publicPath: '<rootDir>/reports/unit',
                 filename: 'report.html',
-                openReport: true,
+                openReport: false,
                 inlineSource: true,
             },
         ],

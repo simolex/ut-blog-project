@@ -89,18 +89,21 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                 placeholder={t('profile-lastname')}
                 onChange={onChangeLastname}
                 readonly={readonly}
+                data-testid="ProfileCard.Lastname"
             />
             <Input
                 value={data?.first}
                 placeholder={t('profile-firstname')}
                 onChange={onChangeFirstname}
                 readonly={readonly}
+                data-testid="ProfileCard.Firstname"
             />
             <Input
                 value={data?.age as string}
                 placeholder={t('profile-age')}
                 onChange={onChangeAge}
                 readonly={readonly}
+                data-testid="ProfileCard.Age"
             />
 
             <CountrySelect
@@ -108,30 +111,35 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
                 value={data?.country}
                 onChange={onChangeCountry}
                 readonly={readonly}
+                data-testid="ProfileCard.Country"
             />
             <CurrencySelect
                 className={styles.input}
                 value={data?.currency}
                 onChange={onChangeCurrency}
                 readonly={readonly}
+                data-testid="ProfileCard.Currency"
             />
             <Input
                 value={data?.city}
                 placeholder={t('profile-city')}
                 onChange={onChangeCity}
                 readonly={readonly}
+                data-testid="ProfileCard.City"
             />
             <Input
                 value={data?.username}
                 placeholder={t('profile-username')}
                 onChange={onChangeUsername}
                 readonly={readonly}
+                data-testid="ProfileCard.Username"
             />
             <Input
                 value={data?.avatar}
                 placeholder={t('profile-avatar')}
                 onChange={onChangeAvatar}
                 readonly={readonly}
+                data-testid="ProfileCard.Avatar"
             />
         </VStack>
     );
