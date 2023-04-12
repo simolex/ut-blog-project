@@ -8,6 +8,7 @@ import { DropdownDirection } from 'shared/types/ui';
 import styles from './Dropdown.module.scss';
 
 export interface DropdownItem {
+    id: string;
     disabled?: boolean;
     content?: ReactNode;
     onClick?: () => void;
@@ -31,7 +32,6 @@ const mapDirectionClass: Record<DropdownDirection, string> = {
 export const Dropdown = memo((props: DropdownProps) => {
     const { className, items, trigger, direction = 'bottom right' } = props;
     const { t } = useTranslation();
-    const mods: Mods = {};
 
     return (
         <Menu className={classNames(styles.dropdown, {}, [className])} as="div">
@@ -51,14 +51,19 @@ export const Dropdown = memo((props: DropdownProps) => {
                     );
                     if (item.href) {
                         return (
-                            <Menu.Item as={AppLink} to={item.href} disabled={item.disabled}>
+                            <Menu.Item
+                                key={item.id}
+                                as={AppLink}
+                                to={item.href}
+                                disabled={item.disabled}
+                            >
                                 {content}
                             </Menu.Item>
                         );
                     }
 
                     return (
-                        <Menu.Item as={Fragment} disabled={item.disabled}>
+                        <Menu.Item key={item.id} as={Fragment} disabled={item.disabled}>
                             {content}
                         </Menu.Item>
                     );

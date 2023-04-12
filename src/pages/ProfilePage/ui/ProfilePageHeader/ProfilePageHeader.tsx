@@ -1,10 +1,8 @@
-import {
-    getProfileData,
-    getProfileReadonly,
-    profileActions,
-    updateProfileData,
-} from 'entities/Profile';
 import { getUserAuthData } from 'entities/User';
+import { getProfileData } from 'features/editableProfileCard/model/selectors/getProfileData/getProfileData';
+import { getProfileReadonly } from 'features/editableProfileCard/model/selectors/getProfileReadonly/getProfileReadonly';
+import { updateProfileData } from 'features/editableProfileCard/model/services/updateProfileData/updateProfileData';
+import { profileActions } from 'features/editableProfileCard/model/slice/profileSlice';
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';

@@ -57,10 +57,12 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                     direction="bottom left"
                     items={[
                         {
+                            id: 'profile',
                             content: t('profile'),
                             href: RoutePath.profile + authDate.id,
                         },
                         {
+                            id: 'logout',
                             content: t('logout'),
                             onClick: onLogout,
                         },
