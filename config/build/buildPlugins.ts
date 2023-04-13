@@ -2,6 +2,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import CircularDependencyPlugin from 'circular-dependency-plugin';
@@ -52,6 +53,15 @@ export function buildPlugins({
             onDetected({ module, paths: pathsDetected, compilation }) {
                 // compilation.errors.push(new WebpackError(`Module: ${module.identifier()}`));
                 compilation.errors.push(new WebpackError(pathsDetected.join(' --> ')));
+            },
+        }),
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                diagnosticOptions: {
+                    semantic: true,
+                    syntactic: true,
+                },
+                mode: 'write-references',
             },
         }),
     ];
