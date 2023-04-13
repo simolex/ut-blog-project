@@ -16,9 +16,9 @@ const ProfilePage = (props: ProfilePageProps) => {
     const { t } = useTranslation('profile');
     const { id: profileId } = useParams<{ id: string }>();
 
-    if (!profileId) {
-        return <Text text={t('error-loading-profile')} />;
-    }
+    // if (!profileId) {
+    //     return <Text text={t('error-loading-profile')} />;
+    // }
 
     return (
         <PageWrapper className={classNames('', {}, [className])}>

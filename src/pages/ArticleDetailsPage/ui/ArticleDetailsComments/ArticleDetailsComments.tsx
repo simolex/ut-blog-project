@@ -1,12 +1,13 @@
-import { memo, useCallback } from 'react';
+import { memo, Suspense, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames, Mods } from 'shared/lib/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { CommentList } from 'entities/Comment';
 import { AddCommentForm } from 'features/addCommentForm';
-import { VStack } from 'shared/ui/Stack';
+import { LoaderGrid } from 'shared/ui/LoaderGrid/LoaderGrid';
+import { Flex, VStack } from 'shared/ui/Stack';
 import { Text, TextSize } from 'shared/ui/Text/Text';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlice';
@@ -15,7 +16,7 @@ import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByAr
 
 interface ArticleDetailsCommentsProps {
     className?: string;
-    id: string;
+    id?: string;
 }
 
 export const ArticleDetailsComments = memo((props: ArticleDetailsCommentsProps) => {
