@@ -1,8 +1,9 @@
+/* eslint-disable indent */
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getUserAuthData, userActions } from 'entities/User';
+import { getIsAdmin, getIsManager, getUserAuthData, userActions } from 'entities/User';
 import { LoginModal } from 'features/authByUsername';
 import { classNames } from 'shared/lib/classNames';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
@@ -24,6 +25,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const authDate = useSelector(getUserAuthData);
     const dispatch = useDispatch();
 
+    const isAdmin = useSelector(getIsAdmin);
+    const isManager = useSelector(getIsManager);
+
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false);
     }, []);
@@ -35,6 +39,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const onLogout = useCallback(() => {
         dispatch(userActions.logout());
     }, [dispatch]);
+
+    const isAdminPanelAvailable = isAdmin || isManager;
 
     if (authDate) {
         return (
@@ -61,6 +67,15 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                             content: t('profile'),
                             href: RoutePath.profile + authDate.id,
                         },
+                        ...(isAdminPanelAvailable
+                            ? [
+                                  {
+                                      id: 'admin_panel',
+                                      content: t('admin_panel'),
+                                      href: RoutePath.admin_panel,
+                                  },
+                              ]
+                            : []),
                         {
                             id: 'logout',
                             content: t('logout'),

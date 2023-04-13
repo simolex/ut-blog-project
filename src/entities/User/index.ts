@@ -1,4 +1,5 @@
 export { getUserMounted } from './model/selectors/getUserMounted/getUserMounted';
 export { getUserAuthData } from './model/selectors/getUserAuthData/getUserAuthData';
 export { userReducer, userActions } from './model/slice/userSlice';
-export { User, UserSchema } from './model/types/user';
+export { getIsAdmin, getIsManager, getIsUser, getUserRoles } from './model/selectors/roleSelector';
+export { User, UserSchema, UserRole } from './model/types/user';
