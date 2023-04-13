@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-export {
+export type {
     PolymorphicComponentProp,
     PolymorphicComponentPropWithRef,
     PolymorphicRef,
