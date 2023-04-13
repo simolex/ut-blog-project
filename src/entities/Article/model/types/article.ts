@@ -13,6 +13,11 @@ export enum ArticleBlockType {
     IMAGE = 'IMAGE',
 }
 
+export enum ArticleView {
+    LIST = 'LIST',
+    GRID = 'GRID',
+}
+
 export interface ArticleBlockBase {
     id: string;
     type: ArticleBlockType;
@@ -35,11 +40,6 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 export type ArticleBlock = ArticleCodeBlock | ArticleTextBlock | ArticleImageBlock;
 
 export type ArticleType = 'ALL' | 'IT' | 'SCIENCE' | 'ECONOMICS';
-
-export enum ArticleView {
-    LIST = 'LIST',
-    GRID = 'GRID',
-}
 
 export interface Article {
     id: string;

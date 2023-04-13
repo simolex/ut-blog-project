@@ -4,7 +4,14 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-import { DefinePlugin, HotModuleReplacementPlugin, ProgressPlugin } from 'webpack';
+import CircularDependencyPlugin from 'circular-dependency-plugin';
+import {
+    DefinePlugin,
+    HotModuleReplacementPlugin,
+    Module,
+    ProgressPlugin,
+    WebpackError,
+} from 'webpack';
 
 // Где импортируешь типы, я бы советовал дописывать `type` .
 // Ускоряет обработку файла и выпиливает ненужные импорты.
@@ -38,6 +45,14 @@ export function buildPlugins({
 
         new CopyPlugin({
             patterns: [{ from: paths.locales, to: paths.buildLocales }],
+        }),
+        new CircularDependencyPlugin({
+            exclude: /node_modules/,
+            failOnError: true,
+            onDetected({ module, paths: pathsDetected, compilation }) {
+                // compilation.errors.push(new WebpackError(`Module: ${module.identifier()}`));
+                compilation.errors.push(new WebpackError(pathsDetected.join(' --> ')));
+            },
         }),
     ];
     if (needAnalize) {
