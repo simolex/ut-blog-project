@@ -1,7 +1,6 @@
-
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { AdminPanelPage } from './AdminPanelPage';
+import AdminPanelPage from './AdminPanelPage';
 
 export default {
     title: 'pages/AdminPanelPage',
@@ -14,6 +13,4 @@ export default {
 const Template: ComponentStory<typeof AdminPanelPage> = (args) => <AdminPanelPage {...args} />;
 
 export const Normal = Template.bind({});
-Normal.args = {
-   
-};
+Normal.args = {};
