@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { RoutePath } from 'shared/config/routerConfig/routerConfig';
 import { classNames } from 'shared/lib/classNames';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
