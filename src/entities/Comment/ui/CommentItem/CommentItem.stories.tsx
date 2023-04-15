@@ -20,6 +20,21 @@ export default {
 
 const Template: ComponentStory<typeof CommentItem> = (props) => <CommentItem {...props} />;
 
+// export const WithEveryTheme = <T extends (...args: unknown[]) => JSX.Element>(
+//     TemplateP: ComponentStory<T>,
+//     args: Partial<unknown>,
+// ) => {
+//     const stories: Partial<Record<string, ComponentStory<T>>> = {};
+//     Object.entries(Theme).forEach(([key, value]) => {
+//         const story = TemplateP.bind({ ...args });
+//         story.args = args;
+//         story.decorators = [ThemeDecorator(value)];
+//         stories[key] = story;
+//     });
+//     return stories as Record<string, ComponentStory<T>>;
+// };
+// export const { ...stories } = WithEveryTheme(Template, {});
+
 export const Normal = Template.bind({});
 Normal.args = {
     comment: commentOne,
