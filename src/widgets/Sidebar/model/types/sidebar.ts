@@ -1,8 +1,8 @@
-import { VFC } from 'react';
+import { FC } from 'react';
 
 export interface SidebarItemType {
     path: string;
     textSlug: string; // TFunction<string, undefined>;
-    Icon: VFC<ExtendSVGProps<SVGSVGElement>>;
+    Icon: FC<ExtendSVGProps<SVGSVGElement>>;
     authOnly?: boolean;
 }

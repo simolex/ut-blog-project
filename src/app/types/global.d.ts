@@ -23,7 +23,6 @@ declare module '*.svg' {
     import type React from 'react';
 
     const SVG: React.FC<ExtendSVGProps<SVGSVGElement>>;
-    // const SVG: React.VFC<SVGProps<SVGSVGElement>>;
     export default SVG;
 }
 

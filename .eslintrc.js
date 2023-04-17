@@ -54,6 +54,7 @@ module.exports = {
                     'target',
                     'as',
                     'role',
+                    'border',
                 ],
             },
         ],

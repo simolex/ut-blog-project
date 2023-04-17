@@ -1,40 +1,3 @@
-.dropdown {
-    &Options {
-        &Bottom {
-            &Left {
-                top: 100%;
-                right: 0;
-            }
-
-            &Right {
-                top: 100%;
-                left: 0;
-            }
-        }
-
-        &Top {
-            &Left {
-                bottom: 100%;
-                right: 0;
-            }
-
-            &Right {
-                bottom: 100%;
-                left: 0;
-            }
-        }
-    }
-}
-
-.btn {
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-    padding: 0;
-    margin: 0;
-}
-
 .list {
     list-style-type: none;
     background-color: var(--card-bg);
@@ -54,8 +17,4 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
-}
-
-.active {
-    background-color: var(--list-active);
 }
