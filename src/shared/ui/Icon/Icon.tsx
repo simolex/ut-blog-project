@@ -1,15 +1,17 @@
-import { memo, VFC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import styles from './Icon.module.scss';
 
 interface IconProps {
     className?: string;
-    Svg: VFC<ExtendSVGProps<SVGSVGElement>>;
+    Svg: FC<ExtendSVGProps<SVGSVGElement>>;
     title?: string;
+    inverted?: boolean;
 }
 
 export const Icon = memo((props: IconProps) => {
-    const { className, Svg, title } = props;
+    const { className, Svg, title, inverted = false } = props;
 
-    return <Svg className={classNames(styles.icon, {}, [className])} title={title} />;
+    const iconStyle = inverted ? styles.inverted : styles.icon;
+    return <Svg className={classNames(iconStyle, {}, [className])} title={title} />;
 });

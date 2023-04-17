@@ -22,7 +22,7 @@ interface ExtendSVGProps<T> extends React.SVGProps<T> {
 declare module '*.svg' {
     import type React from 'react';
 
-    const SVG: React.VFC<ExtendSVGProps<SVGSVGElement>>;
+    const SVG: React.FC<ExtendSVGProps<SVGSVGElement>>;
     // const SVG: React.VFC<SVGProps<SVGSVGElement>>;
     export default SVG;
 }

@@ -10,8 +10,11 @@ import { Text, TextVariant } from 'shared/ui/Text/Text';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routerConfig/routerConfig';
-import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
+import { Dropdown } from 'shared/ui/Popups/ui/Dropdown/Dropdown';
 import { Avatar } from 'shared/ui/Avatar/Avatar';
+import { Icon } from 'shared/ui/Icon/Icon';
+import { HStack } from 'shared/ui/Stack';
+import NotificationIcon from 'shared/assets/icons/notification-20x20.svg';
 import styles from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -58,32 +61,36 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 >
                     {t('create-new-article-nb')}
                 </AppLink>
-                <Dropdown
-                    className={styles.dropdown}
-                    direction="bottom left"
-                    items={[
-                        {
-                            id: 'profile',
-                            content: t('profile'),
-                            href: RoutePath.profile + authDate.id,
-                        },
-                        ...(isAdminPanelAvailable
-                            ? [
-                                  {
-                                      id: 'admin_panel',
-                                      content: t('admin_panel'),
-                                      href: RoutePath.admin_panel,
-                                  },
-                              ]
-                            : []),
-                        {
-                            id: 'logout',
-                            content: t('logout'),
-                            onClick: onLogout,
-                        },
-                    ]}
-                    trigger={<Avatar size={30} src={authDate.avatar} />}
-                />
+                <HStack gap="16" className={styles.actions}>
+                    <Button theme={ButtonTheme.CLEAR}>
+                        <Icon Svg={NotificationIcon} inverted />
+                    </Button>
+                    <Dropdown
+                        direction="bottom left"
+                        items={[
+                            {
+                                id: 'profile',
+                                content: t('profile'),
+                                href: RoutePath.profile + authDate.id,
+                            },
+                            ...(isAdminPanelAvailable
+                                ? [
+                                      {
+                                          id: 'admin_panel',
+                                          content: t('admin_panel'),
+                                          href: RoutePath.admin_panel,
+                                      },
+                                  ]
+                                : []),
+                            {
+                                id: 'logout',
+                                content: t('logout'),
+                                onClick: onLogout,
+                            },
+                        ]}
+                        trigger={<Avatar size={30} src={authDate.avatar} />}
+                    />
+                </HStack>
             </header>
         );
     }

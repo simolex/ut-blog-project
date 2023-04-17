@@ -4,7 +4,7 @@ import { Fragment, memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import { DropdownDirection } from 'shared/types/ui';
 import { Button } from 'shared/ui/Button/Button';
-import { HStack } from '../Stack';
+import { HStack } from '../../../Stack';
 import styles from './ListBox.module.scss';
 
 export interface ListBoxItem {
