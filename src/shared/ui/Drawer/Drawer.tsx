@@ -3,9 +3,9 @@ import { memo, ReactNode, useCallback, useEffect } from 'react';
 // import { a, config, useSpring } from '@react-spring/web';
 // import { useDrag } from '@use-gesture/react';
 
-import { useTheme } from 'app/providers/ThemeProvider';
-import { classNames } from 'shared/lib/classNames';
-import { useAnimationLibs } from 'shared/lib/components/AnimationProvider';
+import { useTheme } from '@/app/providers/ThemeProvider';
+import { classNames } from '@/shared/lib/classNames';
+import { useAnimationLibs } from '@/shared/lib/components/AnimationProvider';
 import { Overlay } from '../Overlay/Overlay';
 import { Portal } from '../Portal/Portal';
 import styles from './Drawer.module.scss';

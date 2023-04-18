@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { classNames, Mods } from 'shared/lib/classNames';
-import { PageWrapper } from 'widgets/PageWrapper/PageWrapper';
+import { classNames, Mods } from '@/shared/lib/classNames';
+import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 import styles from './ArticleEditPage.module.scss';
 
 interface ArticleEditPageProps {

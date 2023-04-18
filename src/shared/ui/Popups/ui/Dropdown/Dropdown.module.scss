@@ -2,7 +2,7 @@
     list-style-type: none;
     background-color: var(--card-bg);
     position: absolute;
-    z-index: 100;
+    z-index: var(--popup-z-index);
     border-radius: 8px;
     border: 1px solid var(--primary-color);
 }

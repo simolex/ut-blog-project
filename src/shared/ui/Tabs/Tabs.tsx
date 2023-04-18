@@ -1,8 +1,8 @@
 import { ReactNode, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from 'shared/lib/classNames';
-import { typedMemo } from 'shared/types';
-import { Card, CardVariant } from 'shared/ui/Card/Card';
+import { classNames, Mods } from '@/shared/lib/classNames';
+import { typedMemo } from '@/shared/types';
+import { Card, CardVariant } from '@/shared/ui/Card/Card';
 import styles from './Tabs.module.scss';
 
 export interface TabItem<T extends string> {

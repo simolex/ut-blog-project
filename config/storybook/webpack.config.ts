@@ -16,6 +16,7 @@ export default ({ config }: { config: Configuration }) => {
     config!.resolve!.modules!.unshift(paths.src);
     config!.resolve!.modules!.push('node_modules');
     config!.resolve!.extensions!.push('.js', '.ts', '.tsx');
+    config!.resolve!.alias = { '@': paths.src };
 
     const rules = config?.module?.rules;
     if (rules) {

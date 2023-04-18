@@ -1,6 +1,6 @@
 import { ElementType } from 'react';
-import { classNames, Mods } from 'shared/lib/classNames';
-import { PolymorphicComponentProp } from 'shared/types';
+import { classNames, Mods } from '@/shared/lib/classNames';
+import { PolymorphicComponentProp } from '@/shared/types';
 import styles from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'end' | 'center' | 'between';

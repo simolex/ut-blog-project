@@ -44,6 +44,7 @@ export default {
         '\\.(s?[ac]ss)$': 'identity-obj-proxy',
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
         '^axios$': require.resolve('axios'),
+        '^@/(.*)$': '<rootDir>src/$1',
     },
 
     // A set of global variables that need to be available in all test environments

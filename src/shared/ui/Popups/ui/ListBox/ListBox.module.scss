@@ -17,7 +17,7 @@
         list-style-type: none;
         background-color: var(--list-bg);
         border-radius: 4px;
-        z-index: 100;
+        z-index: var(--popup-z-index);
         box-shadow: 4px 4px 8px var(--list-bg);
         border: 1px solid var(--primary-color);
         min-width: 100%;

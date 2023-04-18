@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
-import { ValueOf } from 'shared/config/typeEnum/typeEnum';
-import { classNames } from 'shared/lib/classNames';
-import { Mods } from 'shared/lib/classNames/classNames';
+import { ValueOf } from '@/shared/config/typeEnum/typeEnum';
+import { classNames } from '@/shared/lib/classNames';
+import { Mods } from '@/shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
 
 export type ButtonTheme = ValueOf<typeof ButtonTheme>;
