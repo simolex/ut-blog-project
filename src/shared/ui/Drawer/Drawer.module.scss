@@ -19,13 +19,13 @@
     width: 100%;
     min-height: 100px;
     padding: 20px;
-    transition: 0.3s translateY;
+    transition: transform 0.3s;
     transform: translateY(100%);
     overflow-y: auto;
     overflow-x: hidden;
 
     &::before {
-        content: '';
+        content: "";
         position: relative;
         display: block;
         width: 100px;

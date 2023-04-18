@@ -5,9 +5,9 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { Popover } from 'shared/ui/Popups';
 import { Drawer } from 'shared/ui/Drawer/Drawer';
+import { BrowserView, MobileView } from 'react-device-detect';
 import NotificationIcon from 'shared/assets/icons/notification-20x20.svg';
 import styles from './NotificationButton.module.scss';
-import { BrowserView, MobileView } from 'react-device-detect';
 
 interface NotificationButtonProps {
     className?: string;

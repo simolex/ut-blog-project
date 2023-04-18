@@ -1,9 +1,9 @@
 /* eslint-disable indent */
 import { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { getIsAdmin, getIsManager, getUserAuthData, userActions } from 'entities/User';
+import { getUserAuthData } from 'entities/User';
 import { LoginModal } from 'features/authByUsername';
 import { AvatarDropdown } from 'features/avatarDropdown';
 import { NotificationButton } from 'features/notificationButton';
@@ -13,9 +13,7 @@ import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { HStack } from 'shared/ui/Stack';
 import { Text, TextVariant } from 'shared/ui/Text/Text';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
 import styles from './Navbar.module.scss';
-import { NotificationList } from 'entities/Notification';
 
 interface NavbarProps {
     className?: string;
