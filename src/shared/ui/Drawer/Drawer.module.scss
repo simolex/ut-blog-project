@@ -1,9 +1,7 @@
 .drawer {
     position: fixed;
     inset: 0 0 0 0;
-    opacity: 0;
-    pointer-events: none;
-    z-index: -1;
+    z-index: 150;
     display: flex;
     align-items: flex-end;
 }
@@ -51,4 +49,17 @@
     .content {
         transform: translateY(100%);
     }
+}
+
+.sheet{
+
+    background-color: var(--bg-color);
+    z-index: 150;
+    position: fixed;
+    left: 2%;
+    height: calc(100% + 100px);
+    width: 96%;
+    border-radius: 8px 8px 0;
+    touch-action: none;
+    padding: 16px;
 }
