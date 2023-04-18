@@ -1,0 +1,48 @@
+.drawer {
+    position: fixed;
+    inset: 0 0 0 0;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    display: flex;
+    align-items: flex-end;
+}
+
+.content {
+    height: 70%;
+    background-color: var(--inverted-bg-color);
+    color: var(--inverted-primary-color);
+    bottom: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    padding: 20px;
+    transition: 0.3s translateY;
+    transform: translateY(100%);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::before {
+        content: '';
+        position: relative;
+        display: block;
+        width: 100px;
+        height: 10px;
+        background-color: var(--bg-color);
+        margin: auto;
+        border-radius: 8px;
+        top: -10px;
+    }
+}
+
+.opened {
+    pointer-events: all;
+    opacity: 1;
+    z-index: var(--modal-z-index);
+
+    .content {
+        transform: translateY(0%);
+    }
+}
