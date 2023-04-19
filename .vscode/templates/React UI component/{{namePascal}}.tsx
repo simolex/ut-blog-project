@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from 'shared/lib/classNames';
+import { classNames, Mods } from '@/shared/lib/classNames';
 import styles from './{{namePascal}}.module.scss';
 
 interface {{namePascal}}Props {

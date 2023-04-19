@@ -22,5 +22,8 @@
   "app-name": "Simolex Блоги",
   "create-new-article-nb": "Новая статья",
   "admin_panel": "Админка",
-  "access-denied": "У Вас нет прав для доступа к этой странице. "
+  "access-denied": "У Вас нет прав для доступа к этой странице. ",
+  "your-feedback": "Ваш отзыв",
+  "close": "Закрыть",
+  "send": "Отправить"
 }

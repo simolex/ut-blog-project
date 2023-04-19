@@ -10,10 +10,11 @@ import styles from './SidebarItem.module.scss';
 interface SidebarItemProps {
     item: SidebarItemType;
     collapsed: boolean;
+    size?: number;
 }
 
 export const SidebarItem = memo((props: SidebarItemProps) => {
-    const { item, collapsed } = props;
+    const { item, collapsed, size = 20 } = props;
     const { t } = useTranslation();
 
     const isAuth = useSelector(getUserAuthData);
@@ -28,7 +29,7 @@ export const SidebarItem = memo((props: SidebarItemProps) => {
             to={item.path}
             className={classNames(styles.item, { [styles.collapsed]: collapsed })}
         >
-            <item.Icon className={styles.iconItem} />
+            <item.Icon className={styles.iconItem} width={size} height={size} />
             <span className={styles.linkItem}>{t(item.textSlug)}</span>
         </AppLink>
     );

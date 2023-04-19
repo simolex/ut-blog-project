@@ -8,9 +8,11 @@ import DarkIcon from '@/shared/assets/icons/theme-dark.svg';
 
 interface ThemeSwitcherProps {
     className?: string;
+    size?: number;
 }
 
-export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
+export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
+    const { className, size = 30 } = props;
     const { theme, toggleTheme } = useTheme();
     return (
         <Button
@@ -18,7 +20,11 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
             onClick={toggleTheme}
             className={classNames('', {}, [className])}
         >
-            {theme === Theme.DARK ? <DarkIcon /> : <LightIcon />}
+            {theme === Theme.DARK ? (
+                <DarkIcon width={size} height={size} />
+            ) : (
+                <LightIcon width={size} height={size} />
+            )}
         </Button>
     );
 });

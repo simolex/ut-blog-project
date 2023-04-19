@@ -1,18 +1,18 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from '@/app/providers/ThemeProvider';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { {{namePascal}} } from './{{namePascal}}';
+import { StarRating } from './StarRating';
 
 export default {
-    title: 'shared/{{namePascal}}',
-    component: {{namePascal}},
+    title: 'shared/StarRating',
+    component: StarRating,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof {{namePascal}}>;
+} as ComponentMeta<typeof StarRating>;
 
-const Template: ComponentStory<typeof {{namePascal}}> = (props) => <{{namePascal}} {...props} />;
+const Template: ComponentStory<typeof StarRating> = (props) => <StarRating {...props} />;
 
 export const Normal = Template.bind({});
 Normal.args = {};
