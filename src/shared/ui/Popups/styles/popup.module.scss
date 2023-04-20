@@ -45,7 +45,10 @@
     background-color: var(--list-active);
 }
 
+.default {
+    border: 2px solid transparent;
+}
+
 .active {
-    // background-color: var(--list-active);
-    border: 1px solid var(--inverted-primary-color);
+    border: 2px solid var(--primary-color);
 }

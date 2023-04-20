@@ -63,11 +63,15 @@ export const ListBox = memo((props: ListBoxProps) => {
                         >
                             {({ active, selected }) => (
                                 <li
-                                    className={classNames(styles.listItem, {
-                                        [popupStyles.active]: active,
-                                        [popupStyles.disabled]: item.disabled,
-                                        [popupStyles.selected]: selected,
-                                    })}
+                                    className={classNames(
+                                        styles.listItem,
+                                        {
+                                            [popupStyles.active]: active,
+                                            [popupStyles.disabled]: item.disabled,
+                                            [popupStyles.selected]: selected,
+                                        },
+                                        [popupStyles.default],
+                                    )}
                                 >
                                     {item.content}
                                 </li>
