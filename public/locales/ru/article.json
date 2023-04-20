@@ -22,5 +22,7 @@
   "article-edit": "Редактировать",
   "edit-article-with-that-id": "Редактирование статьи с номером:",
   "create-new-article": "Создание новой статьи",
-  "error-loading-data": "Ошибка при загрузке данных"
+  "error-loading-data": "Ошибка при загрузке данных",
+  "article-feedback": "Оцените статью",
+  "article-feedback-title": "Оставьте свой отзыв о статье, это поможет улучшить качество материала"
 }
