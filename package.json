@@ -137,7 +137,8 @@
         "react-i18next": "^11.18.3",
         "react-redux": "^7.2.6",
         "react-router-dom": "^6.2.1",
-        "react-virtualized": "^9.22.4"
+        "react-virtualized": "^9.22.4",
+        "react-virtuoso": "^4.3.0"
     },
     "loki": {
         "fetchFailIgnore": ".*",
