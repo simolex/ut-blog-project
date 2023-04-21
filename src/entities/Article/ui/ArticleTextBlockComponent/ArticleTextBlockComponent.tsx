@@ -1,7 +1,6 @@
 import { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Text } from '@/shared/ui/Text/Text';
-import { classNames, Mods } from '@/shared/lib/classNames';
+import { classNames } from '@/shared/lib/classNames';
 import { ArticleTextBlock } from '../../model/types/article';
 import styles from './ArticleTextBlockComponent.module.scss';
 
@@ -12,8 +11,6 @@ interface ArticleTextBlockComponentProps {
 
 export const ArticleTextBlockComponent = memo((props: ArticleTextBlockComponentProps) => {
     const { className, block } = props;
-    const { t } = useTranslation();
-    const mods: Mods = {};
 
     return (
         <div className={classNames(styles.articleTextBlockComponent, {}, [className])}>

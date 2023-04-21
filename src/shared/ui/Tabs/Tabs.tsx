@@ -1,6 +1,5 @@
 import { ReactNode, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from '@/shared/lib/classNames';
+import { classNames } from '@/shared/lib/classNames';
 import { typedMemo } from '@/shared/types';
 import { Card, CardVariant } from '@/shared/ui/Card/Card';
 import styles from './Tabs.module.scss';
@@ -19,8 +18,6 @@ interface TabsProps<T extends string> {
 
 export const Tabs = typedMemo(<T extends string>(props: TabsProps<T>) => {
     const { className, tabs, value, onTabClick } = props;
-    const { t } = useTranslation();
-    const mods: Mods = {};
 
     const clickHandle = useCallback(
         (tab: TabItem<T>) => () => {

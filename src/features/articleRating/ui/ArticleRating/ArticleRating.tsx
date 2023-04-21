@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { RatingCard } from '@/entities/Rating';
 import { getUserAuthData } from '@/entities/User';
-import { Mods } from '@/shared/lib/classNames';
 import { useGetArticleRatings, useSetArticleRatings } from '../../api/articleRatingApi';
 import { Skeleton } from '@/shared/ui/Skeleton/Skeleton';
 
@@ -15,7 +14,6 @@ export interface ArticleRatingProps {
 const ArticleRating = memo((props: ArticleRatingProps) => {
     const { className, articleId } = props;
     const { t } = useTranslation('article');
-    const mods: Mods = {};
 
     const userData = useSelector(getUserAuthData);
     const userId = userData?.id || '';
