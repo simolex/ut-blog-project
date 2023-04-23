@@ -1,6 +1,7 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
 import EyeIcon from '@/shared/assets/icons/eye-20x20.svg';
 import { RoutePath } from '@/shared/config/routerConfig/routerConfig';
 import { classNames } from '@/shared/lib/classNames';
@@ -25,10 +26,11 @@ interface ArticleListItemProps {
     view: ArticleView;
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
+    index?: number;
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const { className, article, view, isLoading, target } = props;
+    const { className, article, view, isLoading, target, index } = props;
     const { t } = useTranslation('article');
 
     const navigate = useNavigate();
@@ -44,10 +46,15 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const createdAt = <Text text={article.createdAt} className={styles.date} />;
     const image = <img src={article.img} alt={article.title} className={styles.img} />;
 
+    const onDetailsClick = () => {
+        sessionStorage.setItem(ARTICLE_ITEM_SESSIONSTORAGE_INDEX, JSON.stringify(index));
+    };
+
     if (view === ArticleView.LIST) {
         const textBlock = article?.blocks?.find(
             (block) => block.type === ArticleBlockType.TEXT,
         ) as ArticleTextBlock;
+
         return (
             <div className={classNames(styles.articleListItem, {}, [className, styles[view]])}>
                 <Card className={styles.card}>
@@ -64,7 +71,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                     )}
                     <div className={styles.footer}>
                         <AppLink target={target} to={RoutePath.article_details + article.id}>
-                            <Button>{t('article-read-more')}</Button>
+                            <Button onClick={onDetailsClick}>{t('article-read-more')}</Button>
                         </AppLink>
                         {views}
                     </div>
@@ -78,6 +85,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
             target={target}
             to={RoutePath.article_details + article.id}
             className={classNames(styles.articleListItem, {}, [className, styles[view]])}
+            onClick={onDetailsClick}
         >
             <Card className={styles.card}>
                 <div className={styles.imageWrapper}>

@@ -23,24 +23,12 @@ export const ArticleInfiniteList = memo((props: ArticleInfiniteListProps) => {
     const { className } = props;
     const { t } = useTranslation('article');
     const dispatch = useAppDispatch();
-    const articles = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesPageIsLoading);
     const error = useSelector(getArticlesPageError);
-    const view = useSelector(getArticlesPageView);
-
-    const [searchParams] = useSearchParams();
-
-    useInitialEffect(() => {
-        dispatch(initArticlesPage(searchParams));
-    });
 
     if (error) {
         return <Text text={t('error-loading-data')} />;
     }
 
-    return (
-        <div className={classNames('', {}, [className])}>
-            <ArticleList isLoading={isLoading} view={view} articles={articles} />
-        </div>
-    );
+    return <div className={classNames('', {}, [className])} />;
 });

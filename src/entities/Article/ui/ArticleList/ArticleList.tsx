@@ -1,20 +1,15 @@
-import {
-    ForwardedRef,
-    forwardRef,
-    HTMLAttributeAnchorTarget,
-    LegacyRef,
-    memo,
-    useRef,
-} from 'react';
+import { FC, HTMLAttributeAnchorTarget, memo, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 // import { List, ListRowProps, WindowScroller } from 'react-virtualized';
-import { GridItemProps, GridListProps, VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
+import { Virtuoso, VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
 import { classNames } from '@/shared/lib/classNames';
 import { Text } from '@/shared/ui/Text/Text';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import styles from './ArticleList.module.scss';
+import { ArticlePageFilters } from '@/pages/ArticlesPage/ui/ArticlePageFilters/ArticlePageFilters';
+import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
 
 interface ArticleListProps {
     className?: string;
@@ -22,8 +17,11 @@ interface ArticleListProps {
     isLoading?: boolean;
     view?: ArticleView;
     target?: HTMLAttributeAnchorTarget;
+    onLoadNextPage?: () => void;
     virtualized?: boolean;
 }
+
+const Header = () => <ArticlePageFilters />;
 
 const getSkeleton = (view: ArticleView) =>
     new Array(view === ArticleView.GRID ? 9 : 3)
@@ -35,44 +33,50 @@ export const ArticleList = memo((props: ArticleListProps) => {
         className,
         articles,
         isLoading,
-        view = ArticleView.GRID,
+        view = ArticleView.LIST,
         target,
+        onLoadNextPage,
         virtualized = true,
     } = props;
     const { t } = useTranslation('article');
+    const [selectedArticleId, setSelectedArticleId] = useState(1);
+    const virtuosoGridRef = useRef<VirtuosoGridHandle>(null);
 
-    const ref = useRef<VirtuosoGridHandle>(null);
+    useEffect(() => {
+        const paged = sessionStorage.getItem(ARTICLE_ITEM_SESSIONSTORAGE_INDEX) || 1;
+        setSelectedArticleId(Number(paged));
+    }, []);
 
-    const isList = view === ArticleView.LIST;
-    const itemsPerRow = isList ? 1 : 3;
-    const rowCount = isList ? articles.length : Math.ceil(articles.length / itemsPerRow);
+    useEffect(() => {
+        // TODO
+        let timeout: any;
+        if (view === ArticleView.GRID) {
+            timeout = setTimeout(() => {
+                if (virtuosoGridRef.current) {
+                    virtuosoGridRef.current.scrollToIndex(selectedArticleId);
+                }
+            }, 100);
+        }
+        return () => clearTimeout(timeout);
+    }, [selectedArticleId, view]);
 
-    // const rowRenderer = ({ index, isScrolling, isVisible, key, style }: ListRowProps) => {
-    //     const items = [];
-    //     const fromIndex = index * itemsPerRow;
-    //     const toIndex = Math.min(fromIndex + itemsPerRow, articles.length);
+    const renderArticle = (index: number, item: Article) => (
+        <ArticleListItem
+            article={item}
+            view={view}
+            target={target}
+            key={item?.id}
+            // index={index}
+        />
+    );
 
-    //     for (let i = fromIndex; i < toIndex; i += 1) {
-    //         items.push(
-    //             <ArticleListItem
-    //                 article={articles[i]}
-    //                 view={view}
-    //                 target={target}
-    //                 key={articles[i].id}
-    //             />,
-    //         );
-    //     }
-
-    //     return (
-    //         <div key={key} className={styles.rowList} style={style}>
-    //             {items}
-    //         </div>
-    //     );
-    // };
-
-    // const renderArticles = (article: Article) => (
-    //     <ArticleListItem article={article} view={view} key={article.id} target={target} />
-    // );
+    // eslint-disable-next-line react/no-unstable-nested-components
+    const Footer = memo(() => {
+        if (isLoading) {
+            return <div className={styles.skeleton}>{getSkeleton(ArticleView.LIST)}</div>;
+        }
+        return null;
+    });
 
     if (!isLoading && !articles?.length) {
         return (
@@ -82,70 +86,51 @@ export const ArticleList = memo((props: ArticleListProps) => {
         );
     }
 
+    // eslint-disable-next-line react/no-unstable-nested-components
+    const ItemContainerComp: FC<{ height: number; width: number; index: number }> = ({
+        height,
+        width,
+        index,
+    }) => (
+        <div className={styles.ItemContainer}>
+            <ArticleListItemSkeleton key={index} className={styles.card} view={ArticleView.GRID} />
+        </div>
+    );
+
+    console.log(articles);
+
     return (
-        // @ts-ignore
-        <VirtuosoGrid
-            ref={ref}
-            totalCount={articles?.length}
-            style={{ height: '100%' }}
-            customScrollParent={document.getElementById('PAGE_ID') as HTMLElement}
-            useWindowScroll
-            itemContent={(index) => (
-                <ArticleListItem
-                    article={articles[index]}
-                    view={view}
-                    target={target}
-                    key={articles[index].id}
-                />
-            )}
-            components={{
-                List: forwardRef(
-                    ({ style, children }: GridListProps, listRef: ForwardedRef<HTMLDivElement>) => (
-                        <div
-                            style={{ ...style }}
-                            className={classNames(styles.articleList, {}, [className])}
-                            // @ts-ignore
-                            ref={listRef}
-                        >
-                            {children}
-                        </div>
-                    ),
-                ),
-            }}
-        />
-        // <WindowScroller scrollElement={document.getElementById('PAGE_ID') as Element}>
-        //     {({ width, height, registerChild, onChildScroll, isScrolling, scrollTop }) => (
-        //         <div
-        //             className={classNames(styles.articleList, {}, [className])}
-        //             // @ts-ignore
-        //             ref={registerChild}
-        //         >
-        //             {virtualized ? (
-        //                 // @ts-ignore
-        //                 <List
-        //                     height={height ?? 700}
-        //                     rowCount={rowCount}
-        //                     rowHeight={isList ? 700 : 330}
-        //                     rowRenderer={rowRenderer}
-        //                     width={width ? width - 60 : 700}
-        //                     autoHeight
-        //                     isScrolling={isScrolling}
-        //                     onScroll={onChildScroll}
-        //                     scrollTop={scrollTop}
-        //                 />
-        //             ) : (
-        //                 articles.map((item) => (
-        //                     <ArticleListItem
-        //                         article={item}
-        //                         view={view}
-        //                         target={target}
-        //                         key={item.id}
-        //                     />
-        //                 ))
-        //             )}
-        //             {isLoading && getSkeleton(view)}
-        //         </div>
-        //     )}
-        // </WindowScroller>
+        articles.length && (
+            <div className={classNames(styles.articleList, {}, [className, styles[view]])}>
+                {view === 'LIST' ? (
+                    <Virtuoso
+                        style={{ height: '100%' }}
+                        data={articles}
+                        itemContent={renderArticle}
+                        endReached={onLoadNextPage}
+                        initialTopMostItemIndex={selectedArticleId}
+                        components={{
+                            Header,
+                            Footer,
+                        }}
+                    />
+                ) : (
+                    <VirtuosoGrid
+                        style={{ height: '100%' }}
+                        ref={virtuosoGridRef}
+                        totalCount={articles?.length}
+                        components={{ Header, ScrollSeekPlaceholder: ItemContainerComp }}
+                        endReached={onLoadNextPage}
+                        data={articles}
+                        itemContent={renderArticle}
+                        listClassName={styles.itemsWrapper}
+                        scrollSeekConfiguration={{
+                            enter: (velocity) => Math.abs(velocity) > 200,
+                            exit: (velocity) => Math.abs(velocity) < 30,
+                        }}
+                    />
+                )}
+            </div>
+        )
     );
 });

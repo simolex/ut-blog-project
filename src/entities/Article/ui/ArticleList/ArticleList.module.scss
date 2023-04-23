@@ -1,9 +1,18 @@
 .articleList {
     display: flex;
     flex-wrap: wrap;
-    margin: -15px;
+    gap: 16px;
+    height: 100%;
 }
 
 .rowList {
     display: inline-flex;
+}
+
+.itemsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0 30px;
 }

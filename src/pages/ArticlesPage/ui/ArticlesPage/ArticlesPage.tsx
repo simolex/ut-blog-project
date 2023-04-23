@@ -11,12 +11,17 @@ import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 import {
     getArticlesPageError,
     getArticlesPageIsLoading,
+    getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 import { fetchNextArticlePage } from '../../model/services/fetchNextArticlePage/fetchNextArticlePage';
-import { articlePageReducer } from '../../model/slices/articlePageSlice';
+import { articlePageReducer, getArticles } from '../../model/slices/articlePageSlice';
 import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
 import { ArticlePageFilters } from '../ArticlePageFilters/ArticlePageFilters';
 import styles from './ArticlesPage.module.scss';
+import { ArticleList } from '@/entities/Article';
+import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
+import { useSearchParams } from 'react-router-dom';
 
 interface ArticlesPageProps {
     className?: string;
@@ -111,26 +116,41 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const { t } = useTranslation('article');
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getArticlesPageIsLoading);
+    const articles = useSelector(getArticles.selectAll);
+    const view = useSelector(getArticlesPageView);
+
     const error = useSelector(getArticlesPageError);
+    const [searchParams] = useSearchParams();
 
     const onLoadNextPage = useCallback(() => {
         dispatch(fetchNextArticlePage());
     }, [dispatch]);
 
+    useInitialEffect(() => {
+        dispatch(initArticlesPage(searchParams));
+    });
+
     if (error) {
         return (
-            <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
-                {t('article-not-found')}
-            </PageWrapper>
+            // <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
+            <>{t('article-not-found')}</>
+            // </PageWrapper>
         );
     }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <PageWrapper onScrollEnd={onLoadNextPage} className={className} isLoading={isLoading}>
-                <ArticlePageFilters />
-                <ArticleInfiniteList className={styles.list} />
-            </PageWrapper>
+            {/* <PageWrapper onScrollEnd={onLoadNextPage} className={className} isLoading={isLoading}> */}
+
+            {/* <ArticleInfiniteList className={styles.list} /> */}
+            <ArticleList
+                isLoading={isLoading}
+                view={view}
+                articles={articles}
+                onLoadNextPage={onLoadNextPage}
+            />
+
+            {/* </PageWrapper> */}
         </DynamicModuleLoader>
     );
 };
