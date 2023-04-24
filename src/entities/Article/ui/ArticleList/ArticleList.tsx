@@ -1,5 +1,4 @@
 import {
-    Context,
     forwardRef,
     HTMLAttributeAnchorTarget,
     memo,
@@ -16,12 +15,12 @@ import {
     ListProps,
     GridScrollSeekPlaceholderProps,
 } from 'react-virtuoso';
+import { ArticlePageFilters } from '@/pages/ArticlesPage/ui/ArticlePageFilters/ArticlePageFilters';
 import { classNames } from '@/shared/lib/classNames';
 import { Text } from '@/shared/ui/Text/Text';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
-import { ArticlePageFilters } from '@/pages/ArticlesPage/ui/ArticlePageFilters/ArticlePageFilters';
 import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
 import styles from './ArticleList.module.scss';
 
@@ -37,6 +36,7 @@ interface ArticleListProps {
 
 interface ArticleListContext {
     isLoading?: boolean;
+    view?: ArticleView;
 }
 
 const Header = () => <ArticlePageFilters className={styles.header} />;
@@ -55,7 +55,7 @@ const getSkeleton = (view: ArticleView) =>
 const ArticleItemPlaceholder = (props: GridScrollSeekPlaceholderProps) => {
     const { index } = props;
     return (
-        <div className={styles.ItemContainer}>
+        <div className={classNames('', {}, [styles.ItemContainer])}>
             <ArticleListItemSkeleton key={index} className={styles.card} view={ArticleView.GRID} />
         </div>
     );
@@ -65,7 +65,11 @@ const Footer = memo((props: { context?: ArticleListContext }) => {
     const { context } = props;
 
     if (context?.isLoading) {
-        return <div className={styles.skeleton}>{getSkeleton(ArticleView.LIST)}</div>;
+        return (
+            <div className={classNames('', {}, [styles.itemsWrapper, styles.footer])}>
+                {getSkeleton(context?.view ?? ArticleView.LIST)}
+            </div>
+        );
     }
     return null;
 });
@@ -115,39 +119,42 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        articles.length && (
-            <div className={classNames(styles.articleList, {}, [className, styles[view]])}>
-                {view === 'LIST' ? (
-                    <Virtuoso
-                        style={{ height: '100%' }}
-                        context={{ isLoading }}
-                        data={articles}
-                        itemContent={renderArticle}
-                        endReached={onLoadNextPage}
-                        initialTopMostItemIndex={selectedArticleId}
-                        components={{
-                            Header,
-                            List,
-                            Footer,
-                        }}
-                    />
-                ) : (
-                    <VirtuosoGrid
-                        style={{ height: '100%' }}
-                        ref={virtuosoGridRef}
-                        totalCount={articles?.length}
-                        components={{ Header, ScrollSeekPlaceholder: ArticleItemPlaceholder }}
-                        endReached={onLoadNextPage}
-                        data={articles}
-                        itemContent={renderArticle}
-                        listClassName={styles.itemsWrapper}
-                        scrollSeekConfiguration={{
-                            enter: (velocity) => Math.abs(velocity) > 200,
-                            exit: (velocity) => Math.abs(velocity) < 30,
-                        }}
-                    />
-                )}
-            </div>
-        )
+        <div className={classNames(styles.articleList, {}, [className, styles[view]])}>
+            {view === 'LIST' ? (
+                <Virtuoso
+                    style={{ height: '100%' }}
+                    context={{ isLoading, view: ArticleView.LIST }}
+                    data={articles}
+                    itemContent={renderArticle}
+                    endReached={onLoadNextPage}
+                    initialTopMostItemIndex={selectedArticleId}
+                    components={{
+                        Header,
+                        List,
+                        Footer,
+                    }}
+                />
+            ) : (
+                <VirtuosoGrid
+                    style={{ height: '100%' }}
+                    context={{ isLoading, view: ArticleView.GRID }}
+                    ref={virtuosoGridRef}
+                    totalCount={articles?.length}
+                    components={{
+                        Header,
+                        ScrollSeekPlaceholder: ArticleItemPlaceholder,
+                        Footer,
+                    }}
+                    endReached={onLoadNextPage}
+                    data={articles}
+                    itemContent={renderArticle}
+                    listClassName={styles.itemsWrapper}
+                    scrollSeekConfiguration={{
+                        enter: (velocity) => Math.abs(velocity) > 200,
+                        exit: (velocity) => Math.abs(velocity) < 50,
+                    }}
+                />
+            )}
+        </div>
     );
 });
