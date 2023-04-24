@@ -5,14 +5,16 @@ import { Theme } from '@/app/providers/ThemeProvider';
 import { NotificationButton } from './NotificationButton';
 
 export default {
-    title: 'shared/NotificationButton',
+    title: 'features/notificationButton/NotificationButton',
     component: NotificationButton,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof NotificationButton>;
 
-const Template: ComponentStory<typeof NotificationButton> = (props) => <NotificationButton {...props} />;
+const Template: ComponentStory<typeof NotificationButton> = (props) => (
+    <NotificationButton {...props} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {};
