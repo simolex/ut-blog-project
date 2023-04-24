@@ -1,13 +1,13 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames';
 import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
 import {
     getArticlesPageError,
     getArticlesPageIsLoading,
@@ -15,13 +15,11 @@ import {
 } from '../../model/selectors/articlesPageSelectors';
 import { fetchNextArticlePage } from '../../model/services/fetchNextArticlePage/fetchNextArticlePage';
 import { articlePageReducer, getArticles } from '../../model/slices/articlePageSlice';
-import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList';
-import { ArticlePageFilters } from '../ArticlePageFilters/ArticlePageFilters';
-import styles from './ArticlesPage.module.scss';
 import { ArticleList } from '@/entities/Article';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
-import { useSearchParams } from 'react-router-dom';
+import styles from './ArticlesPage.module.scss';
+import { Text, TextVariant } from '@/shared/ui/Text/Text';
 
 interface ArticlesPageProps {
     className?: string;
@@ -132,25 +130,21 @@ const ArticlesPage = (props: ArticlesPageProps) => {
 
     if (error) {
         return (
-            // <PageWrapper className={classNames(styles.articleDetailsPage, {}, [className])}>
-            <>{t('article-not-found')}</>
-            // </PageWrapper>
+            <div className={classNames(styles.error, {}, [className])}>
+                <Text title={t('article-not-found')} variant={TextVariant.ERROR} />
+            </div>
         );
     }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            {/* <PageWrapper onScrollEnd={onLoadNextPage} className={className} isLoading={isLoading}> */}
-
-            {/* <ArticleInfiniteList className={styles.list} /> */}
             <ArticleList
+                className={styles.list}
                 isLoading={isLoading}
                 view={view}
                 articles={articles}
                 onLoadNextPage={onLoadNextPage}
             />
-
-            {/* </PageWrapper> */}
         </DynamicModuleLoader>
     );
 };

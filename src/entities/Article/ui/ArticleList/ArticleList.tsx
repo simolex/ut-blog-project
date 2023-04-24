@@ -1,15 +1,29 @@
-import { FC, HTMLAttributeAnchorTarget, memo, useEffect, useRef, useState } from 'react';
+import {
+    Context,
+    forwardRef,
+    HTMLAttributeAnchorTarget,
+    memo,
+    Ref,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
-// import { List, ListRowProps, WindowScroller } from 'react-virtualized';
-import { Virtuoso, VirtuosoGrid, VirtuosoGridHandle } from 'react-virtuoso';
+import {
+    Virtuoso,
+    VirtuosoGrid,
+    VirtuosoGridHandle,
+    ListProps,
+    GridScrollSeekPlaceholderProps,
+} from 'react-virtuoso';
 import { classNames } from '@/shared/lib/classNames';
 import { Text } from '@/shared/ui/Text/Text';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
-import styles from './ArticleList.module.scss';
 import { ArticlePageFilters } from '@/pages/ArticlesPage/ui/ArticlePageFilters/ArticlePageFilters';
 import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
+import styles from './ArticleList.module.scss';
 
 interface ArticleListProps {
     className?: string;
@@ -21,12 +35,40 @@ interface ArticleListProps {
     virtualized?: boolean;
 }
 
-const Header = () => <ArticlePageFilters />;
+interface ArticleListContext {
+    isLoading?: boolean;
+}
+
+const Header = () => <ArticlePageFilters className={styles.header} />;
+
+const List = forwardRef(({ style, children }: ListProps, listRef: Ref<HTMLDivElement>) => (
+    <div className={styles.listWrapper} style={{ ...style }} ref={listRef}>
+        {children}
+    </div>
+));
 
 const getSkeleton = (view: ArticleView) =>
     new Array(view === ArticleView.GRID ? 9 : 3)
         .fill(0)
         .map((item, index) => <ArticleListItemSkeleton key={index} view={view} />);
+
+const ArticleItemPlaceholder = (props: GridScrollSeekPlaceholderProps) => {
+    const { index } = props;
+    return (
+        <div className={styles.ItemContainer}>
+            <ArticleListItemSkeleton key={index} className={styles.card} view={ArticleView.GRID} />
+        </div>
+    );
+};
+
+const Footer = memo((props: { context?: ArticleListContext }) => {
+    const { context } = props;
+
+    if (context?.isLoading) {
+        return <div className={styles.skeleton}>{getSkeleton(ArticleView.LIST)}</div>;
+    }
+    return null;
+});
 
 export const ArticleList = memo((props: ArticleListProps) => {
     const {
@@ -55,28 +97,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
                 if (virtuosoGridRef.current) {
                     virtuosoGridRef.current.scrollToIndex(selectedArticleId);
                 }
-            }, 100);
+            }, 300);
         }
         return () => clearTimeout(timeout);
     }, [selectedArticleId, view]);
 
     const renderArticle = (index: number, item: Article) => (
-        <ArticleListItem
-            article={item}
-            view={view}
-            target={target}
-            key={item?.id}
-            // index={index}
-        />
+        <ArticleListItem article={item} view={view} target={target} key={item?.id} index={index} />
     );
-
-    // eslint-disable-next-line react/no-unstable-nested-components
-    const Footer = memo(() => {
-        if (isLoading) {
-            return <div className={styles.skeleton}>{getSkeleton(ArticleView.LIST)}</div>;
-        }
-        return null;
-    });
 
     if (!isLoading && !articles?.length) {
         return (
@@ -86,31 +114,20 @@ export const ArticleList = memo((props: ArticleListProps) => {
         );
     }
 
-    // eslint-disable-next-line react/no-unstable-nested-components
-    const ItemContainerComp: FC<{ height: number; width: number; index: number }> = ({
-        height,
-        width,
-        index,
-    }) => (
-        <div className={styles.ItemContainer}>
-            <ArticleListItemSkeleton key={index} className={styles.card} view={ArticleView.GRID} />
-        </div>
-    );
-
-    console.log(articles);
-
     return (
         articles.length && (
             <div className={classNames(styles.articleList, {}, [className, styles[view]])}>
                 {view === 'LIST' ? (
                     <Virtuoso
                         style={{ height: '100%' }}
+                        context={{ isLoading }}
                         data={articles}
                         itemContent={renderArticle}
                         endReached={onLoadNextPage}
                         initialTopMostItemIndex={selectedArticleId}
                         components={{
                             Header,
+                            List,
                             Footer,
                         }}
                     />
@@ -119,7 +136,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
                         style={{ height: '100%' }}
                         ref={virtuosoGridRef}
                         totalCount={articles?.length}
-                        components={{ Header, ScrollSeekPlaceholder: ItemContainerComp }}
+                        components={{ Header, ScrollSeekPlaceholder: ArticleItemPlaceholder }}
                         endReached={onLoadNextPage}
                         data={articles}
                         itemContent={renderArticle}
