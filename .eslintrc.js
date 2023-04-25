@@ -69,7 +69,7 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'no-confusing-arrow': 'warn',
         'function-paren-newline': 'off',
-        'simolex-plugin-lint/path-checker': 'error',
+        'simolex-plugin-lint/path-checker': ['error', { alias: '@' }],
     },
     globals: {
         __IS_DEV__: true,
