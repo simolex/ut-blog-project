@@ -70,7 +70,13 @@ module.exports = {
         'no-confusing-arrow': 'warn',
         'function-paren-newline': 'off',
         'simolex-plugin-lint/path-checker': ['error', { alias: '@' }],
-        'simolex-plugin-lint/public-api-imports': ['error', { alias: '@' }],
+        'simolex-plugin-lint/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+            },
+        ],
     },
     globals: {
         __IS_DEV__: true,
