@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { EditableProfileCard } from '@/features/editableProfileCard';
 import { classNames } from '@/shared/lib/classNames';
 import { VStack } from '@/shared/ui/Stack';
-import { PageWrapper } from '@/widgets/PageWrapper/PageWrapper';
+import { PageWrapper } from '@/widgets/PageWrapper';
 
 interface ProfilePageProps {
     className?: string;

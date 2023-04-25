@@ -1,3 +1,5 @@
+export { ArticleBlockType } from './model/types/article';
+
 export { getArticleDetailsData } from './model/selectors';
 export {
     type Article,

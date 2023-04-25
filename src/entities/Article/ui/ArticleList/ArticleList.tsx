@@ -15,7 +15,7 @@ import {
     ListProps,
     GridScrollSeekPlaceholderProps,
 } from 'react-virtuoso';
-import { ArticlePageFilters } from '@/pages/ArticlesPage/ui/ArticlePageFilters/ArticlePageFilters';
+import { ArticlePageFilters } from '@/pages/ArticlesPage';
 import { classNames } from '@/shared/lib/classNames';
 import { Text } from '@/shared/ui/Text/Text';
 import { Article, ArticleView } from '../../model/types/article';
