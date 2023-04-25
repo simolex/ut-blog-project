@@ -1,10 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from '@/app/providers/ThemeProvider';
 
 import { ArticleDetails } from './ArticleDetails';
 import { Article, ArticleBlockType } from '../../model/types/article';
+import { Theme } from '@/shared/const/Theme';
 
 export default {
     title: 'entities/Article/ArticleDetails',

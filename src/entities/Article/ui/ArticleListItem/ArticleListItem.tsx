@@ -1,9 +1,7 @@
 import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
-import EyeIcon from '@/shared/assets/icons/eye-20x20.svg';
-import { RoutePath } from '@/shared/config/routerConfig/routerConfig';
+import { RoutePath } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import { Avatar } from '@/shared/ui/Avatar/Avatar';
@@ -18,6 +16,8 @@ import {
     ArticleView,
 } from '../../model/types/article';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
+import EyeIcon from '@/shared/assets/icons/eye-20x20.svg';
 import styles from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {

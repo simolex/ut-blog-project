@@ -8,7 +8,7 @@ import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 import { classNames } from '@/shared/lib/classNames';
 import { AppRouter } from './providers/Router';
-import { useTheme } from './providers/ThemeProvider';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
 const App = () => {
     const { theme } = useTheme();

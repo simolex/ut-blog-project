@@ -6,7 +6,9 @@ import { addCommentFormReducer } from '@/features/addCommentForm/testing';
 import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage/testing';
 
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
+// eslint-disable-next-line simolex-plugin-lint/layer-imports
 import { scrollFixerReducer } from '@/features/scrollFixer';
+// eslint-disable-next-line simolex-plugin-lint/layer-imports
 import { profileReducer } from '@/features/editableProfileCard';
 import { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 

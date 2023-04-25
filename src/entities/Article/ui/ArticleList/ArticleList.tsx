@@ -15,6 +15,7 @@ import {
     ListProps,
     GridScrollSeekPlaceholderProps,
 } from 'react-virtuoso';
+// TODO error layers
 import { ArticlePageFilters } from '@/pages/ArticlesPage';
 import { classNames } from '@/shared/lib/classNames';
 import { Text } from '@/shared/ui/Text/Text';

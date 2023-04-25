@@ -7,7 +7,7 @@ import { getUserAuthData } from '@/entities/User';
 import { LoginModal } from '@/features/authByUsername';
 import { AvatarDropdown } from '@/features/avatarDropdown';
 import { NotificationButton } from '@/features/notificationButton';
-import { RoutePath } from '@/shared/config/routerConfig/routerConfig';
+import { RoutePath } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
