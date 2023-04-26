@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames, Mods } from '@/shared/lib/classNames';
-import { Icon } from '@/shared/ui/Icon/Icon';
+import { Icon } from '@/@/shared/ui';
 import StarIcon from '@/shared/assets/icons/star-52x52.svg';
 import styles from './StarRating.module.scss';
 

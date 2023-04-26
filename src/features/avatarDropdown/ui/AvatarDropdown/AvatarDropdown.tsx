@@ -6,8 +6,8 @@ import { getIsAdmin, getIsManager, getUserAuthData, userActions } from '@/entiti
 import { RoutePath } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Avatar } from '@/shared/ui/Avatar/Avatar';
-import { Dropdown } from '@/shared/ui/Popups';
+import { Avatar } from '@/@/shared/ui';
+import { Dropdown } from '@/@/shared/ui';
 
 interface AvatarDropdownProps {
     className?: string;

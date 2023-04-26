@@ -10,7 +10,7 @@ import {
     DynamicModuleLoader,
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { VStack } from '@/shared/ui/Stack';
+import { VStack } from '@/@/shared/ui';
 import { PageWrapper } from '@/widgets/PageWrapper';
 import { articleDetailsPageReducer } from '../../model/slice';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';

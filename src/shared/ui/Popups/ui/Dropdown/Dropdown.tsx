@@ -1,8 +1,8 @@
 import { Fragment, memo, ReactNode } from 'react';
 import { Menu } from '@headlessui/react';
 import { classNames } from '@/shared/lib/classNames';
-import { Button } from '@/shared/ui/Button/Button';
-import { AppLink } from '@/shared/ui/AppLink/AppLink';
+import { Button } from '@/@/shared/ui';
+import { AppLink } from '@/@/shared/ui';
 import { DropdownDirection } from '@/shared/types/ui';
 import { mapDirectionClass } from '../../styles/const';
 import styles from './Dropdown.module.scss';
