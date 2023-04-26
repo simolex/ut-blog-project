@@ -2,8 +2,8 @@ import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import CopyIcon from '@/shared/assets/icons/clipboard-20x20.svg';
 import { classNames } from '@/shared/lib/classNames';
-import { Button, ButtonTheme } from '@/@/shared/ui';
-import { Icon } from '@/@/shared/ui';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Icon } from '@/shared/ui/Icon';
 import styles from './Code.module.scss';
 
 interface CodeProps {

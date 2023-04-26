@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from '@/shared/const/router';
 import { classNames } from '@/shared/lib/classNames';
-import { AppLink } from '@/@/shared/ui';
-import { Avatar } from '@/@/shared/ui';
-import { Button } from '@/@/shared/ui';
-import { Card } from '@/@/shared/ui';
-import { Icon } from '@/@/shared/ui';
-import { Text } from '@/@/shared/ui';
+import { AppLink } from '@/shared/ui/AppLink';
+import { Avatar } from '@/shared/ui/Avatar';
+import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
+import { Icon } from '@/shared/ui/Icon';
+import { Text } from '@/shared/ui/Text';
 import {
     type Article,
     ArticleBlockType,

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames';
-import { Button } from '@/@/shared/ui';
+import { Button } from '@/shared/ui/Button';
 import styles from './PageError.module.scss';
 
 interface PageErrorProps {

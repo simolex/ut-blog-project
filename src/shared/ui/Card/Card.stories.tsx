@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
-import { Text } from '@/@/shared/ui';
+import { Text } from '@/shared/ui/Text';
 import { Card } from './Card';
 import { Theme } from '@/shared/const/theme';
 

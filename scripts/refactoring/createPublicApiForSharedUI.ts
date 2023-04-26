@@ -13,7 +13,6 @@ const componentsDir = sharedUiDirectory?.getDirectories();
 componentsDir?.forEach((directory) => {
     const indexFilePath = `${directory.getPath()}/index.ts`;
     const indexFile = directory.getSourceFile(indexFilePath);
-    // console.log(directory?.getBaseName(), indexFile?.getBaseName());
     if (!indexFile) {
         const sourceCode = `export * from './${directory.getBaseName()}';
 `;
@@ -34,7 +33,6 @@ files.forEach((sourceFile) => {
     importDeclarations.forEach((importDeclaration) => {
         const specifierValue = importDeclaration.getModuleSpecifierValue();
         const valueWithoutAlias = specifierValue.replace('@/', '');
-        console.log(valueWithoutAlias);
 
         const partsPath = valueWithoutAlias.split('/');
         const isSharedLayer = partsPath?.[0] === 'shared';
@@ -42,7 +40,8 @@ files.forEach((sourceFile) => {
 
         if (isAbsolute(valueWithoutAlias) && isSharedLayer && isUiSlice) {
             const result = valueWithoutAlias.split('/').slice(0, 3).join('/');
-            // importDeclaration.setModuleSpecifier(`@/${result}`);
+
+            importDeclaration.setModuleSpecifier(`@/${result}`);
         }
     });
 });

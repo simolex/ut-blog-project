@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { classNames } from '@/shared/lib/classNames';
-import { LoaderGrid } from '@/@/shared/ui';
-import { Modal } from '@/@/shared/ui';
+import { LoaderGrid } from '@/shared/ui/LoaderGrid';
+import { Modal } from '@/shared/ui/Modal';
 import { LoginFormLazy } from '../LoginForm/LoginForm.lazy';
 
 interface LoginModalProps {
