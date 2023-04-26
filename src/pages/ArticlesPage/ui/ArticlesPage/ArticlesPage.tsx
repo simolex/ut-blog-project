@@ -19,7 +19,7 @@ import { ArticleList } from '@/entities/Article';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import styles from './ArticlesPage.module.scss';
-import { Text, TextVariant } from '@/shared/ui/Text/Text';
+import { Text, TextVariant } from '@/shared/ui/Text';
 import { ArticlePageFilters } from '../ArticlePageFilters/ArticlePageFilters';
 
 interface ArticlesPageProps {

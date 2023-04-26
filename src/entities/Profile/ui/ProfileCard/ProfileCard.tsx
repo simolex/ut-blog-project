@@ -4,10 +4,10 @@ import { classNames, Mods } from '@/shared/lib/classNames';
 import { Country, CountrySelect } from '@/entities/Country';
 import { Currency, CurrencySelect } from '@/entities/Currency';
 import { HStack, VStack } from '@/shared/ui/Stack';
-import { Input } from '@/shared/ui/Input/Input';
-import { Avatar } from '@/shared/ui/Avatar/Avatar';
-import { LoaderGrid } from '@/shared/ui/LoaderGrid/LoaderGrid';
-import { Text, TextAlign, TextVariant } from '@/shared/ui/Text/Text';
+import { Input } from '@/shared/ui/Input';
+import { Avatar } from '@/shared/ui/Avatar';
+import { LoaderGrid } from '@/shared/ui/LoaderGrid';
+import { Text, TextAlign, TextVariant } from '@/shared/ui/Text';
 import { Profile } from '../../model/types/profile';
 import styles from './ProfileCard.module.scss';
 
