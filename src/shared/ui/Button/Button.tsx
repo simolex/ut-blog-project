@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ForwardedRef, forwardRef, memo, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ForwardedRef, forwardRef, ReactNode } from 'react';
 import { ValueOf } from '@/shared/config/typeEnum/typeEnum';
 import { classNames } from '@/shared/lib/classNames';
 import { Mods } from '@/shared/lib/classNames/classNames';

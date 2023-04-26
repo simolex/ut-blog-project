@@ -3,7 +3,6 @@ import {
     FunctionComponent,
     HTMLAttributeAnchorTarget,
     memo,
-    ReactNode,
     Ref,
     useEffect,
     useRef,
@@ -47,10 +46,9 @@ const List = forwardRef(({ style, children }: ListProps, listRef: Ref<HTMLDivEle
     </div>
 ));
 
-const getSkeleton = (view: ArticleView) =>
-    new Array(view === ArticleView.GRID ? 9 : 3)
-        .fill(0)
-        .map((item, index) => <ArticleListItemSkeleton key={index} view={view} />);
+const getSkeleton = (view: ArticleView) => new Array(view === ArticleView.GRID ? 9 : 3)
+    .fill(0)
+    .map((item, index) => <ArticleListItemSkeleton key={index} view={view} />);
 
 const ArticleItemPlaceholder = (props: GridScrollSeekPlaceholderProps) => {
     const { index } = props;

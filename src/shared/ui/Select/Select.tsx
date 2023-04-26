@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useMemo } from 'react';
+import { ChangeEvent, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames';
 import styles from './Select.module.scss';
 
@@ -26,12 +26,11 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
     };
 
     const optionList = useMemo(
-        () =>
-            options?.map(({ value, content }) => (
-                <option className={styles.option} value={value} key={value}>
-                    {content}
-                </option>
-            )) || [],
+        () => options?.map(({ value, content }) => (
+            <option className={styles.option} value={value} key={value}>
+                {content}
+            </option>
+        )) || [],
         [options],
     );
 

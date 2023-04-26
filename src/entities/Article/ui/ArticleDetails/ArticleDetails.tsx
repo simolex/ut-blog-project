@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { classNames, Mods } from '@/shared/lib/classNames';
+import { classNames } from '@/shared/lib/classNames';
 import {
     DynamicModuleLoader,
     ReducersList,

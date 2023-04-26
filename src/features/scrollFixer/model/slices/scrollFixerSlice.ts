@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ScrollFixerSchema, ScrollSchema } from '../types/scrollFixerSchema';
+import { ScrollFixerSchema } from '../types/scrollFixerSchema';
 
 const initialState: ScrollFixerSchema = {
     scroll: {},

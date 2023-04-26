@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames, Mods } from '@/shared/lib/classNames';
+import { classNames } from '@/shared/lib/classNames';
 import { Icon } from '@/shared/ui/Icon';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import GridIcon from '@/shared/assets/icons/view-grid-20x20.svg';

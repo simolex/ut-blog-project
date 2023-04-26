@@ -9,7 +9,6 @@ import CircularDependencyPlugin from 'circular-dependency-plugin';
 import {
     DefinePlugin,
     HotModuleReplacementPlugin,
-    Module,
     ProgressPlugin,
     WebpackError,
 } from 'webpack';

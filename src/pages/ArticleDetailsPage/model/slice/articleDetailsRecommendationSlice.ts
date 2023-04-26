@@ -1,10 +1,7 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import { Article } from '@/entities/Article';
-import { Comment } from '@/entities/Comment';
 import { fetchArticleRecommendation } from '../services/fetchArticleRecommendation/fetchArticleRecommendation';
-import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
-import { ArticleDetailsCommentsSchema } from '../types/articleDetailsCommentsSchema';
 import { ArticleDetailsRecommendationSchema } from '../types/articleDetailsRecommendationSchema';
 
 const recommendationsAdapter = createEntityAdapter<Article>({
@@ -12,8 +9,7 @@ const recommendationsAdapter = createEntityAdapter<Article>({
 });
 
 export const getArticleRecommendations = recommendationsAdapter.getSelectors<StateSchema>(
-    (state) =>
-        state.articleDetailsPage?.recommendations || recommendationsAdapter.getInitialState(),
+    (state) => state.articleDetailsPage?.recommendations || recommendationsAdapter.getInitialState(),
 );
 
 const articleDetailsRecommendationSlice = createSlice({

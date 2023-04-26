@@ -18,7 +18,14 @@ module.exports = {
         },
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'simolex-plugin-lint'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'i18next',
+        'react-hooks',
+        'simolex-plugin-lint',
+        'unused-imports',
+    ],
     rules: {
         indent: [2, 4, { SwitchCase: 1 }],
         'react/jsx-indent': [2, 4],
@@ -69,6 +76,7 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'no-confusing-arrow': 'warn',
         'function-paren-newline': 'off',
+        'unused-imports/no-unused-imports': 'error',
         'simolex-plugin-lint/path-checker': ['error', { alias: '@' }],
         'simolex-plugin-lint/public-api-imports': [
             'error',
