@@ -3,7 +3,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { ArticleView } from '../../model/types/article';
 import { ArticleList } from './ArticleList';
-import { Theme } from '@/shared/const/Theme';
+import { Theme } from '@/shared/const/theme';
 
 export default {
     title: 'entities/Article/ArticleList',

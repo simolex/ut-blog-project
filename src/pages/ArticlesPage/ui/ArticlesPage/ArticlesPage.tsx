@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
@@ -20,6 +20,7 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import styles from './ArticlesPage.module.scss';
 import { Text, TextVariant } from '@/shared/ui/Text/Text';
+import { ArticlePageFilters } from '../ArticlePageFilters/ArticlePageFilters';
 
 interface ArticlesPageProps {
     className?: string;
@@ -108,6 +109,7 @@ interface ArticlesPageProps {
 const reducers: ReducersList = {
     articlesPage: articlePageReducer,
 };
+const Header = () => <ArticlePageFilters className={styles.header} />;
 
 const ArticlesPage = (props: ArticlesPageProps) => {
     const { className } = props;
@@ -144,6 +146,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                 view={view}
                 articles={articles}
                 onLoadNextPage={onLoadNextPage}
+                Header={Header}
             />
         </DynamicModuleLoader>
     );

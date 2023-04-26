@@ -3,7 +3,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import { PageWrapper } from './PageWrapper';
-import { Theme } from '@/shared/const/Theme';
+import { Theme } from '@/shared/const/theme';
 
 export default {
     title: 'widgets/PageWrapper',

@@ -1,7 +1,6 @@
 import { Story } from '@storybook/react';
-// eslint-disable-next-line simolex-plugin-lint/layer-imports
-import { ThemeProvider } from '@/app/providers/ThemeProvider';
-import { Theme } from '@/shared/const/Theme';
+import { ThemeProvider } from '@/app/providers/ThemeProvider/testing';
+import { Theme } from '@/shared/const/theme';
 
 export const ThemeDecorator = (theme: Theme) => (StoryComponent: Story) =>
     (

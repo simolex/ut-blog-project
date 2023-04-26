@@ -3,7 +3,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 
 import { Text } from '@/shared/ui/Text/Text';
 import { Card } from './Card';
-import { Theme } from '@/shared/const/Theme';
+import { Theme } from '@/shared/const/theme';
 
 export default {
     title: 'shared/Card',

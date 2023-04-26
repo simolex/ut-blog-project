@@ -1,7 +1,9 @@
 import {
     forwardRef,
+    FunctionComponent,
     HTMLAttributeAnchorTarget,
     memo,
+    ReactNode,
     Ref,
     useEffect,
     useRef,
@@ -15,8 +17,6 @@ import {
     ListProps,
     GridScrollSeekPlaceholderProps,
 } from 'react-virtuoso';
-// TODO error layers
-import { ArticlePageFilters } from '@/pages/ArticlesPage';
 import { classNames } from '@/shared/lib/classNames';
 import { Text } from '@/shared/ui/Text/Text';
 import { Article, ArticleView } from '../../model/types/article';
@@ -33,14 +33,13 @@ interface ArticleListProps {
     target?: HTMLAttributeAnchorTarget;
     onLoadNextPage?: () => void;
     virtualized?: boolean;
+    Header?: FunctionComponent;
 }
 
 interface ArticleListContext {
     isLoading?: boolean;
     view?: ArticleView;
 }
-
-const Header = () => <ArticlePageFilters className={styles.header} />;
 
 const List = forwardRef(({ style, children }: ListProps, listRef: Ref<HTMLDivElement>) => (
     <div className={styles.listWrapper} style={{ ...style }} ref={listRef}>
@@ -84,6 +83,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         target,
         onLoadNextPage,
         virtualized = true,
+        Header,
     } = props;
     const { t } = useTranslation('article');
     const [selectedArticleId, setSelectedArticleId] = useState(1);

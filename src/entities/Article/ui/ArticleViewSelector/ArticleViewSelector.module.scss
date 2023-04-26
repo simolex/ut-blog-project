@@ -1,3 +1,14 @@
+.articleViewSelector {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .notSelected {
     fill: var(--sec-color);
 }

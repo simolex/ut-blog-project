@@ -40,7 +40,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     const views = (
         <>
             <Text text={String(article.views)} className={styles.views} />
-            <Icon Svg={EyeIcon} className={styles.viewsIcon} />
+            <Icon Svg={EyeIcon} className={styles.viewsIcon} width={24} height={24} />
         </>
     );
     const createdAt = <Text text={article.createdAt} className={styles.date} />;
