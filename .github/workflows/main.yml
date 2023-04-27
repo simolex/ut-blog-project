@@ -6,14 +6,14 @@ on:
     paths-ignore:
       - ".github/**"
       - ".vscode/**"
-      - "**/*.md"
+      - "**.md"
   pull_request:
     branches:
       - dev
     paths-ignore:
       - ".github/**"
       - ".vscode/**"
-      - "**/*.md"
+      - "**.md"
 jobs:
   init-host:
     name: 1. Load project & Linting

@@ -279,10 +279,7 @@ NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
 
 <br/>
 
-## Ссылки на документацию 
-
-<br/>
-
+#### Ссылки на документацию 
 
 [^1]: [Features sliced design](https://feature-sliced.design/ru/)
 [^2]: [react-i18next](https://react.i18next.com/)
