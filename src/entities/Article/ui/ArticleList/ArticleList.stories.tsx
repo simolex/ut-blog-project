@@ -28,4 +28,3 @@ isLoadingGrid.args = {
     articles: [],
     view: ArticleView.GRID,
 };
-isLoadingGrid.decorators = [ThemeDecorator(Theme.DARK)];

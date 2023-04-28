@@ -93,7 +93,7 @@ jobs:
               if: always()
               id: screenshots
               run: npm run test:ui:update
-            - name: Uploade fail screenshots
+            - name: Upload fail screenshots
               if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
               uses: actions/upload-artifact@v3
               with:

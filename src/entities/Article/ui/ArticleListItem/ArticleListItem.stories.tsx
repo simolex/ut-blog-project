@@ -102,4 +102,3 @@ Grid.args = {
     view: ArticleView.GRID,
     article,
 };
-Grid.decorators = [ThemeDecorator(Theme.DARK)];
