@@ -16,7 +16,3 @@ const Template: ComponentStory<typeof Overlay> = (props) => <Overlay {...props} 
 
 export const Normal = Template.bind({});
 Normal.args = {};
-
-export const NormalDark = Template.bind({});
-NormalDark.args = {};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];

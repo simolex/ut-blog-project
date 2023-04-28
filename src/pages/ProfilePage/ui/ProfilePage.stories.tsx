@@ -26,16 +26,3 @@ Light.decorators = [
         },
     }),
 ];
-
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [
-    ThemeDecorator(Theme.DARK),
-    StoreDecorator({
-        profile: {
-            isLoading: false,
-            readonly: true,
-            form: { username: 'admin', age: 21, lastname: 'Buggi', first: 'Wuggi', avatar },
-        },
-    }),
-];

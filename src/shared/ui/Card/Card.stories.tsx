@@ -19,7 +19,3 @@ export const Normal = Template.bind({});
 Normal.args = {
     children: <Text title="test" text="text text" />,
 };
-
-export const NormalDark = Template.bind({});
-NormalDark.args = { children: <Text title="test" text="text text" /> };
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];

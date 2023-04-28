@@ -61,14 +61,6 @@ SquareSizeXL.args = {
     size: ButtonSize.XL,
 };
 
-export const OutlineDark = Template.bind({});
-OutlineDark.args = {
-    children: 'Text',
-    theme: ButtonTheme.OUTLINE,
-};
-
-OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];
-
 export const OutlineDisabled = Template.bind({});
 OutlineDisabled.args = {
     children: 'Text',

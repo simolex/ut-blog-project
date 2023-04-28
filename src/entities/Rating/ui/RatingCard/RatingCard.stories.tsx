@@ -16,7 +16,3 @@ const Template: ComponentStory<typeof RatingCard> = (props) => <RatingCard {...p
 
 export const Normal = Template.bind({});
 Normal.args = {};
-
-export const NormalDark = Template.bind({});
-NormalDark.args = {};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];

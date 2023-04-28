@@ -15,7 +15,3 @@ const Template: ComponentStory<typeof NotFound> = (args) => <NotFound {...args} 
 
 export const Light = Template.bind({});
 Light.args = {};
-
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];

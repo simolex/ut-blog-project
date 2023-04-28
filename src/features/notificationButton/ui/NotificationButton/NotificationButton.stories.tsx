@@ -18,7 +18,3 @@ const Template: ComponentStory<typeof NotificationButton> = (props) => (
 
 export const Normal = Template.bind({});
 Normal.args = {};
-
-export const NormalDark = Template.bind({});
-NormalDark.args = {};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];

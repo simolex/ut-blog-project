@@ -36,12 +36,6 @@ Normal.args = {
     comments: commentPull,
 };
 
-export const NormalDark = Template.bind({});
-NormalDark.args = {
-    comments: commentPull,
-};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
-
 export const Loading = Template.bind({});
 Loading.args = {
     comments: commentPull,

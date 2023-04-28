@@ -43,27 +43,3 @@ NormalEditable.decorators = [
         },
     }),
 ];
-
-export const NormalDarkEditable = Template.bind({});
-NormalDarkEditable.args = {};
-NormalDarkEditable.decorators = [
-    StoreDecorator({
-        articleDetails: {
-            data: {
-                user: {
-                    id: '1',
-                },
-            },
-        },
-        user: {
-            authDate: {
-                id: '1',
-            },
-        },
-    }),
-    ThemeDecorator(Theme.DARK),
-];
-
-export const NormalDark = Template.bind({});
-NormalDark.args = {};
-NormalDark.decorators = [StoreDecorator({ articleDetails: {} }), ThemeDecorator(Theme.DARK)];
