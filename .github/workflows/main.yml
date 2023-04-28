@@ -6,14 +6,14 @@ on:
         paths-ignore:
             - '.github/**'
             - '.vscode/**'
-            - '**/README.md'
+            - '**.md'
     pull_request:
         branches:
             - dev
         paths-ignore:
             - '.github/**'
             - '.vscode/**'
-            - '**/README.md'
+            - '**.md'
 jobs:
     init-host:
         name: 1. Load project & Linting
@@ -43,7 +43,6 @@ jobs:
             - name: CSS linter
               if: always()
               run: npm run lint:scss
-
     unit-test:
         name: 2.2 Unit testing
         needs: init-host

@@ -17,5 +17,5 @@ const Template: ComponentStory<typeof Card> = (props) => <Card {...props} />;
 
 export const Normal = Template.bind({});
 Normal.args = {
-    children: <Text title="test" text="text text" />,
+    children: <Text title="Title" text="text text" />,
 };
