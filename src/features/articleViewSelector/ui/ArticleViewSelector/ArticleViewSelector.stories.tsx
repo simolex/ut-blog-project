@@ -1,19 +1,17 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { ArticleViewSelector } from './ArticleViewSelector';
-import { Theme } from '@/shared/const/theme';
 
 export default {
-    title: 'entities/Article/ArticleViewSelector',
+    title: 'features/ArticleViewSelector',
     component: ArticleViewSelector,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof ArticleViewSelector>;
 
-const Template: ComponentStory<typeof ArticleViewSelector> = (props) => (
-    <ArticleViewSelector {...props} />
+const Template: ComponentStory<typeof ArticleViewSelector> = (args) => (
+    <ArticleViewSelector {...args} />
 );
 
 export const Normal = Template.bind({});

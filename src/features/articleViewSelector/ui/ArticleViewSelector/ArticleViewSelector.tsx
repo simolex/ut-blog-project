@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ArticleView } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames';
-import { Icon } from '@/shared/ui/Icon';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
-import GridIcon from '@/shared/assets/icons/view-grid-20x20.svg';
-import ListIcon from '@/shared/assets/icons/view-list-20x20.svg';
-import { ArticleView } from '../../model/types/article';
+import { Icon } from '@/shared/ui/Icon';
 
+import ListIcon from '@/shared/assets/icons/view-list-20x20.svg';
+import GridIcon from '@/shared/assets/icons/view-grid-20x20.svg';
 import styles from './ArticleViewSelector.module.scss';
 
 interface ArticleViewSelectorProps {
