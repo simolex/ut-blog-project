@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "postinstall": "node ./scripts/clear-cache.js",
         "start": "webpack serve --env port=3000",
         "start:vite": "vite",
         "build:prod": "webpack --env mode=production",
