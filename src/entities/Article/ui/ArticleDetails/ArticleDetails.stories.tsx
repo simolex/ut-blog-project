@@ -100,17 +100,6 @@ Normal.decorators = [
     }),
 ];
 
-export const NormalDark = Template.bind({});
-NormalDark.args = {};
-NormalDark.decorators = [
-    StoreDecorator({
-        articleDetails: {
-            data: article,
-        },
-    }),
-    ThemeDecorator(Theme.DARK),
-];
-
 export const Loading = Template.bind({});
 Loading.args = {};
 Loading.decorators = [

@@ -47,7 +47,6 @@ Normal.parameters = {
 
 export const WithoutRate = Template.bind({});
 WithoutRate.args = {};
-WithoutRate.decorators = [ThemeDecorator(Theme.DARK)];
 WithoutRate.parameters = {
     mockData: [
         {

@@ -25,12 +25,6 @@ Normal.args = {
     comment: commentOne,
 };
 
-export const NormalDark = Template.bind({});
-NormalDark.args = {
-    comment: commentOne,
-};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
-
 export const Loading = Template.bind({});
 Loading.args = {
     comment: commentOne,

@@ -20,7 +20,3 @@ Normal.args = {
     onSendComment: action('onSendComment'),
 };
 Normal.decorators = [StoreDecorator({})];
-
-export const NormalDark = Template.bind({});
-NormalDark.args = { onSendComment: action('onSendComment') };
-NormalDark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];

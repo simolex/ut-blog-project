@@ -24,14 +24,3 @@ Light.decorators = [
         },
     }),
 ];
-
-export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [
-    StoreDecorator({
-        scrollFixer: {
-            scroll: {},
-        },
-    }),
-    ThemeDecorator(Theme.DARK),
-];

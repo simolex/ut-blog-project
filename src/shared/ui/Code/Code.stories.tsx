@@ -27,18 +27,3 @@ Normal.args = {
     const Template: ComponentStory<typeof Code> = (props) => <Code {...props} />;
     `,
 };
-
-export const Dark = Template.bind({});
-Dark.args = {
-    text: `    export default {
-        title: 'shared/Code',
-        component: Code,
-        argTypes: {
-            backgroundColor: { control: 'color' },
-        },
-    } as ComponentMeta<typeof Code>;
-    
-    const Template: ComponentStory<typeof Code> = (props) => <Code {...props} />;
-    `,
-};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];

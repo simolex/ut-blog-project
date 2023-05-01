@@ -1,6 +1,7 @@
 import { ChangeEvent, useMemo } from 'react';
 import { classNames } from '@/shared/lib/classNames';
 import styles from './Select.module.scss';
+import { typedMemo } from '@/shared/types';
 
 export interface SelectOption<T extends string> {
     value: T;
@@ -16,7 +17,7 @@ interface SelectProps<T extends string> {
     readonly?: boolean;
 }
 
-export const Select = <T extends string>(props: SelectProps<T>) => {
+export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
     const { className, label, options, valueSelected, onChange, readonly } = props;
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -26,11 +27,12 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
     };
 
     const optionList = useMemo(
-        () => options?.map(({ value, content }) => (
-            <option className={styles.option} value={value} key={value}>
-                {content}
-            </option>
-        )) || [],
+        () =>
+            options?.map(({ value, content }) => (
+                <option className={styles.option} value={value} key={value}>
+                    {content}
+                </option>
+            )) || [],
         [options],
     );
 
@@ -47,4 +49,4 @@ export const Select = <T extends string>(props: SelectProps<T>) => {
             </select>
         </div>
     );
-};
+});

@@ -26,14 +26,3 @@ Normal.decorators = [
         },
     }),
 ];
-
-export const NormalDark = Template.bind({});
-NormalDark.args = {};
-NormalDark.decorators = [
-    StoreDecorator({
-        articlesPage: {
-            _mounted: true,
-        },
-    }),
-    ThemeDecorator(Theme.DARK),
-];

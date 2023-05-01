@@ -51,25 +51,6 @@ OnlyText.args = {
     title: 'Далеко-далеко',
 };
 
-export const NormalDark = Template.bind({});
-NormalDark.args = {
-    title: 'Далеко-далеко',
-    text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
-};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];
-
-export const OnlyTitleDark = Template.bind({});
-OnlyTitleDark.args = {
-    text: 'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.',
-};
-OnlyTitleDark.decorators = [ThemeDecorator(Theme.DARK)];
-
-export const OnlyTextDark = Template.bind({});
-OnlyTextDark.args = {
-    title: 'Далеко-далеко',
-};
-OnlyTextDark.decorators = [ThemeDecorator(Theme.DARK)];
-
 export const Error = Template.bind({});
 Error.args = {
     title: 'Далеко-далеко',

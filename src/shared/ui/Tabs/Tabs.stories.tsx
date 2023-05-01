@@ -44,11 +44,3 @@ Normal.args = {
     value: 'tab2',
     onTabClick: action('onTabClick'),
 };
-
-export const NormalDark = Template.bind({});
-NormalDark.args = {
-    tabs: tabsContent,
-    value: 'tab2',
-    onTabClick: action('onTabClick'),
-};
-NormalDark.decorators = [ThemeDecorator(Theme.DARK)];

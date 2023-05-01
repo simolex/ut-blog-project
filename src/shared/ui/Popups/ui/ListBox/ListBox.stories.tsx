@@ -97,6 +97,3 @@ BottomRight.args = {
         },
     ],
 };
-// export const NormalDark = Template.bind({});
-// NormalDark.args = {};
-// NormalDark.decorators = [ThemeDecorator(Theme.DARK)];

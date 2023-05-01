@@ -19,10 +19,3 @@ Light.args = {
     value: 'Data',
     placeholder: 'Input',
 };
-
-export const Dark = Template.bind({});
-Dark.args = {
-    value: 'Data',
-    placeholder: 'Input',
-};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];

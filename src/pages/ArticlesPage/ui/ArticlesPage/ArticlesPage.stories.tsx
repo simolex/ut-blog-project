@@ -25,14 +25,3 @@ Normal.decorators = [
         },
     }),
 ];
-
-export const NormalDark = Template.bind({});
-NormalDark.args = {};
-NormalDark.decorators = [
-    StoreDecorator({
-        scrollFixer: {
-            scroll: {},
-        },
-    }),
-    ThemeDecorator(Theme.DARK),
-];
