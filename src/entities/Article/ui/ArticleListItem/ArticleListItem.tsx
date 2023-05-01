@@ -19,6 +19,8 @@ import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
 import EyeIcon from '@/shared/assets/icons/eye-20x20.svg';
 import styles from './ArticleListItem.module.scss';
 import { getRouteArticleDetails } from '@/shared/const/router';
+import { AppImage } from '@/shared/ui/AppImage';
+import { Skeleton } from '@/shared/ui/Skeleton';
 
 interface ArticleListItemProps {
     className?: string;
@@ -44,7 +46,14 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         </>
     );
     const createdAt = <Text text={article.createdAt} className={styles.date} />;
-    const image = <img src={article.img} alt={article.title} className={styles.img} />;
+    const image = (
+        <AppImage
+            fallback={<Skeleton width="100%" height="100%" />}
+            src={article.img}
+            alt={article.title}
+            className={styles.img}
+        />
+    );
 
     const onDetailsClick = () => {
         sessionStorage.setItem(ARTICLE_ITEM_SESSIONSTORAGE_INDEX, JSON.stringify(index));

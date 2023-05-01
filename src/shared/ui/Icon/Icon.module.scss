@@ -1,9 +1,11 @@
 .icon {
     fill: var(--primary-color);
+    color: var(--primary-color);
     stroke: var(--primary-color);
 }
 
 .inverted {
     fill: var(--inverted-primary-color);
     stroke: var(--inverted-primary-color);
+    color: var(--inverted-primary-color);
 }
