@@ -6,12 +6,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import CircularDependencyPlugin from 'circular-dependency-plugin';
-import {
-    DefinePlugin,
-    HotModuleReplacementPlugin,
-    ProgressPlugin,
-    WebpackError,
-} from 'webpack';
+import { DefinePlugin, HotModuleReplacementPlugin, ProgressPlugin, WebpackError } from 'webpack';
 
 // Где импортируешь типы, я бы советовал дописывать `type` .
 // Ускоряет обработку файла и выпиливает ненужные импорты.
@@ -25,16 +20,12 @@ export function buildPlugins({
     apiUrl,
     project,
 }: BuildOptions): WebpackPluginInstance[] {
+    const isProd = !isDev;
     const plugins = [
         new ProgressPlugin(),
 
         new HtmlWebpackPlugin({
             template: paths.html,
-        }),
-
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[name].[contenthash:8].css',
         }),
 
         new DefinePlugin({
@@ -43,9 +34,6 @@ export function buildPlugins({
             __PROJECT__: JSON.stringify(project),
         }),
 
-        new CopyPlugin({
-            patterns: [{ from: paths.locales, to: paths.buildLocales }],
-        }),
         new CircularDependencyPlugin({
             exclude: /node_modules/,
             failOnError: true,
@@ -54,6 +42,7 @@ export function buildPlugins({
                 compilation.errors.push(new WebpackError(pathsDetected.join(' --> ')));
             },
         }),
+
         new ForkTsCheckerWebpackPlugin({
             typescript: {
                 diagnosticOptions: {
@@ -64,6 +53,7 @@ export function buildPlugins({
             },
         }),
     ];
+
     if (needAnalize) {
         plugins.push(new BundleAnalyzerPlugin({ openAnalyzer: false }));
     }
@@ -71,6 +61,20 @@ export function buildPlugins({
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin({ overlay: false }));
         plugins.push(new HotModuleReplacementPlugin());
+    }
+
+    if (isProd) {
+        plugins.push(
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            }),
+        );
+        plugins.push(
+            new CopyPlugin({
+                patterns: [{ from: paths.locales, to: paths.buildLocales }],
+            }),
+        );
     }
 
     return plugins;
