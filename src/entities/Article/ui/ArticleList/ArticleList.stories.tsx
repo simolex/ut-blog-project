@@ -10,6 +10,13 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    decorators: [
+        (Story) => (
+            <div style={{ width: '100%', height: '100%' }}>
+                <Story />
+            </div>
+        ),
+    ],
 } as ComponentMeta<typeof ArticleList>;
 
 const Template: ComponentStory<typeof ArticleList> = (props) => <ArticleList {...props} />;

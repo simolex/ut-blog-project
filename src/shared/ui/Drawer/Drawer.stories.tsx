@@ -8,6 +8,13 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    decorators: [
+        (Story) => (
+            <div style={{ padding: 10, width: '100%', height: '100%' }}>
+                <Story />
+            </div>
+        ),
+    ],
 } as ComponentMeta<typeof Drawer>;
 
 const Template: ComponentStory<typeof Drawer> = (props) => <Drawer {...props} />;
