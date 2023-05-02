@@ -12,7 +12,10 @@ const AdminPanelPage = memo((props: AdminPanelPageProps) => {
     const { t } = useTranslation('admin');
 
     return (
-        <PageWrapper className={classNames(styles.adminPanelPage, {}, [className])}>
+        <PageWrapper
+            data-testid="AdminPanelPage"
+            className={classNames(styles.adminPanelPage, {}, [className])}
+        >
             {t('admin-panel-page')}
         </PageWrapper>
     );

@@ -9,8 +9,9 @@ import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfin
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import styles from './PageWrapper.module.scss';
+import { TestIdProps } from '@/shared/types/testid';
 
-interface PageWrapperProps {
+interface PageWrapperProps extends TestIdProps {
     className?: string;
     children: ReactNode;
     onScrollEnd?: () => void;
@@ -55,6 +56,7 @@ export const PageWrapper = (props: PageWrapperProps) => {
             className={classNames(styles.pageWrapper, {}, [className])}
             onScroll={onScroll}
             id={PAGE_ID}
+            data-testid={props['data-testid'] ?? 'PageWrapper'}
         >
             {children}
             {onScrollEnd || !isLoading ? <div ref={triggerRef} className={styles.trigger} /> : null}

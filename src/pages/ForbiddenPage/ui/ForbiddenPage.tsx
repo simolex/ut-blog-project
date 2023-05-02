@@ -12,7 +12,9 @@ const ForbiddenPage = (props: ForbiddenPageProps) => {
     const { t } = useTranslation();
 
     return (
-        <PageWrapper className={classNames('', {}, [className])}>{t('access-denied')}</PageWrapper>
+        <PageWrapper data-testid="ForbiddenPage" className={classNames('', {}, [className])}>
+            {t('access-denied')}
+        </PageWrapper>
     );
 };
 

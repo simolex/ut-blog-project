@@ -20,7 +20,7 @@ const ProfilePage = (props: ProfilePageProps) => {
     // }
 
     return (
-        <PageWrapper className={classNames('', {}, [className])}>
+        <PageWrapper data-testid="ProfilePage" className={classNames('', {}, [className])}>
             <VStack gap="16" max>
                 <EditableProfileCard id={profileId} />
             </VStack>

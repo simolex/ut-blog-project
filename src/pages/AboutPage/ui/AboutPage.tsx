@@ -6,7 +6,7 @@ import { Counter } from '@/entities/Counter';
 const AboutPage: FC = () => {
     const { t } = useTranslation('about');
     return (
-        <PageWrapper>
+        <PageWrapper data-testid="AboutPage">
             {t('О сайте')}
             <Counter />
         </PageWrapper>
