@@ -1,9 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import avatar from '@/shared/assets/tests/avatar.jpg';
 import ProfilePage from './ProfilePage';
-import { Theme } from '@/shared/const/theme';
 
 export default {
     title: 'pages/ProfilePage',

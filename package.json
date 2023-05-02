@@ -33,7 +33,8 @@
         "update:imports": "ts-node ./scripts/refactoring/updateImports.ts"
     },
     "lint-staged": {
-        "**/*.{ts,tsx}": "eslint"
+        "**/*.{ts,tsx}": "eslint",
+        "**/*.scss": "stylelint"
     },
     "repository": {
         "type": "git",

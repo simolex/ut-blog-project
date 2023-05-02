@@ -1,8 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
 
 import { CommentItem } from './CommentItem';
-import { Theme } from '@/shared/const/theme';
 
 const commentOne = {
     id: '3',
