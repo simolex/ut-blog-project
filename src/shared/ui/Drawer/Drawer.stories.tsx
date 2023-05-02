@@ -13,4 +13,8 @@ export default {
 const Template: ComponentStory<typeof Drawer> = (props) => <Drawer {...props} />;
 
 export const Normal = Template.bind({});
-Normal.args = {};
+Normal.args = {
+    isOpen: true,
+    children:
+        'Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Которой, они несколько своих бросил о встретил коварный выйти путь собрал дороге, силуэт над пустился вдали агентство дорогу? Моей, речью?',
+};
