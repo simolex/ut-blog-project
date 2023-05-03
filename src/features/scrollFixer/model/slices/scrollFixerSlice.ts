@@ -1,11 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { buildSlice } from '@/shared/lib/store';
 import { ScrollFixerSchema } from '../types/scrollFixerSchema';
 
 const initialState: ScrollFixerSchema = {
     scroll: {},
 };
 
-export const scrollFixerSlice = createSlice({
+export const scrollFixerSlice = buildSlice({
     name: 'scrollFixer',
     initialState,
     reducers: {
@@ -16,21 +17,10 @@ export const scrollFixerSlice = createSlice({
             state.scroll[payload.path] = payload.position;
         },
     },
-    // extraReducers: (builder) => {
-    //     builder
-    //         .addCase(loginByUsername.pending, (state) => {
-    //             state.error = undefined;
-    //             state.isLoading = true;
-    //         })
-    //         .addCase(loginByUsername.fulfilled, (state) => {
-    //             state.isLoading = false;
-    //         })
-    //         .addCase(loginByUsername.rejected, (state, action) => {
-    //             state.isLoading = false;
-    //             state.error = action.payload;
-    //         });
-    // },
 });
 
-export const { actions: scrollFixerActions } = scrollFixerSlice;
-export const { reducer: scrollFixerReducer } = scrollFixerSlice;
+export const {
+    actions: scrollFixerActions,
+    reducer: scrollFixerReducer,
+    useActions: useScrollFixerActions,
+} = scrollFixerSlice;
