@@ -115,7 +115,7 @@ jobs:
       #       name: loki-fail-difference
   publish-reports:
     name: Publish reports after testing
-    if: ${{failure() && (needs.unit-test.result == 'failure' || needs.screens.result == 'failure'}}
+    if: ${{failure() && (needs.unit-test.result == 'failure' || needs.screens.result == 'failure')}}
     needs:
       - unit-test
       - screens
