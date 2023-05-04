@@ -64,12 +64,13 @@ jobs:
           fail-on-cache-miss: true
       - name: unit testing
         id: unit_tests
+        if: always()
         run: npm run test:unit
       - name: Upload fail unit-tests
         if: ${{ failure() && steps.unit_tests.conclusion == 'failure'}}
         uses: actions/upload-artifact@v3
         with:
-          path: "report"
+          path: "reports"
           name: unit-fail-report
   screens:
     name: 2.2 Screenshots testing project
@@ -110,9 +111,7 @@ jobs:
   publish-reports:
     name: Publish reports after testing
     if: ${{failure() && (needs.unit-test.result == 'failure' || needs.screens.result == 'failure')}}
-    needs:
-      - unit-test
-      - screens
+    needs: [unit-test, screens]
     permissions:
       contents: write
       pages: write
@@ -155,9 +154,7 @@ jobs:
 
   build:
     name: 3. Build production
-    needs:
-      - unit-test
-      - screens
+    needs: [unit-test, screens]
     runs-on: windows-2019
     steps:
       - name: Get repository code
