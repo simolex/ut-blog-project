@@ -43,7 +43,7 @@ jobs:
         if: always()
         run: npm run lint:scss
   unit-test:
-    name: 2.2 Unit testing
+    name: 2.1 Unit testing
     needs: init-host
     runs-on: windows-2019
     steps:
@@ -72,16 +72,9 @@ jobs:
           path: "report"
           name: unit-fail-report
   screens:
-    name: 2.3 Screenshots testing project
+    name: 2.2 Screenshots testing project
     needs: init-host
     runs-on: windows-2019
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
@@ -108,21 +101,12 @@ jobs:
       - name: Generate HTML report
         if: always()
         run: npm run test:ui:report
-      - name: Setup Pages
-        if: always()
-        uses: actions/configure-pages@v3
       - name: Upload artifact
         if: always()
         uses: actions/upload-pages-artifact@v1
         with:
           path: ".loki"
           name: loki-fail-difference
-      - name: Deploy to GitHub Pages
-        id: deployment
-        if: always()
-        uses: actions/deploy-pages@v2
-        with:
-          artifact_name: loki-fail-difference
       # - name: Upload fail screenshots
       #   if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
       #   uses: actions/upload-artifact@v3
@@ -131,11 +115,34 @@ jobs:
       #       name: loki-fail-difference
   publish-reports:
     name: Publish reports after testing
-    if: ${{failure() && needs.unit-test.result == 'failure'}}
+    if: ${{failure() && (needs.unit-test.result == 'failure' || && needs.screens.result == 'failure'}}
     needs:
       - unit-test
+      - screens
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: windows-2019
     steps:
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v3
+      - name: Deploy to GitHub Pages Loki
+        id: deployment
+        if: always()
+        uses: actions/deploy-pages@v2
+        with:
+          artifact_name: loki-fail-difference
+      - name: Deploy to GitHub Pages Tests
+        id: deployment
+        if: always()
+        uses: actions/deploy-pages@v2
+        with:
+          artifact_name: unit-fail-report
       - name: Publish
         if: always()
         run: echo "Publish reports after testing"
