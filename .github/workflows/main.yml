@@ -101,18 +101,12 @@ jobs:
       - name: Generate HTML report
         if: always()
         run: npm run test:ui:report
-      - name: Upload artifact
-        if: always()
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload fail screenshots report
+        if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
+        uses: actions/upload-artifact@v3
         with:
           path: ".loki"
-          name: loki-fail-difference
-      # - name: Upload fail screenshots
-      #   if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #       path: '.loki/difference'
-      #       name: loki-fail-difference
+          name: loki-fail-report
   publish-reports:
     name: Publish reports after testing
     if: ${{failure() && (needs.unit-test.result == 'failure' || needs.screens.result == 'failure')}}
@@ -128,24 +122,37 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: windows-2019
     steps:
+      - uses: actions/checkout@v3
+
+      - name: Download Loki reports
+        if: always()
+        uses: actions/download-artifact@v3
+        with:
+          name: loki-fail-report
+          path: pages/loki
+      - name: Download Unit tests report
+        if: always()
+        uses: actions/download-artifact@v3
+        with:
+          name: unit-fail-report
+          path: pages
+
       - name: Setup Pages
         if: always()
         uses: actions/configure-pages@v3
-      - name: Deploy to GitHub Pages Loki
-        id: deployment
+      - name: Upload pages artifact
         if: always()
-        uses: actions/deploy-pages@v2
+        uses: actions/upload-pages-artifact@v1
         with:
-          artifact_name: loki-fail-difference
+          path: "pages"
+          name: github-pages
       - name: Deploy to GitHub Pages Tests
         id: deployment
         if: always()
         uses: actions/deploy-pages@v2
         with:
-          artifact_name: unit-fail-report
-      - name: Publish
-        if: always()
-        run: echo "Publish reports after testing"
+          artifact_name: github-pages
+
   build:
     name: 3. Build production
     needs:
