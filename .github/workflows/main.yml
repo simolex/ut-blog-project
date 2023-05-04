@@ -131,6 +131,7 @@ jobs:
       #       name: loki-fail-difference
   publish-reports:
     name: Publish reports after testing
+    if: ${{failure() && needs.unit-test.result == 'failure'}}
     needs:
       - unit-test
     runs-on: windows-2019
