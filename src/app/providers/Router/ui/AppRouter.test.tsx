@@ -10,7 +10,7 @@ describe('app/provider/AppRouter', () => {
             route: getRouteAbout(),
         });
 
-        const page = await screen.findByTestId('AboutPage');
+        const page = await screen.findByTestId('AboutPage----'); // Fail
         expect(page).toBeInTheDocument();
     });
 

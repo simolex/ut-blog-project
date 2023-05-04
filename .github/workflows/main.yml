@@ -1,148 +1,164 @@
 name: Linting, testing and building
 on:
-    push:
-        branches:
-            - dev
-        paths-ignore:
-            - '.github/**'
-            - '.vscode/**'
-            - '**.md'
-    pull_request:
-        branches:
-            - dev
-        paths-ignore:
-            - '.github/**'
-            - '.vscode/**'
-            - '**.md'
+  push:
+    branches:
+      - dev
+    paths-ignore:
+      - ".github/**"
+      - ".vscode/**"
+      - "**.md"
+  pull_request:
+    branches:
+      - dev
+    paths-ignore:
+      - ".github/**"
+      - ".vscode/**"
+      - "**.md"
 jobs:
-    init-host:
-        name: 1. Load project & Linting
-        runs-on: windows-2019
-        steps:
-            - name: Get repository code
-              uses: actions/checkout@v3
-            - name: Starting Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 17.4.0
-            - name: Cache Start
-              id: cache-npm
-              uses: actions/cache@v3
-              with:
-                  path: node_modules
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
+  init-host:
+    name: 1. Load project & Linting
+    runs-on: windows-2019
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.4.0
+      - name: Cache Start
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-            - name: Install node modules
-              run: npm ci
-            - name: Linting typescript
-              if: always()
-              run: npm run lint:ts
-            - name: Linting SCSS
-              if: always()
-              run: npm run lint:scss
-    unit-test:
-        name: 2.2 Unit testing
-        needs: init-host
-        runs-on: windows-2019
-        steps:
-            - name: Get repository code
-              uses: actions/checkout@v3
-            - name: Starting Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 17.4.0
-            - name: Cache Restore
-              id: cache-npm
-              uses: actions/cache/restore@v3
-              with:
-                  path: node_modules
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
-                  fail-on-cache-miss: true
-            - name: unit testing
-              run: npm run test:unit
-    screens:
-        name: 2.3 Screenshots testing project
-        needs: init-host
-        runs-on: windows-2019
-        permissions:
-            contents: write
-            pages: write
-            id-token: write
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        steps:
-            - name: Get repository code
-              uses: actions/checkout@v3
-            - name: Starting Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 17.4.0
-            - name: Cache Restore
-              id: cache-npm
-              uses: actions/cache/restore@v3
-              with:
-                  path: node_modules
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
-                  fail-on-cache-miss: true
-            - name: build storybook
-              if: always()
-              run: npm run storybook:build
-            - name: Screenshot testing
-              if: always()
-              id: screenshots
-              run: npm run test:ui:ci
-            - name: Generate HTML report
-              if: always()
-              run: npm run test:ui:report
-            - name: Setup Pages
-              if: always()
-              uses: actions/configure-pages@v3
-            - name: Upload artifact
-              if: always()
-              uses: actions/upload-pages-artifact@v1
-              with:
-                  path: '.loki'
-                  name: loki-fail-difference
-            - name: Deploy to GitHub Pages
-              id: deployment
-              if: always()
-              uses: actions/deploy-pages@v2
-              with:
-                  artifact_name: loki-fail-difference
-            # - name: Upload fail screenshots
-            #   if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
-            #   uses: actions/upload-artifact@v3
-            #   with:
-            #       path: '.loki/difference'
-            #       name: loki-fail-difference
-    build:
-        name: 3. Build production
-        needs:
-            - unit-test
-            - screens
-        runs-on: windows-2019
-        steps:
-            - name: Get repository code
-              uses: actions/checkout@v3
-            - name: Starting Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 17.4.0
-            - name: Cache Restore
-              id: cache-npm
-              uses: actions/cache/restore@v3
-              with:
-                  path: node_modules
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
-                  fail-on-cache-miss: true
-            - name: build production project
-              run: npm run build:prod
+      - name: Install node modules
+        run: npm ci
+      - name: Linting typescript
+        if: always()
+        run: npm run lint:ts
+      - name: Linting SCSS
+        if: always()
+        run: npm run lint:scss
+  unit-test:
+    name: 2.2 Unit testing
+    needs: init-host
+    runs-on: windows-2019
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.4.0
+      - name: Cache Restore
+        id: cache-npm
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          fail-on-cache-miss: true
+      - name: unit testing
+        id: unit_tests
+        run: npm run test:unit
+      - name: Upload fail unit-tests
+        if: ${{ failure() && steps.unit_tests.conclusion == 'failure'}}
+        uses: actions/upload-artifact@v3
+        with:
+          path: "report"
+          name: unit-fail-report
+  screens:
+    name: 2.3 Screenshots testing project
+    needs: init-host
+    runs-on: windows-2019
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.4.0
+      - name: Cache Restore
+        id: cache-npm
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          fail-on-cache-miss: true
+      - name: build storybook
+        if: always()
+        run: npm run storybook:build
+      - name: Screenshot testing
+        if: always()
+        id: screenshots
+        run: npm run test:ui:ci
+      - name: Generate HTML report
+        if: always()
+        run: npm run test:ui:report
+      - name: Setup Pages
+        if: always()
+        uses: actions/configure-pages@v3
+      - name: Upload artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ".loki"
+          name: loki-fail-difference
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: always()
+        uses: actions/deploy-pages@v2
+        with:
+          artifact_name: loki-fail-difference
+      # - name: Upload fail screenshots
+      #   if: ${{ failure() && steps.screenshots.conclusion == 'failure'}}
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #       path: '.loki/difference'
+      #       name: loki-fail-difference
+  publish-reports:
+    name: Publish reports after testing
+    needs:
+      - unit-test
+    runs-on: windows-2019
+    steps:
+      - name: Publish
+        if: always()
+        run: echo "Publish reports after testing"
+  build:
+    name: 3. Build production
+    needs:
+      - unit-test
+      - screens
+    runs-on: windows-2019
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Starting Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 17.4.0
+      - name: Cache Restore
+        id: cache-npm
+        uses: actions/cache/restore@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          fail-on-cache-miss: true
+      - name: build production project
+        run: npm run build:prod

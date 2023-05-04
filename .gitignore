@@ -3,5 +3,5 @@
 /storybook-static/
 .loki/report.json
 .loki/report.html
-/reports
+/reports/unit/
 .dependency-cruiser.js
