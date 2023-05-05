@@ -6,11 +6,6 @@ module.exports = {
         diffMask: true,
     },
     fetchFailIgnore: '.*',
-    // 'looks-same': {
-    //     ignoreAntialiasing: true,
-    //     antialiasingTolerance: 2,
-    //     ignoreCaret: true,
-    // },
     configurations: {
         'chrome.laptop': {
             target: 'chrome.app',
