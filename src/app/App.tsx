@@ -1,7 +1,7 @@
 import './styles/index.scss';
 
 import { Suspense, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getUserMounted, userActions } from '@/entities/User';
 
 import { Navbar } from '@/widgets/Navbar';
@@ -9,10 +9,11 @@ import { Sidebar } from '@/widgets/Sidebar';
 import { classNames } from '@/shared/lib/classNames';
 import { AppRouter } from './providers/Router';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 const App = () => {
     const { theme } = useTheme();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const mounted = useSelector(getUserMounted);
 
     useEffect(() => {
