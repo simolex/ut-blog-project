@@ -17,6 +17,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
 
     const userData = useSelector(getUserAuthData);
     const userId = userData?.id || '';
+
     const { data, isLoading } = useGetArticleRatings({ articleId, userId });
 
     const [setArticleMutation] = useSetArticleRatings();
@@ -62,6 +63,7 @@ const ArticleRating = memo((props: ArticleRatingProps) => {
             hasFeedback
             onAccept={onAccept}
             onCancel={onCancel}
+            data-testid="ArticleRating"
         />
     );
 });

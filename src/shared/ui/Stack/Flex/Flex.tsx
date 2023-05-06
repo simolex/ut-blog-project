@@ -2,6 +2,7 @@ import { ElementType } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames';
 import { PolymorphicComponentProp } from '@/shared/types';
 import styles from './Flex.module.scss';
+import { TestIdProps } from '@/shared/types/testid';
 
 export type FlexJustify = 'start' | 'end' | 'center' | 'between';
 export type FlexAlign = 'start' | 'end' | 'center';
@@ -33,7 +34,7 @@ const gapClasses: Record<FlexGap, string> = {
     32: styles['gap-32'],
 };
 
-export interface FlexProps {
+export interface FlexProps extends TestIdProps {
     className?: string;
     justify?: FlexJustify;
     align?: FlexAlign;
@@ -49,6 +50,7 @@ export const Flex = <E extends ElementType = typeof defaultFlexTag>(
 ) => {
     const {
         className,
+        'data-testid': dataTestId = 'Stack',
         justify = 'start',
         align = 'center',
         direction = 'row',
@@ -72,5 +74,9 @@ export const Flex = <E extends ElementType = typeof defaultFlexTag>(
 
     const Tag = as ?? defaultFlexTag;
 
-    return <Tag className={classNames(styles.flex, mods, classes)}>{children}</Tag>;
+    return (
+        <Tag className={classNames(styles.flex, mods, classes)} data-testid={dataTestId}>
+            {children}
+        </Tag>
+    );
 };

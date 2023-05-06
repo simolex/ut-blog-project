@@ -6,7 +6,7 @@ import { ArticleDetailsRecommendationSchema } from '../types/articleDetailsRecom
 import { buildSlice } from '@/shared/lib/store';
 
 const recommendationsAdapter = createEntityAdapter<Article>({
-    selectId: (article) => article.id,
+    selectId: (article) => article.id ?? '',
 });
 
 export const getArticleRecommendations = recommendationsAdapter.getSelectors<StateSchema>(

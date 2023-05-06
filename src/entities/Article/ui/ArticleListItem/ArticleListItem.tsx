@@ -65,11 +65,14 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         ) as ArticleTextBlock;
 
         return (
-            <div className={classNames(styles.articleListItem, {}, [className, styles[view]])}>
+            <div
+                className={classNames(styles.articleListItem, {}, [className, styles[view]])}
+                data-testid="ArticleList.Item"
+            >
                 <Card className={styles.card}>
                     <div className={styles.header}>
-                        <Avatar size={30} src={article.user.avatar} />
-                        <Text text={article.user.username} className={styles.username} />
+                        <Avatar size={30} src={article.user?.avatar} />
+                        <Text text={article.user?.username} className={styles.username} />
                         {createdAt}
                     </div>
                     {title}
@@ -79,7 +82,7 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         <ArticleTextBlockComponent block={textBlock} className={styles.textBlock} />
                     )}
                     <div className={styles.footer}>
-                        <AppLink target={target} to={getRouteArticleDetails(article.id)}>
+                        <AppLink target={target} to={getRouteArticleDetails(article.id ?? '')}>
                             <Button onClick={onDetailsClick}>{t('article-read-more')}</Button>
                         </AppLink>
                         {views}
@@ -92,9 +95,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     return (
         <AppLink
             target={target}
-            to={getRouteArticleDetails(article.id)}
+            to={getRouteArticleDetails(article.id ?? '')}
             className={classNames(styles.articleListItem, {}, [className, styles[view]])}
             onClick={onDetailsClick}
+            data-testid="ArticleList.Item"
         >
             <Card className={styles.card}>
                 <div className={styles.imageWrapper}>

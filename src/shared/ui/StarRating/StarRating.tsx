@@ -3,8 +3,9 @@ import { classNames } from '@/shared/lib/classNames';
 import { Icon } from '@/shared/ui/Icon';
 import StarIcon from '@/shared/assets/icons/star-52x52.svg';
 import styles from './StarRating.module.scss';
+import { TestIdProps } from '@/shared/types/testid';
 
-interface StarRatingProps {
+interface StarRatingProps extends TestIdProps {
     className?: string;
     onSelect?: (starsCount: number) => void;
     onReset?: () => void;
@@ -15,7 +16,14 @@ interface StarRatingProps {
 const stars = [1, 2, 3, 4, 5];
 
 export const StarRating = memo((props: StarRatingProps) => {
-    const { className, size = 30, selectedStars = 0, onSelect, onReset } = props;
+    const {
+        className,
+        size = 30,
+        selectedStars = 0,
+        onSelect,
+        onReset,
+        'data-testid': dataTestId = 'StarRating',
+    } = props;
 
     const [currentStarCount, setCurrentStarCount] = useState(selectedStars);
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
@@ -59,6 +67,8 @@ export const StarRating = memo((props: StarRatingProps) => {
                     onMouseLeave={onLeave}
                     onMouseEnter={onHover(starNumber)}
                     onClick={onClick(starNumber)}
+                    data-testid={`${dataTestId}.Rate-${starNumber}`}
+                    data-selected={currentStarCount >= starNumber}
                 />
             ))}
         </div>

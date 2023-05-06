@@ -7,7 +7,7 @@ type VStackProps = Omit<FlexProps, 'direction'>;
 export const VStack = <E extends ElementType = typeof defaultFlexTag>(
     props: PolymorphicComponentProp<E, VStackProps>,
 ) => {
-    const { as, align = 'start', ...otherProps } = props;
+    const { as, align = 'start', 'data-testid': dataTestId = 'VStack', ...otherProps } = props;
     const tag = as ?? defaultFlexTag;
-    return <Flex direction="column" align={align} {...otherProps} />;
+    return <Flex direction="column" align={align} data-testid={dataTestId} {...otherProps} />;
 };

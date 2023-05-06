@@ -10,8 +10,9 @@ import { Modal } from '@/shared/ui/Modal';
 import { Input } from '@/shared/ui/Input';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/Button';
 import { Drawer } from '@/shared/ui/Drawer';
+import { TestIdProps } from '@/shared/types/testid';
 
-interface RatingCardProps {
+interface RatingCardProps extends TestIdProps {
     className?: string;
     title: string;
     feedbackTitle?: string;
@@ -22,7 +23,16 @@ interface RatingCardProps {
 }
 
 export const RatingCard = memo((props: RatingCardProps) => {
-    const { className, title, feedbackTitle, hasFeedback, onCancel, onAccept, rate = 0 } = props;
+    const {
+        className,
+        title,
+        feedbackTitle,
+        hasFeedback,
+        onCancel,
+        onAccept,
+        rate = 0,
+        'data-testid': dataTestId = 'RatingCard',
+    } = props;
     const { t } = useTranslation();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,25 +64,41 @@ export const RatingCard = memo((props: RatingCardProps) => {
     const modalContent = (
         <>
             <Text title={feedbackTitle} />
-            <Input placeholder={t('your-feedback')} value={feedback} onChange={setFeedback} />
+            <Input
+                placeholder={t('your-feedback')}
+                value={feedback}
+                onChange={setFeedback}
+                data-testid={`${dataTestId}.Input`}
+            />
         </>
     );
 
     return (
         <Card className={classNames('', {}, [className])} fullWidth>
-            <VStack align="center" gap="8" max>
+            <VStack align="center" gap="8" max data-testid={`${dataTestId}.Card`}>
                 <Text title={starsCount ? t('thank-for-feedback') : title} />
-                <StarRating selectedStars={starsCount} size={40} onSelect={onSelectStars} />
+                <StarRating
+                    selectedStars={starsCount}
+                    size={40}
+                    onSelect={onSelectStars}
+                    data-testid={dataTestId}
+                />
             </VStack>
             <BrowserView>
                 <Modal isOpen={isModalOpen} onClose={cancelHandle} lazy>
                     <VStack max gap="32">
                         {modalContent}
                         <HStack max gap="16" justify="end">
-                            <Button onClick={cancelHandle} theme={ButtonTheme.OUTLINE_STRONG}>
+                            <Button
+                                onClick={cancelHandle}
+                                theme={ButtonTheme.OUTLINE_STRONG}
+                                data-testid={`${dataTestId}.Close`}
+                            >
                                 {t('close')}
                             </Button>
-                            <Button onClick={acceptHandle}>{t('send')}</Button>
+                            <Button onClick={acceptHandle} data-testid={`${dataTestId}.Send`}>
+                                {t('send')}
+                            </Button>
                         </HStack>
                     </VStack>
                 </Modal>

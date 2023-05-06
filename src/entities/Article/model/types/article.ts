@@ -42,12 +42,12 @@ export type ArticleBlock = ArticleCodeBlock | ArticleTextBlock | ArticleImageBlo
 export type ArticleType = 'ALL' | 'IT' | 'SCIENCE' | 'ECONOMICS';
 
 export interface Article {
-    id: string;
+    id?: string;
     title: string;
     subtitle: string;
     img: string;
     views: number;
-    user: User; // bad FSD?
+    user?: User; // bad FSD?
     createdAt: string;
     type: ArticleType[];
     blocks?: ArticleBlock[];

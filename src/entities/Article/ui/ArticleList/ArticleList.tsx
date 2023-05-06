@@ -42,7 +42,12 @@ interface ArticleListContext {
 }
 
 const List = forwardRef(({ style, children }: ListProps, listRef: Ref<HTMLDivElement>) => (
-    <div className={styles.listWrapper} style={{ ...style }} ref={listRef}>
+    <div
+        className={styles.listWrapper}
+        style={{ ...style }}
+        ref={listRef}
+        data-testid="ArticleList.List"
+    >
         {children}
     </div>
 ));
