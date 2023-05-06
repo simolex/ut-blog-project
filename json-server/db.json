@@ -86,6 +86,13 @@
             "password": "123",
             "roles": ["MANAGER"],
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
+        },
+        {
+            "id": "4",
+            "username": "testuser",
+            "password": "123",
+            "roles": ["ADMIN"],
+            "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
         }
     ],
     "profile": [

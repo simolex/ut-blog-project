@@ -11,7 +11,7 @@
         ],
         "allowJs": true,
         // "checkJs": true,
-        "isolatedModules": true,
+        "isolatedModules": false,
     },
     "extends": "../tsconfig.json",
     "include": [

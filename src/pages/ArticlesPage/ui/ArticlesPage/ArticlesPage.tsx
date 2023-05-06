@@ -141,6 +141,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <ArticleList
+                data-testid="ArticlesPage"
                 className={styles.list}
                 isLoading={isLoading}
                 view={view}

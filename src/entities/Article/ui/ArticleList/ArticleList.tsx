@@ -23,8 +23,9 @@ import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';
 import { ARTICLE_ITEM_SESSIONSTORAGE_INDEX } from '../../model/const';
 import styles from './ArticleList.module.scss';
+import { TestIdProps } from '@/shared/types/testid';
 
-interface ArticleListProps {
+interface ArticleListProps extends TestIdProps {
     className?: string;
     articles: Article[];
     isLoading?: boolean;
@@ -46,9 +47,10 @@ const List = forwardRef(({ style, children }: ListProps, listRef: Ref<HTMLDivEle
     </div>
 ));
 
-const getSkeleton = (view: ArticleView) => new Array(view === ArticleView.GRID ? 9 : 3)
-    .fill(0)
-    .map((item, index) => <ArticleListItemSkeleton key={index} view={view} />);
+const getSkeleton = (view: ArticleView) =>
+    new Array(view === ArticleView.GRID ? 9 : 3)
+        .fill(0)
+        .map((item, index) => <ArticleListItemSkeleton key={index} view={view} />);
 
 const ArticleItemPlaceholder = (props: GridScrollSeekPlaceholderProps) => {
     const { index } = props;
@@ -81,6 +83,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         target,
         onLoadNextPage,
         virtualized = true,
+        'data-testid': dataTestId = 'ArticleList',
         Header,
     } = props;
     const { t } = useTranslation('article');
@@ -121,6 +124,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         <div className={classNames(styles.articleList, {}, [className, styles[view]])}>
             {view === 'LIST' ? (
                 <Virtuoso
+                    data-testid={dataTestId}
                     style={{ height: '100%' }}
                     context={{ isLoading, view: ArticleView.LIST }}
                     data={articles}
@@ -135,6 +139,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
                 />
             ) : (
                 <VirtuosoGrid
+                    data-testid={dataTestId}
                     style={{ height: '100%' }}
                     context={{ isLoading, view: ArticleView.GRID }}
                     ref={virtuosoGridRef}
