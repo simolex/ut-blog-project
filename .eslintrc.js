@@ -4,7 +4,7 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended'],
+    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'prettier'],
     settings: {
         react: {
             version: 'detect',
@@ -27,9 +27,9 @@ module.exports = {
         'unused-imports',
     ],
     rules: {
-        indent: [2, 4, { SwitchCase: 1 }],
-        'react/jsx-indent': [2, 4],
-        'react/jsx-indent-props': [2, 4],
+        // indent: [2, 4, { SwitchCase: 1 }],
+        // 'react/jsx-indent': [2, 4],
+        // 'react/jsx-indent-props': [2, 4],
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
         'object-curly-newline': [2, { consistent: true }],
         'linebreak-style': [0],

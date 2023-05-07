@@ -27,4 +27,5 @@
    ],
    "prettier.endOfLine": "lf",
    "prettier.printWidth": 119,
+   "prettier.configPath": ".prettierrc.json",
 }

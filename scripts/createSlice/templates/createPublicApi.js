@@ -7,11 +7,12 @@ module.exports = async (layer, sliceName) => {
     const schemaName = `${sliceName}Schema`;
 
     try {
-        await fs.writeFile(resolveRoot('src', layer, sliceName, 'index.ts'), `
+        await fs.writeFile(
+            resolveRoot('src', layer, sliceName, 'index.ts'),
+            `
 export { ${componentName} } from './ui/${componentName}/${componentName}';
 export { ${firstCharUpperCase(schemaName)} } from './model/types/${schemaName}';
 `,
-        // eslint-disable-next-line function-paren-newline
         );
     } catch (e) {
         console.log('Не удалось создать PUBLIC API');
