@@ -16,7 +16,7 @@ export const Light = Template.bind({});
 Light.args = {};
 Light.decorators = [
     StoreDecorator({
-        user: { authDate: {} },
+        user: { authData: {} },
     }),
 ];
 
@@ -24,6 +24,6 @@ export const NoAuth = Template.bind({});
 NoAuth.args = {};
 NoAuth.decorators = [
     StoreDecorator({
-        user: { authDate: undefined },
+        user: { authData: undefined },
     }),
 ];

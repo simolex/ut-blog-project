@@ -23,7 +23,7 @@ const Navbar = ({ className }: NavbarProps) => {
     const { t } = useTranslation();
 
     const [isAuthModal, setIsAuthModal] = useState(false);
-    const authDate = useSelector(getUserAuthData);
+    const authData = useSelector(getUserAuthData);
 
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false);
@@ -33,7 +33,7 @@ const Navbar = ({ className }: NavbarProps) => {
         setIsAuthModal(true);
     }, []);
 
-    if (authDate) {
+    if (authData) {
         return (
             <header className={classNames(styles.navbar, {}, [className])}>
                 <Text

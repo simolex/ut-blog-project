@@ -35,7 +35,7 @@ NormalEditable.decorators = [
             },
         },
         user: {
-            authDate: {
+            authData: {
                 id: '1',
             },
         },

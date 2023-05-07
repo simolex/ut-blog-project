@@ -19,4 +19,4 @@ Light.decorators = [StoreDecorator({})];
 
 export const LightAuth = Template.bind({});
 LightAuth.args = {};
-LightAuth.decorators = [StoreDecorator({ user: { authDate: { id: '1', username: 'user' } } })];
+LightAuth.decorators = [StoreDecorator({ user: { authData: { id: '1', username: 'user' } } })];

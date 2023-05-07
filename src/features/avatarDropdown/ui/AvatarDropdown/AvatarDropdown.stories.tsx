@@ -19,7 +19,7 @@ Normal.decorators = [
     StoreDecorator({
         user: {
             _mounted: true,
-            authDate: {},
+            authData: {},
         },
     }),
 ];
@@ -30,7 +30,7 @@ Privileged.decorators = [
     StoreDecorator({
         user: {
             _mounted: true,
-            authDate: {
+            authData: {
                 roles: [UserRole.ADMIN],
             },
         },

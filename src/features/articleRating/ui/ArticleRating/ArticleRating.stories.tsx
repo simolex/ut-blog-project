@@ -14,7 +14,7 @@ export default {
     decorators: [
         StoreDecorator({
             user: {
-                authDate: { id: '1' },
+                authData: { id: '1' },
             },
         }),
         withMock,

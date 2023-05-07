@@ -45,4 +45,4 @@ export const getSidebarItems = createSelector(getUserAuthData, (userData) => {
 
     return sidebarItemsList;
 });
-// (state: StateSchema) => state.user.authDate?.id;
+// (state: StateSchema) => state.user.authData?.id;

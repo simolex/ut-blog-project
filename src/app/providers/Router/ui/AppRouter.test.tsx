@@ -37,7 +37,7 @@ describe('app/provider/AppRouter', () => {
             route: getRouteProfile('1'),
             initialState: {
                 user: {
-                    authDate: { id: '1' },
+                    authData: { id: '1' },
                     _mounted: true,
                 },
             },
@@ -52,7 +52,7 @@ describe('app/provider/AppRouter', () => {
             route: getRouteAdminPanel(),
             initialState: {
                 user: {
-                    authDate: { id: '1' },
+                    authData: { id: '1' },
                     _mounted: true,
                 },
             },
@@ -67,7 +67,7 @@ describe('app/provider/AppRouter', () => {
             route: getRouteAdminPanel(),
             initialState: {
                 user: {
-                    authDate: { roles: [UserRole.ADMIN] },
+                    authData: { roles: [UserRole.ADMIN] },
                     _mounted: true,
                 },
             },

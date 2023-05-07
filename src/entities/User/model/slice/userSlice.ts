@@ -11,17 +11,17 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setAuthData: (state, action: PayloadAction<User>) => {
-            state.authDate = action.payload;
+            state.authData = action.payload;
         },
         initAuthData: (state) => {
             const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
             if (user) {
-                state.authDate = JSON.parse(user);
+                state.authData = JSON.parse(user);
             }
             state._mounted = true;
         },
         logout: (state) => {
-            state.authDate = undefined;
+            state.authData = undefined;
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
         },
     },

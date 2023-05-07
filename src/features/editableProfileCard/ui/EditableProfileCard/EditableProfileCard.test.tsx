@@ -28,7 +28,7 @@ const options = {
             data: profile,
         },
         user: {
-            authDate: {
+            authData: {
                 id: '1',
                 username: 'admin',
             },

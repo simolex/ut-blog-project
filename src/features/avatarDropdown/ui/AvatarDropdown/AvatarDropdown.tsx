@@ -18,7 +18,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
 
-    const authDate = useSelector(getUserAuthData);
+    const authData = useSelector(getUserAuthData);
 
     const onLogout = useCallback(() => {
         dispatch(userActions.logout());
@@ -28,7 +28,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
     const isManager = useSelector(getIsManager);
     const isAdminPanelAvailable = isAdmin || isManager;
 
-    if (!authDate) {
+    if (!authData) {
         return null;
     }
 
@@ -40,7 +40,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
                 {
                     id: 'profile',
                     content: t('profile'),
-                    href: getRouteProfile(authDate.id),
+                    href: getRouteProfile(authData.id),
                 },
                 ...(isAdminPanelAvailable
                     ? [
@@ -57,7 +57,7 @@ export const AvatarDropdown = memo((props: AvatarDropdownProps) => {
                     onClick: onLogout,
                 },
             ]}
-            trigger={<Avatar size={30} src={authDate.avatar} fallbackInverted />}
+            trigger={<Avatar size={30} src={authData.avatar} fallbackInverted />}
         />
     );
 });
