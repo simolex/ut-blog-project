@@ -119,6 +119,9 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const articles = useSelector(getArticles.selectAll);
     const view = useSelector(getArticlesPageView);
 
+    // const articleItem = useArticleItemById('1');
+    // console.log(articleItem);
+
     const error = useSelector(getArticlesPageError);
     const [searchParams] = useSearchParams();
 
