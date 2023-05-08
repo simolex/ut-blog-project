@@ -92,6 +92,7 @@ module.exports = {
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing', '**/styles/index.scss'],
             },
         ],
+        'react/no-unstable-nested-components': 'warn',
     },
     globals: {
         __IS_DEV__: true,
