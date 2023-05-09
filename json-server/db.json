@@ -75,6 +75,11 @@
                 "isArticleRatingEnabled": true,
                 "isCounterEnabled": true
             },
+            "userSettings": {
+                "theme": "app_dark_theme",
+                "isFirstVizit": true,
+                "settingsPageHasBeenOpen": false
+            },
             "avatar": "https://7img.net/users/1112/16/48/08/avatars/1-96.jpg"
         },
         {
@@ -86,6 +91,8 @@
                 "isArticleRatingEnabled": false,
                 "isCounterEnabled": true
             },
+            "profileSettings": {},
+
             "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
         },
         {

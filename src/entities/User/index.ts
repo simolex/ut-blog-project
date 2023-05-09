@@ -3,3 +3,4 @@ export { getUserAuthData } from './model/selectors/getUserAuthData/getUserAuthDa
 export { userReducer, userActions } from './model/slice/userSlice';
 export { getIsAdmin, getIsManager, getIsUser, getUserRoles } from './model/selectors/roleSelector';
 export { type User, type UserSchema, UserRole } from './model/types/user';
+export { useUserSettingsByKey } from './model/selectors/userSettings';

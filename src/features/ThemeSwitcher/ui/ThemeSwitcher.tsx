@@ -15,10 +15,19 @@ interface ThemeSwitcherProps {
 export const ThemeSwitcher = memo((props: ThemeSwitcherProps) => {
     const { className, size = 30 } = props;
     const { theme, toggleTheme } = useTheme();
+
+    // const onToggleHandler = useCallback(
+    //     // eslint-disable-next-line no-unused-vars
+    //     toggleTheme((newTheme) => {
+    //         // console.log(`Новая тема: ${newTheme}`);
+    //     }),
+    //     [toggleTheme],
+    // );
+
     return (
         <Button
             theme={ButtonTheme.CLEAR}
-            onClick={toggleTheme}
+            // onClick={onToggleHandler}
             className={classNames('', {}, [className])}
         >
             {theme === Theme.DARK ? (
