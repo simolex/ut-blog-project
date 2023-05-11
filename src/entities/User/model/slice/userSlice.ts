@@ -4,7 +4,8 @@ import { setFeatureFlags } from '@/shared/lib/features';
 import { User, UserSchema } from '../types/user';
 import { UserSettings } from '../types/userSettings';
 import { Theme } from '@/shared/const/theme';
-import { saveUserSettings } from '../../services/saveUserSettings';
+import { saveUserSettings } from '../services/saveUserSettings';
+import { initAuthData } from '../services/initAuthData';
 
 const initialState: UserSchema = {
     _mounted: false,
@@ -23,21 +24,23 @@ export const userSlice = createSlice({
         setAuthData: (state, action: PayloadAction<User>) => {
             state.authData = action.payload;
             setFeatureFlags(action.payload.features);
+
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
         },
-        initAuthData: (state) => {
-            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
+        // initAuthData: (state) => {
+        //     const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 
-            if (user) {
-                const userJSON = JSON.parse(user) as User;
+        //     if (user) {
+        //         const userJSON = JSON.parse(user) as User;
 
-                const userSetting = { ...defaultUserSettings, ...userJSON.userSettings };
-                userJSON.userSettings = userSetting;
+        //         const userSetting = { ...defaultUserSettings, ...userJSON.userSettings };
+        //         userJSON.userSettings = userSetting;
 
-                state.authData = userJSON;
-                setFeatureFlags(userJSON?.features);
-            }
-            state._mounted = true;
-        },
+        //         state.authData = userJSON;
+        //         setFeatureFlags(userJSON?.features);
+        //     }
+        //     state._mounted = true;
+        // },
         logout: (state) => {
             state.authData = undefined;
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
@@ -52,10 +55,25 @@ export const userSlice = createSlice({
                 }
             },
         );
-        // .addCase(fetchArticleById.rejected, (state, action) => {
+        // .addCase(saveUserSettings.rejected, (state, action) => {
         //     state.isLoading = false;
         //     state.error = action.payload;
         // });
+        builder.addCase(initAuthData.fulfilled, (state, { payload }: PayloadAction<User>) => {
+            //
+            //
+            //
+            //
+            const userSetting = { ...defaultUserSettings, ...(payload?.userSettings ?? {}) };
+
+            state.authData = payload;
+            // state.authData.userSettings = userSetting;
+            setFeatureFlags(payload?.features);
+            state._mounted = true;
+        });
+        builder.addCase(initAuthData.rejected, (state) => {
+            state._mounted = true;
+        });
     },
 });
 

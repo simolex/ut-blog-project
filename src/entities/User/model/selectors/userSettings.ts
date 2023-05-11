@@ -8,5 +8,5 @@ export const [useUserSettings, getUserSettings] = buildSelector(
 );
 
 export const [useUserSettingsByKey, getUserSettingsByKey] = buildSelector(
-    (state, key: keyof UserSettings) => state.user?.authData?.userSettings?.[key],
+    (state, key: keyof UserSettings) => state?.user?.authData?.userSettings?.[key],
 );

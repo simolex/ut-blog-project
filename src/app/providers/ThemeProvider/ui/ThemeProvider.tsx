@@ -14,10 +14,10 @@ const ThemeProvider = (props: ThemeProviderProps) => {
     // TODO
     const defaultTheme = useUserSettingsByKey('theme') as Theme;
     const [isThemeInited, setIsThemeInited] = useState(false);
-    const [theme, setTheme] = useState<Theme>(initialTheme ?? defaultTheme);
+    const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme || Theme.LIGHT);
     // TODO maybe
     useEffect(() => {
-        if (!isThemeInited) {
+        if (!isThemeInited && defaultTheme) {
             setTheme(defaultTheme);
             setIsThemeInited(true);
         }
