@@ -14,7 +14,7 @@ const initialState: UserSchema = {
 const defaultUserSettings: UserSettings = {
     theme: Theme.LIGHT,
     isFirstVizit: true,
-    settingsPageHasBeenOpen: false,
+    isArticlePageWasOpened: false,
 };
 
 export const userSlice = createSlice({
@@ -27,20 +27,7 @@ export const userSlice = createSlice({
 
             localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
         },
-        // initAuthData: (state) => {
-        //     const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 
-        //     if (user) {
-        //         const userJSON = JSON.parse(user) as User;
-
-        //         const userSetting = { ...defaultUserSettings, ...userJSON.userSettings };
-        //         userJSON.userSettings = userSetting;
-
-        //         state.authData = userJSON;
-        //         setFeatureFlags(userJSON?.features);
-        //     }
-        //     state._mounted = true;
-        // },
         logout: (state) => {
             state.authData = undefined;
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);

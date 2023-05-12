@@ -8,6 +8,7 @@ import {
     ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { ArticlePageGreeting } from '@/features/articlePageGreeting';
 import {
     getArticlesPageError,
     getArticlesPageIsLoading,
@@ -119,9 +120,6 @@ const ArticlesPage = (props: ArticlesPageProps) => {
     const articles = useSelector(getArticles.selectAll);
     const view = useSelector(getArticlesPageView);
 
-    // const articleItem = useArticleItemById('1');
-    // console.log(articleItem);
-
     const error = useSelector(getArticlesPageError);
     const [searchParams] = useSearchParams();
 
@@ -152,6 +150,7 @@ const ArticlesPage = (props: ArticlesPageProps) => {
                 onLoadNextPage={onLoadNextPage}
                 Header={Header}
             />
+            <ArticlePageGreeting />
         </DynamicModuleLoader>
     );
 };

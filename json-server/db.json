@@ -80,7 +80,8 @@
       "userSettings": {
         "theme": "app_green_theme",
         "isFirstVizit": true,
-        "settingsPageHasBeenOpen": false
+        "settingsPageHasBeenOpen": false,
+        "isArticlePageWasOpened": true
       },
       "avatar": "https://7img.net/users/1112/16/48/08/avatars/1-96.jpg"
     },
@@ -95,7 +96,9 @@
         "isArticleRatingEnabled": false,
         "isCounterEnabled": true
       },
-      "userSettings": {},
+      "userSettings": {
+        "isArticlePageWasOpened": true
+      },
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
     },
     {
