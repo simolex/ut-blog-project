@@ -1,4 +1,4 @@
-import { Node, Project, SyntaxKind } from 'ts-morph';
+import { JsxAttribute, Node, Project, SyntaxKind } from 'ts-morph';
 import path from 'node:path';
 
 const utilName = process.argv[1];
@@ -33,10 +33,8 @@ if (selectedFeatureState !== 'on' && selectedFeatureState !== 'off') {
     console.error('\r\nВыбранное состояние фичи должно быть: on или off');
 }
 
-project.addSourceFilesAtPaths('src/**/ArticleDetailsPage.tsx');
-// TODO
-// project.addSourceFilesAtPaths('src/**/*.ts');
-// project.addSourceFilesAtPaths('src/**/*.tsx');
+project.addSourceFilesAtPaths('src/**/*.ts');
+project.addSourceFilesAtPaths('src/**/*.tsx');
 
 const files = project.getSourceFiles();
 
@@ -82,6 +80,49 @@ const replaceToggleFunction = (node: Node) => {
     }
 };
 
+const getAttributeNodeByName = (jsxAttributes: JsxAttribute[], name: string) =>
+    jsxAttributes.find((node) => node.getName() === name);
+
+const replaceComponentWithText = (attribute?: JsxAttribute) => {
+    const expression = attribute?.getFirstDescendantByKind(SyntaxKind.JsxExpression);
+    const parenthesizedExpression = expression?.getFirstDescendantByKind(
+        SyntaxKind.ParenthesizedExpression,
+    );
+
+    if (parenthesizedExpression) {
+        return parenthesizedExpression?.getFirstDescendantByKind(SyntaxKind.JsxElement);
+    }
+    return expression?.getExpression();
+};
+
+const replaceToggleComponent = (node: Node) => {
+    const attributes = node.getDescendantsOfKind(SyntaxKind.JsxAttribute);
+    if (!attributes) {
+        return;
+    }
+    const onAttribute = getAttributeNodeByName(attributes, 'on');
+    const offAttribute = getAttributeNodeByName(attributes, 'off');
+
+    const nameFeatureAttribute = getAttributeNodeByName(attributes, 'feature');
+    const nameFeature = nameFeatureAttribute
+        ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
+        ?.getLiteralValue();
+
+    if (nameFeature !== removedFeatureName) {
+        return;
+    }
+
+    const onValue = replaceComponentWithText(onAttribute);
+    const offValue = replaceComponentWithText(offAttribute);
+
+    if (selectedFeatureState === 'on' && onValue) {
+        node.replaceWithText(onValue?.getText() ?? '');
+    }
+    if (selectedFeatureState === 'off' && offValue) {
+        node.replaceWithText(offValue?.getText() ?? '');
+    }
+};
+
 files.forEach((sourceFile) => {
     sourceFile.forEachDescendant((node) => {
         if (
@@ -90,12 +131,11 @@ files.forEach((sourceFile) => {
         ) {
             replaceToggleFunction(node);
         }
-
         if (
             node.isKind(SyntaxKind.JsxSelfClosingElement) &&
             isToggleIdentifier(node, toggleComponentName)
         ) {
-            // replaceToggleComponent(node);
+            replaceToggleComponent(node);
         }
     });
 });
