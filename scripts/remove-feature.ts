@@ -5,6 +5,9 @@ const utilName = process.argv[1];
 const removedFeatureName = process.argv[2];
 const selectedFeatureState = process.argv[3];
 
+const toggleFunctionName = 'toggleFeatures';
+const toggleComponentName = 'ToggleFeatures';
+
 const project = new Project({});
 if (!removedFeatureName) {
     console.error('\r\nУкажите название фича-флага:');
@@ -37,12 +40,12 @@ project.addSourceFilesAtPaths('src/**/ArticleDetailsPage.tsx');
 
 const files = project.getSourceFiles();
 
-function isToggleFunction(node: Node) {
+function isToggleIdentifier(node: Node, identifierName: string) {
     let isToggleFeatures = false;
 
     // eslint-disable-next-line consistent-return
     node.forEachChild((child) => {
-        if (child.isKind(SyntaxKind.Identifier) && child.getText() === 'toggleFeatures') {
+        if (child.isKind(SyntaxKind.Identifier) && child.getText() === identifierName) {
             isToggleFeatures = true;
             return isToggleFeatures;
         }
@@ -51,38 +54,48 @@ function isToggleFunction(node: Node) {
     return isToggleFeatures;
 }
 
+const replaceToggleFunction = (node: Node) => {
+    const objectOptions = node.getFirstDescendantByKind(SyntaxKind.ObjectLiteralExpression);
+
+    if (!objectOptions) {
+        return;
+    }
+    const onFunctionProperty = objectOptions.getProperty('on');
+    const onFunction = onFunctionProperty?.getFirstDescendantByKind(SyntaxKind.ArrowFunction);
+
+    const offFunctionProperty = objectOptions.getProperty('off');
+    const offFunction = offFunctionProperty?.getFirstDescendantByKind(SyntaxKind.ArrowFunction);
+
+    const nameFeatureProperty = objectOptions.getProperty('name');
+    const nameFeature = nameFeatureProperty
+        ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
+        ?.getLiteralValue();
+
+    if (nameFeature !== removedFeatureName) process.exit();
+
+    if (selectedFeatureState === 'on') {
+        node.replaceWithText(onFunction?.getBodyText() ?? '');
+    }
+
+    if (selectedFeatureState === 'off') {
+        node.replaceWithText(offFunction?.getBodyText() ?? '');
+    }
+};
+
 files.forEach((sourceFile) => {
     sourceFile.forEachDescendant((node) => {
-        if (node.isKind(SyntaxKind.CallExpression) && isToggleFunction(node)) {
-            const objectOptions = node.getFirstDescendantByKind(SyntaxKind.ObjectLiteralExpression);
+        if (
+            node.isKind(SyntaxKind.CallExpression) &&
+            isToggleIdentifier(node, toggleFunctionName)
+        ) {
+            replaceToggleFunction(node);
+        }
 
-            if (!objectOptions) {
-                return;
-            }
-            const onFunctionProperty = objectOptions.getProperty('on');
-            const onFunction = onFunctionProperty?.getFirstDescendantByKind(
-                SyntaxKind.ArrowFunction,
-            );
-
-            const offFunctionProperty = objectOptions.getProperty('off');
-            const offFunction = offFunctionProperty?.getFirstDescendantByKind(
-                SyntaxKind.ArrowFunction,
-            );
-
-            const nameFeatureProperty = objectOptions.getProperty('name');
-            const nameFeature = nameFeatureProperty
-                ?.getFirstDescendantByKind(SyntaxKind.StringLiteral)
-                ?.getLiteralValue();
-
-            if (nameFeature !== removedFeatureName) process.exit();
-
-            if (selectedFeatureState === 'on') {
-                node.replaceWithText(onFunction?.getBodyText() ?? '');
-            }
-
-            if (selectedFeatureState === 'off') {
-                node.replaceWithText(offFunction?.getBodyText() ?? '');
-            }
+        if (
+            node.isKind(SyntaxKind.JsxSelfClosingElement) &&
+            isToggleIdentifier(node, toggleComponentName)
+        ) {
+            // replaceToggleComponent(node);
         }
     });
 });
