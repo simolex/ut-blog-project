@@ -75,10 +75,11 @@
       ],
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true
+        "isCounterEnabled": true,
+        "isAppRedesigned": true
       },
       "userSettings": {
-        "theme": "app_green_theme",
+        "theme": "app_light_theme",
         "isFirstVizit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
