@@ -14,6 +14,7 @@ import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { HStack } from '@/shared/ui/Stack';
 import { Text, TextVariant } from '@/shared/ui/Text';
 import styles from './Navbar.module.scss';
+import { ToggleFeatures } from '@/shared/lib/features';
 
 interface NavbarProps {
     className?: string;
@@ -35,29 +36,43 @@ const Navbar = ({ className }: NavbarProps) => {
 
     if (authData) {
         return (
-            <header className={classNames(styles.navbar, {}, [className])}>
-                <Text
-                    variant={TextVariant.INVERTED}
-                    className={styles.appName}
-                    title={t('app-name')}
-                />
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                off={
+                    <header className={classNames(styles.navbar, {}, [className])}>
+                        <Text
+                            variant={TextVariant.INVERTED}
+                            className={styles.appName}
+                            title={t('app-name')}
+                        />
 
-                <AppLink
-                    theme={AppLinkTheme.SECONDARY}
-                    to={getRouteArticleCreate()}
-                    className={styles.newArticle}
-                >
-                    {t('create-new-article-nb')}
-                </AppLink>
-                <HStack gap="16" className={styles.actions}>
-                    <NotificationButton />
-                    <AvatarDropdown />
-                </HStack>
-            </header>
+                        <AppLink
+                            theme={AppLinkTheme.SECONDARY}
+                            to={getRouteArticleCreate()}
+                            className={styles.newArticle}
+                        >
+                            {t('create-new-article-nb')}
+                        </AppLink>
+                        <HStack gap="16" className={styles.actions}>
+                            <NotificationButton />
+                            <AvatarDropdown />
+                        </HStack>
+                    </header>
+                }
+                on={
+                    <header className={classNames(styles.navbarRedesigned, {}, [className])}>
+                        <HStack gap="16" className={styles.actions}>
+                            <NotificationButton />
+                            <AvatarDropdown />
+                        </HStack>
+                    </header>
+                }
+            />
         );
     }
     return (
         <header className={classNames(styles.navbar, {}, [className])}>
+            <Text variant={TextVariant.INVERTED} className={styles.appName} title={t('app-name')} />
             <Button theme={ButtonTheme.CLEAR} className={styles.links} onClick={onShowModal}>
                 {t('signin')}
             </Button>

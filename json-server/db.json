@@ -98,7 +98,8 @@
         "isCounterEnabled": true
       },
       "userSettings": {
-        "isArticlePageWasOpened": true
+        "isArticlePageWasOpened": true,
+        "theme": "app_light_theme"
       },
       "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpsbd_G9Kkj28U1iMKL82RBqw_o9RRPBPSDpCZS9jCr2Bex9dI9poavlvjvF6LqRvGVU"
     },

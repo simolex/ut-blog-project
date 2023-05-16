@@ -12,6 +12,7 @@ import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ToggleFeatures } from '@/shared/lib/features';
+import { MainLayout } from '@/shared/layouts';
 
 const App = () => {
     const { theme } = useTheme();
@@ -37,7 +38,7 @@ const App = () => {
 
                         <div className="content-page">
                             <Sidebar />
-                            {mounted && <AppRouter />}
+                            <AppRouter />
                         </div>
                     </Suspense>
                 </div>
@@ -45,8 +46,12 @@ const App = () => {
             on={
                 <div className={classNames('app_redesigned', {}, [])}>
                     <Suspense fallback="">
-                        <Sidebar />
-                        {mounted && <AppRouter />}
+                        <MainLayout
+                            header={<Navbar />}
+                            content={<AppRouter />}
+                            sidebar={<Sidebar />}
+                            toolbar={<div>asqwezxc</div>}
+                        />
                     </Suspense>
                 </div>
             }

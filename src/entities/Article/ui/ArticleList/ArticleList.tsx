@@ -129,6 +129,7 @@ export const ArticleList = memo((props: ArticleListProps) => {
         <div className={classNames(styles.articleList, {}, [className, styles[view]])}>
             {view === 'LIST' ? (
                 <Virtuoso
+                    useWindowScroll
                     data-testid={dataTestId}
                     style={{ height: '100%' }}
                     context={{ isLoading, view: ArticleView.LIST }}
@@ -137,20 +138,21 @@ export const ArticleList = memo((props: ArticleListProps) => {
                     endReached={onLoadNextPage}
                     initialTopMostItemIndex={selectedArticleId}
                     components={{
-                        Header,
+                        Header, // TODO need remove from here
                         List,
                         Footer,
                     }}
                 />
             ) : (
                 <VirtuosoGrid
+                    useWindowScroll
                     data-testid={dataTestId}
                     style={{ height: '100%' }}
                     context={{ isLoading, view: ArticleView.GRID }}
                     ref={virtuosoGridRef}
                     totalCount={articles?.length}
                     components={{
-                        Header,
+                        Header, // TODO need remove from here
                         ScrollSeekPlaceholder: ArticleItemPlaceholder,
                         Footer,
                     }}

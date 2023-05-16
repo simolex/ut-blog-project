@@ -10,6 +10,7 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle';
 import { TestIdProps } from '@/shared/types/testid';
 import styles from './PageWrapper.module.scss';
+import { toggleFeatures } from '@/shared/lib/features';
 
 interface PageWrapperProps extends TestIdProps {
     className?: string;
@@ -59,7 +60,15 @@ export const PageWrapper = (props: PageWrapperProps) => {
     return (
         <main
             ref={wrapperRef}
-            className={classNames(styles.pageWrapper, {}, [className])}
+            className={classNames(
+                toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => styles.pageWrapper,
+                    on: () => styles.pageWrapperRedesigned,
+                }),
+                {},
+                [className],
+            )}
             onScroll={onScroll}
             id={PAGE_ID}
             data-testid={dataTestId}
