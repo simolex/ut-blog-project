@@ -26,6 +26,11 @@ interface ListBoxProps {
     direction?: DropdownDirection;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const ListBox = memo((props: ListBoxProps) => {
     const {
         className,

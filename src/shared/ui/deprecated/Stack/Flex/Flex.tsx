@@ -45,6 +45,11 @@ export interface FlexProps extends TestIdProps {
 
 export const defaultFlexTag = 'div';
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Flex = <E extends ElementType = typeof defaultFlexTag>(
     props: PolymorphicComponentProp<E, FlexProps>,
 ) => {

@@ -17,6 +17,11 @@ interface ModalProps {
 
 const ANIMATION_DELAY = 300;
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Modal = (props: ModalProps) => {
     const { className, children, isOpen, onClose, lazy } = props;
 

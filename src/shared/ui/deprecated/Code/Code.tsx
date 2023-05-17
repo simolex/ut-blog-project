@@ -11,6 +11,11 @@ interface CodeProps {
     text: string;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Code = memo((props: CodeProps) => {
     const { className, text } = props;
     const { t } = useTranslation('article');

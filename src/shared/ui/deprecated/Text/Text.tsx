@@ -38,6 +38,11 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
     [TextSize.S]: 'h3',
 };
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Text = memo((props: TextProps) => {
     const {
         className,

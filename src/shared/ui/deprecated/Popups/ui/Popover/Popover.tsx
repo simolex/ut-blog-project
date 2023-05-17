@@ -14,6 +14,11 @@ interface PopoverProps {
     children: ReactNode;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Popover = memo((props: PopoverProps) => {
     const { className, trigger, direction = 'bottom right', children } = props;
 

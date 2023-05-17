@@ -9,6 +9,11 @@ interface AppLogoProps {
     className?: string;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const AppLogo = memo((props: AppLogoProps) => {
     const { className } = props;
 

@@ -17,6 +17,11 @@ interface SelectProps<T extends string> {
     readonly?: boolean;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
     const { className, label, options, valueSelected, onChange, readonly } = props;
 
@@ -27,11 +32,12 @@ export const Select = typedMemo(<T extends string>(props: SelectProps<T>) => {
     };
 
     const optionList = useMemo(
-        () => options?.map(({ value, content }) => (
-            <option className={styles.option} value={value} key={value}>
-                {content}
-            </option>
-        )) || [],
+        () =>
+            options?.map(({ value, content }) => (
+                <option className={styles.option} value={value} key={value}>
+                    {content}
+                </option>
+            )) || [],
         [options],
     );
 

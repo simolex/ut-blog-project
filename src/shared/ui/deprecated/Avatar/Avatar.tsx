@@ -14,6 +14,11 @@ interface AvatarProps {
     fallbackInverted?: boolean;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Avatar = memo((props: AvatarProps) => {
     const { className, src, alt, size = 30, fallbackInverted } = props;
 

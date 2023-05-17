@@ -9,6 +9,11 @@ interface IconProps extends ExtendSVGProps<SVGSVGElement> {
     inverted?: boolean;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Icon = memo((props: IconProps) => {
     const { className, Svg, title, inverted = false, ...otherProps } = props;
 

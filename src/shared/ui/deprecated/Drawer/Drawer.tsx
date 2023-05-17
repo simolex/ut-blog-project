@@ -1,8 +1,8 @@
 import { memo, ReactNode, useCallback, useEffect } from 'react';
 import { classNames } from '@/shared/lib/classNames';
 import { AnimationProvider, useAnimationLibs } from '@/shared/lib/components/AnimationProvider';
-import { Overlay } from '../Overlay/Overlay';
-import { Portal } from '../Portal/Portal';
+import { Overlay } from '@/shared/ui/deprecated/Overlay/Overlay';
+import { Portal } from '@/shared/ui/deprecated/Portal/Portal';
 import styles from './Drawer.module.scss';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 
@@ -96,6 +96,11 @@ const DrawerLazy = (props: DrawerProps) => {
     }
     return <DrawerContent {...props} />;
 };
+
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
 
 export const Drawer = (props: DrawerProps) => (
     <AnimationProvider>

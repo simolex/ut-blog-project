@@ -14,6 +14,11 @@ interface AppLinkProps extends LinkProps {
     children?: ReactNode;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const AppLink = forwardRef((props: AppLinkProps, ref: Ref<HTMLAnchorElement>) => {
     const { to, className, theme = AppLinkTheme.PRIMARY, children, ...otherProps } = props;
 

@@ -9,6 +9,11 @@ interface SkeletonProps {
     border?: string;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Skeleton = memo((props: SkeletonProps) => {
     const { className, height, width, border } = props;
 

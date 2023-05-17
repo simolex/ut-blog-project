@@ -16,6 +16,11 @@ interface TabsProps<T extends string> {
     onTabClick: (tab: TabItem<T>) => void;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Tabs = typedMemo(<T extends string>(props: TabsProps<T>) => {
     const { className, tabs, value, onTabClick } = props;
 

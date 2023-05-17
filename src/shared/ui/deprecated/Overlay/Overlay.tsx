@@ -7,6 +7,11 @@ interface OverlayProps {
     onClick?: () => void;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Overlay = memo((props: OverlayProps) => {
     const { className, onClick } = props;
 

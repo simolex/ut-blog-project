@@ -23,6 +23,11 @@ interface DropdownProps {
     direction?: DropdownDirection;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Dropdown = memo((props: DropdownProps) => {
     const { className, items, trigger, direction = 'bottom right' } = props;
     const directionClass = mapDirectionClass[direction];

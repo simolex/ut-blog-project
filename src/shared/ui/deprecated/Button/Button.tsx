@@ -32,6 +32,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     fullWidth?: boolean;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Button = forwardRef((props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
     const {
         className,

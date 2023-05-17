@@ -5,6 +5,11 @@ import StarIcon from '@/shared/assets/icons/star-52x52.svg';
 import styles from './StarRating.module.scss';
 import { TestIdProps } from '@/shared/types/testid';
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 interface StarRatingProps extends TestIdProps {
     className?: string;
     onSelect?: (starsCount: number) => void;

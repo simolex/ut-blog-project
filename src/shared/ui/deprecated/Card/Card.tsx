@@ -14,6 +14,11 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     fullWidth?: boolean;
 }
 
+/**
+ * Компоненты с новым дизайном расположены в папке redesigned.
+ * @deprecated В связи с редизайном приложения текущие компонеты устарели.
+ */
+
 export const Card = memo((props: CardProps) => {
     const { className, children, variant = CardVariant.NORMAL, fullWidth, ...otherProps } = props;
 
