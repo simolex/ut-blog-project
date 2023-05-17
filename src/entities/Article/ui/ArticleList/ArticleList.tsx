@@ -17,7 +17,7 @@ import {
     GridScrollSeekPlaceholderProps,
 } from 'react-virtuoso';
 import { classNames } from '@/shared/lib/classNames';
-import { Text } from '@/shared/ui/Text';
+import { Text } from '@/shared/ui/deprecated/Text';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton';

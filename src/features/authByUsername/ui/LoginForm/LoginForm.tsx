@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { classNames } from '@/shared/lib/classNames';
-import { Input } from '@/shared/ui/Input';
-import { Text, TextVariant } from '@/shared/ui/Text';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Input } from '@/shared/ui/deprecated/Input';
+import { Text, TextVariant } from '@/shared/ui/deprecated/Text';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import {
     DynamicModuleLoader,
     ReducersList,

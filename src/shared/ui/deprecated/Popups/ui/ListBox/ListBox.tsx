@@ -3,8 +3,8 @@ import { Fragment, memo, ReactNode } from 'react';
 
 import { classNames } from '@/shared/lib/classNames';
 import { DropdownDirection } from '@/shared/types/ui';
-import { Button } from '@/shared/ui/Button';
-import { HStack } from '../../../Stack';
+import { Button } from '@/shared/ui/deprecated/Button';
+import { HStack } from '@/shared/ui/deprecated/Stack';
 import { mapDirectionClass } from '../../styles/const';
 import styles from './ListBox.module.scss';
 import popupStyles from '../../styles/popup.module.scss';

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames';
-import { LoaderGrid } from '@/shared/ui/LoaderGrid';
+import { LoaderGrid } from '@/shared/ui/deprecated/LoaderGrid';
 import styles from './PageLoader.module.scss';
 
 interface PageLoaderProps {

@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
 import { Suspense } from 'react';
-import { LoaderGrid } from '@/shared/ui/LoaderGrid';
-import { Flex } from '@/shared/ui/Stack';
+import { LoaderGrid } from '@/shared/ui/deprecated/LoaderGrid';
+import { Flex } from '@/shared/ui/deprecated/Stack';
 
 export const SuspenseDecorator = (StoryComponent: Story) => (
     <Suspense

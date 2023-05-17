@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleView } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
+import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
+import { Icon } from '@/shared/ui/deprecated/Icon';
 
 import ListIcon from '@/shared/assets/icons/view-list-20x20.svg';
 import GridIcon from '@/shared/assets/icons/view-grid-20x20.svg';
