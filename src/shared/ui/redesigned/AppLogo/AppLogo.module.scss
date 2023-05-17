@@ -4,6 +4,7 @@
 
 .gradientBig {
     position: absolute;
+    pointer-events: none;
     background:
         radial-gradient(
             57.05% 57.05% at 49.84% 42.95%,
@@ -22,6 +23,7 @@
 
 .gradientSmall {
     position: absolute;
+    pointer-events: none;
     background:
         radial-gradient(
             30.29% 30.29% at 50% 50%,

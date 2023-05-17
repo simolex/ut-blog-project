@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
-import { VStack } from '@/shared/ui/deprecated/Stack';
+import { VStack as VStackDeprecated } from '@/shared/ui/deprecated/Stack';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
 
 import { SidebarItem } from '../SidebarItem/SidebarItem';
@@ -12,7 +13,7 @@ import { getSidebarItems } from '../../model/selectors/getSidebarItems';
 
 import styles from './Sidebar.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
-import { AppLogo } from '@/shared/ui/deprecated/AppLogo';
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo';
 
 interface SidebarProps {
     className?: string;
@@ -56,9 +57,9 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                     >
                         {collapsed ? '>' : '<'}
                     </Button>
-                    <VStack as="ul" role="navigation" gap="8" className={styles.itemList}>
+                    <VStackDeprecated as="ul" role="navigation" gap="8" className={styles.itemList}>
                         {itemList}
-                    </VStack>
+                    </VStackDeprecated>
                     <div className={styles.switchers}>
                         <ThemeSwitcher />
                         <LangSwitcher short={collapsed} />
@@ -75,6 +76,9 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
                     )}
                 >
                     <AppLogo className={styles.appLogo} />
+                    <VStack as="ul" role="navigation" gap="8" className={styles.itemList}>
+                        {itemList}
+                    </VStack>
                 </aside>
             }
         />
