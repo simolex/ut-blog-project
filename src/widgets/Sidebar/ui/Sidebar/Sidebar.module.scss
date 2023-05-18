@@ -27,6 +27,14 @@
         overflow: hidden;
         transition: opacity 0.8s, height 0.9s 1s, width 0.9s 2s;
     }
+
+    .collapseBtn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: translate(100%, -50%);
+        z-index: 10;
+    }
 }
 
 .collapsed {
@@ -49,14 +57,6 @@
 
     .iconItem {
         margin-right: 0;
-    }
-
-    .collapseBtn {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        transform: translate(100%, -50%);
-        z-index: 10;
     }
 }
 
@@ -86,7 +86,14 @@
 
     .collapseBtn {
         position: absolute;
+        top: 50%;
         right: 0;
+        transform: translateY(-50%) rotate(90deg);
+        transform-origin: 50% 30%;
         z-index: 10;
+    }
+
+    &.collapsed .collapseBtn {
+        transform: translateY(-50%) rotate(-90deg);
     }
 }
