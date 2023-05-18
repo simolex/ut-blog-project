@@ -20,7 +20,9 @@ export const AppLogo = memo((props: AppLogoProps) => {
                 Svg={AppSvg}
                 width={size}
                 height={size}
-                color="black"
+                style={{
+                    color: 'black',
+                }}
             />
             <div className={styles.gradientBig} />
             <div className={styles.gradientSmall} />

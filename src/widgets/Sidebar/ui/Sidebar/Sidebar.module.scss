@@ -18,7 +18,7 @@
     }
 
     .itemList {
-        padding: 20px 10px;
+        padding: 20px 10px 0;
         list-style: none;
     }
 
@@ -50,14 +50,14 @@
     .iconItem {
         margin-right: 0;
     }
-}
 
-.collapseBtn {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    transform: translate(100%, -50%);
-    z-index: 10;
+    .collapseBtn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: translate(100%, -50%);
+        z-index: 10;
+    }
 }
 
 .sidebarRedesigned {
@@ -65,8 +65,28 @@
     width: 220px;
     height: 100%;
     border-radius: 32px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
 
     .appLogo {
         padding-top: 20px;
+    }
+
+    .itemList {
+        padding: 40px 20px 0;
+        list-style: none;
+    }
+
+    .linkItem {
+        opacity: 1;
+        overflow: hidden;
+        transition: opacity 0.8s, height 0.9s 1s, width 0.9s 2s;
+    }
+
+    .collapseBtn {
+        position: absolute;
+        right: 0;
+        z-index: 10;
     }
 }
